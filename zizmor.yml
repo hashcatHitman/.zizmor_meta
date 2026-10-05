@@ -52,7 +52,7 @@ rules:
   ref-confusion:
     disable: true
   ref-version-mismatch:
-    disable: true
+    disable: false
   secrets-inherit:
     disable: true
   secrets-outside-env:
