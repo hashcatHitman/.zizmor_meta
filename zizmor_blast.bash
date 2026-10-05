@@ -6,22 +6,24 @@
 
 set -uo pipefail
 
-organization_info="$(curl -s "https://api.github.com/orgs/rust-lang")"
-public_repository_count="$(echo "${organization_info}" | jq '.public_repos')"
-pages="$(fend "ceil(${public_repository_count} / 100)")"
+crabwatch_repo_slugs="$(
+    gh api --paginate --jq 'map(select(.fork == false))
+    | map(select(.archived == false))
+    | map(select(.custom_properties.crabwatch == "true"))
+    | .[].full_name' \
+        -X "GET" \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: 2026-03-10" \
+        -F "type=public" \
+        /orgs/rust-lang/repos
+)"
 
-declare -a repolist=()
+mapfile -t crabwatch_repo_slugs_arr <<<"${crabwatch_repo_slugs}"
 
-for page in $(seq "${pages}"); do
-    full_page="$(curl -s "https://api.github.com/orgs/rust-lang/repos?per_page=100&page=${page}")"
-    repo_slugs="$(echo "${full_page}" | jq -r '.[].full_name')"
-    already_contains="${#repolist[@]}"
-    mapfile -O "${already_contains}" -t repolist <<<"${repo_slugs}"
-done
-
-for repo in "${repolist[@]}"; do
+for repo in "${crabwatch_repo_slugs_arr[@]}"; do
     token="$(gh auth token)"
-    zizmor --gh-token "${token}" --config ./zizmor.yml --persona=pedantic "${repo}" >"./${repo}.txt"
+    zizmor --gh-token "${token}" --config ./zizmor.yml --persona=pedantic \
+        "${repo}" >"./${repo}.txt"
 done
 
 exit 0
