@@ -1,0 +1,562 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/release-plz.yml:20:9
+   |
+20 |         - name: Checkout repository
+   |  _________^
+21 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+22 | |         with:
+23 | |           fetch-depth: 0
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/release-plz.yml:45:9
+   |
+45 |         - name: Checkout repository
+   |  _________^
+46 | |         uses: actions/checkout@v4
+47 | |         with:
+48 | |           fetch-depth: 0
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/release-plz.yml:1:1
+   |
+ 1 | / name: Release-plz
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+55 | |         env:
+56 | |           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   | |____________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/release-plz.yml:25:15
+   |
+25 |         uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/release-plz.yml:27:15
+   |
+27 |         uses: release-plz/action@v0.5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/release-plz.yml:46:15
+   |
+46 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/release-plz.yml:50:15
+   |
+50 |         uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/release-plz.yml:52:15
+   |
+52 |         uses: release-plz/action@v0.5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/release-plz.yml:17:7
+   |
+17 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+18 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/release-plz.yml:39:7
+   |
+39 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+40 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/release-plz.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches:
+ 6 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+12 |       name: Release-plz release
+   |       ------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/release-plz.yml:25:15
+   |
+24 |       - name: Install Rust toolchain
+   |         ---------------------------- this step
+25 |         uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/release-plz.yml:50:15
+   |
+49 |       - name: Install Rust toolchain
+   |         ---------------------------- this step
+50 |         uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:11:7
+   |
+11 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:19:7
+   |
+19 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:39:7
+   |
+39 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:88:7
+   |
+88 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:96:7
+   |
+96 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/rust.yml:1:1
+    |
+  1 | / name: Rust
+  2 | |
+  3 | | on:
+  4 | |   pull_request:
+...   |
+112 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+113 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    | |__________________________________________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:8:3
+   |
+ 8 | /   miri:
+ 9 | |     runs-on: ubuntu-latest
+10 | |     steps:
+11 | |     - uses: actions/checkout@v3
+12 | |     - env:
+13 | |         TARGET: x86_64-unknown-linux-gnu
+14 | |       run: ci/miri.sh
+   | |                     ^
+   | |                     |
+   | |_____________________this job
+   |                       default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:16:3
+   |
+16 | /   rustfmt_clippy:
+17 | |     runs-on: ubuntu-latest
+18 | |     steps:
+19 | |     - uses: actions/checkout@v3
+...  |
+24 | |         CHANNEL: nightly
+25 | |       run: ci/tools.sh
+   | |                      ^
+   | |                      |
+   | |______________________this job
+   |                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:27:3
+   |
+27 | /   basics:
+28 | |     runs-on: ubuntu-latest
+29 | |     needs:
+30 | |       - miri
+31 | |       - rustfmt_clippy
+32 | |     steps:
+33 | |       - run: exit 0
+   | |                   ^
+   | |                   |
+   | |___________________this job
+   |                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:35:3
+   |
+35 | /   test:
+36 | |     runs-on: ${{ matrix.os }}
+37 | |     needs: basics
+38 | |     steps:
+...  |
+81 | |           target: loongarch64-unknown-linux-gnu
+82 | |           channel: nightly
+   | |                          ^
+   | |                          |
+   | |__________________________this job
+   |                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:84:3
+   |
+84 | /   msrv:
+85 | |     runs-on: ubuntu-latest
+86 | |     needs: basics
+87 | |     steps:
+88 | |     - uses: actions/checkout@v3
+89 | |     - run: cargo install cargo-msrv
+90 | |     - run: cargo msrv --workspace verify
+   | |                                        ^
+   | |                                        |
+   | |________________________________________this job
+   |                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:92:3
+   |
+92 | /   dep_of_std:
+93 | |     runs-on: ubuntu-latest
+94 | |     needs: basics
+95 | |     steps:
+...  |
+98 | |     - run: |
+99 | |         RUSTFLAGS="-Zforce-unstable-if-unmarked" cargo +nightly build --features rustc-dep-of-std
+   | |                                                                                                 ^
+   | |                                                                                                 |
+   | |_________________________________________________________________________________________________this job
+   |                                                                                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/rust.yml:102:3
+    |
+102 | /   conclusion:
+103 | |     needs: [test, msrv, dep_of_std]
+104 | |     # !cancelled() executes the job regardless of whether the previous jobs passed, failed or get skipped.
+105 | |     if: ${{ !cancelled() }}
+...   |
+112 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+113 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    | |                                                                                  ^
+    | |                                                                                  |
+    | |__________________________________________________________________________________this job
+    |                                                                                    default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/rust.yml:111:33
+    |
+109 |         run: |
+    |         --- this run block
+110 |           # Print the dependent jobs to see them in the CI log
+111 |           jq -C <<< '${{ toJson(needs) }}'
+    |                                 ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/rust.yml:113:72
+    |
+109 |         run: |
+    |         --- this run block
+...
+113 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    |                                                                        ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:11:13
+   |
+11 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:19:13
+   |
+19 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:39:13
+   |
+39 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:40:13
+   |
+40 |     - uses: dtolnay/rust-toolchain@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:88:13
+   |
+88 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:96:13
+   |
+96 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:97:13
+   |
+97 |     - uses: dtolnay/rust-toolchain@nightly
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/rust.yml:8:3
+  |
+8 |   miri:
+  |   ^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:16:3
+   |
+16 |   rustfmt_clippy:
+   |   ^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:27:3
+   |
+27 |   basics:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:35:3
+   |
+35 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:84:3
+   |
+84 |   msrv:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:92:3
+   |
+92 |   dep_of_std:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/rust.yml:102:3
+    |
+102 |   conclusion:
+    |   ^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/rust.yml:3:1
+    |
+  3 | / on:
+  4 | |   pull_request:
+  5 | |   merge_group:
+    | |______________^ workflow is missing concurrency setting
+...
+  8 |     miri:
+    |     ---- job affected by missing workflow concurrency
+...
+ 16 |     rustfmt_clippy:
+    |     -------------- job affected by missing workflow concurrency
+...
+ 27 |     basics:
+    |     ------ job affected by missing workflow concurrency
+...
+ 35 |     test:
+    |     ---- job affected by missing workflow concurrency
+...
+ 84 |     msrv:
+    |     ---- job affected by missing workflow concurrency
+...
+ 92 |     dep_of_std:
+    |     ---------- job affected by missing workflow concurrency
+...
+102 |     conclusion:
+    |     ---------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/rust.yml:40:13
+   |
+40 |       - uses: dtolnay/rust-toolchain@master
+   |         -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _______|
+   | |
+41 | |       with:
+42 | |         toolchain: ${{ matrix.channel }}
+   | |________________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/rust.yml:97:13
+   |
+97 |     - uses: dtolnay/rust-toolchain@nightly
+   |       ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |       |     |
+   |       |     use `rustup` and/or `cargo` in a script step
+   |       this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+45 findings: 13 informational, 5 low, 15 medium, 12 high

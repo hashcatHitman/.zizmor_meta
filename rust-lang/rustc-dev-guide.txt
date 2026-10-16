@@ -1,0 +1,375 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:25:9
+   |
+25 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |  _________^
+26 | |         with:
+27 | |           # linkcheck needs the base commit.
+28 | |           fetch-depth: 0
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:111:9
+    |
+111 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:126:9
+    |
+126 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:1:1
+    |
+  1 | / name: CI
+  2 | |
+  3 | | on:
+  4 | |   push:
+...   |
+129 | |         env:
+130 | |           GH_TOKEN: ${{ github.token }}
+    | |________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:13:3
+   |
+13 | /   ci:
+14 | |     if: github.repository == 'rust-lang/rustc-dev-guide'
+15 | |     runs-on: ubuntu-latest
+16 | |     env:
+...  |
+98 | |           # using split_inclusive that uses regex feature that uses an unstable feature
+99 | |           RUSTC_BOOTSTRAP=1 cargo run --release --manifest-path ci/sembr/Cargo.toml src
+   | |                                                                                       ^
+   | |                                                                                       |
+   | |_______________________________________________________________________________________this job
+   |                                                                                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:60:55
+   |
+59 |         run: |
+   |         --- this run block
+60 |           cargo install --locked mdbook --version ${{ env.MDBOOK_VERSION }}
+   |                                                       ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:61:66
+   |
+59 |         run: |
+   |         --- this run block
+60 |           cargo install --locked mdbook --version ${{ env.MDBOOK_VERSION }}
+61 |           cargo install --locked mdbook-linkcheck2 --version ${{ env.MDBOOK_LINKCHECK2_VERSION }}
+   |                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:62:63
+   |
+59 |         run: |
+   |         --- this run block
+...
+62 |           cargo install --locked mdbook-mermaid --version ${{ env.MDBOOK_MERMAID_VERSION }}
+   |                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:84:22
+   |
+83 |         run: |
+   |         --- this run block
+84 |           touch "${{ env.DEPLOY_DIR }}/.nojekyll"
+   |                      ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:85:25
+   |
+83 |         run: |
+   |         --- this run block
+84 |           touch "${{ env.DEPLOY_DIR }}/.nojekyll"
+85 |           cp CNAME "${{ env.DEPLOY_DIR }}"
+   |                         ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:86:19
+   |
+83 |         run: |
+   |         --- this run block
+...
+86 |           cd "${{ env.DEPLOY_DIR }}"
+   |                   ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:93:52
+   |
+83 |         run: |
+   |         --- this run block
+...
+93 |           git push --quiet -f "https://x-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}" HEAD:gh-pages
+   |                                                    ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:35:15
+   |
+35 |         uses: actions/cache@v4
+   |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:44:15
+   |
+44 |         uses: actions/cache/restore@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:76:15
+   |
+76 |         uses: actions/cache/save@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yml:107:7
+    |
+107 |       actions: read
+    |       ^^^^^^^^^^^^^ needs an explanatory comment
+108 |       contents: read
+109 |       issues: write
+    |       ^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yml:124:7
+    |
+124 |       issues: write
+    |       ^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:13:3
+   |
+13 |   ci:
+   |   ^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:3:1
+    |
+  3 | / on:
+  4 | |   push:
+  5 | |     branches:
+  6 | |       - main
+...   |
+  9 | |     # Run multiple times a day as the successful cached links are not checked every time.
+ 10 | |     - cron: "0 */8 * * *"
+    | |_________________________^ workflow is missing concurrency setting
+...
+ 13 |     ci:
+    |     -- job affected by missing workflow concurrency
+...
+102 |       name: Open an issue if links are broken
+    |       --------------------------------------- job affected by missing workflow concurrency
+...
+118 |       name: Close linkcheck issue if no links are broken
+    |       -------------------------------------------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/date-check.yml:17:9
+   |
+17 |         - name: Checkout repo
+   |  _________^
+18 | |         uses: actions/checkout@v7
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/date-check.yml:1:1
+   |
+ 1 | / name: Date-Check
+ 2 | |
+ 3 | | on:
+ 4 | |   schedule:
+...  |
+45 | |                 console.log('No dates to triage.');
+46 | |             }
+   | |______________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/date-check.yml:12:3
+   |
+12 | /   date-check:
+13 | |     if: github.repository == 'rust-lang/rustc-dev-guide'
+14 | |     runs-on: ubuntu-latest
+...  |
+45 | |                 console.log('No dates to triage.');
+46 | |             }
+   | |              ^
+   | |              |
+   | |______________this job
+   |                default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/date-check.yml:18:15
+   |
+18 |         uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/date-check.yml:28:15
+   |
+28 |         uses: actions/github-script@v7
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/date-check.yml:12:3
+   |
+12 |   date-check:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/date-check.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   schedule:
+ 5 | |     # Run at noon UTC every 1st of the month
+ 6 | |     - cron: '00 12 01 * *'
+ 7 | |
+ 8 | |   # Allow manually starting the workflow
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+12 |     date-check:
+   |     ---------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rustc-pull.yml:1:1
+   |
+ 1 | / name: rustc-pull
+ 2 | |
+ 3 | | on:
+ 4 | |   workflow_dispatch:
+...  |
+21 | |       zulip-api-token: ${{ secrets.ZULIP_API_TOKEN }}
+22 | |       github-app-secret: ${{ secrets.APP_PRIVATE_KEY }}
+   | |________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rustc-pull.yml:10:3
+   |
+10 | /   pull:
+11 | |     if: github.repository == 'rust-lang/rustc-dev-guide'
+12 | |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@main
+13 | |     with:
+...  |
+21 | |       zulip-api-token: ${{ secrets.ZULIP_API_TOKEN }}
+22 | |       github-app-secret: ${{ secrets.APP_PRIVATE_KEY }}
+   | |                                                        ^
+   | |                                                        |
+   | |________________________________________________________this job
+   |                                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rustc-pull.yml:12:11
+   |
+12 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@main
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+29 findings: 2 informational, 15 low, 6 medium, 6 high

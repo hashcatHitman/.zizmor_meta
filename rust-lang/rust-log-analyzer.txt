@@ -1,0 +1,19 @@
+help[stale-action-refs]: commit hash does not point to a Git tag
+  --> .github/workflows/main.yml:37:15
+   |
+37 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@4da88c824d96c01628fbad1e1b97cd24e08216c4 # master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
+
+warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
+  --> .github/workflows/main.yml:37:115
+   |
+37 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@4da88c824d96c01628fbad1e1b97cd24e08216c4 # master
+   |                                                                                                                   ^^^^^^ branch points to commit d7cab1aa8112
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
+
+4 findings (2 suppressed): 0 informational, 1 low, 1 medium, 0 high

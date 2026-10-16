@@ -1,0 +1,95 @@
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> .github/dependabot.yml:3:3
+  |
+3 | - package-ecosystem: cargo
+  |   ^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+ --> .github/workflows/ci.yml:7:9
+  |
+7 |       - uses: actions/checkout@v4
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+  |
+  = note: audit confidence → Low
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | | on: [push, pull_request]
+ 3 | | jobs:
+ 4 | |   build:
+...  |
+15 | |         os: [ubuntu-latest, macos-latest, windows-latest]
+16 | |         channel: [stable, beta, nightly]
+   | |_________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:4:3
+   |
+ 4 | /   build:
+ 5 | |     runs-on: ${{ matrix.os }}
+ 6 | |     steps:
+ 7 | |       - uses: actions/checkout@v4
+...  |
+15 | |         os: [ubuntu-latest, macos-latest, windows-latest]
+16 | |         channel: [stable, beta, nightly]
+   | |                                         ^
+   | |                                         |
+   | |_________________________________________this job
+   |                                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+ --> .github/workflows/ci.yml:8:33
+  |
+8 |       - run: rustup default ${{ matrix.channel }}
+  |         --- this run block      ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+ --> .github/workflows/ci.yml:7:15
+  |
+7 |       - uses: actions/checkout@v4
+  |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/ci.yml:4:3
+  |
+4 |   build:
+  |   ^^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+ --> .github/workflows/ci.yml:2:1
+  |
+2 | on: [push, pull_request]
+  | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
+3 | jobs:
+4 |   build:
+  |   ----- job affected by missing workflow concurrency
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+8 findings: 1 informational, 2 low, 4 medium, 1 high

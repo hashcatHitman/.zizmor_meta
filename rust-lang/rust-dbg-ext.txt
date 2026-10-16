@@ -1,0 +1,150 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/integration-tests.yml:25:7
+   |
+25 |     - uses: actions/checkout@v2
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/integration-tests.yml:71:7
+   |
+71 |     - uses: actions/checkout@v2
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/integration-tests.yml:1:1
+   |
+ 1 | / name: integration-tests
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+89 | |           --output output `
+90 | |           --import-crashdumps "$env:RUNNER_TEMP\exported_crashdumps.tar.gz"
+   | |____________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/integration-tests.yml:16:3
+   |
+16 | /   build-linux:
+17 | |     runs-on: ubuntu-20.04
+18 | |
+19 | |     steps:
+...  |
+53 | |         name: exported-linux-crashdumps
+54 | |         path: output/exported_crashdumps.tar.gz
+   | |                                               ^
+   | |                                               |
+   | |_______________________________________________this job
+   |                                                 default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/integration-tests.yml:56:3
+   |
+56 | /   build-windows:
+57 | |     runs-on: windows-2019
+58 | |     needs: build-linux
+...  |
+89 | |           --output output `
+90 | |           --import-crashdumps "$env:RUNNER_TEMP\exported_crashdumps.tar.gz"
+   | |                                                                            ^
+   | |                                                                            |
+   | |____________________________________________________________________________this job
+   |                                                                              default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/integration-tests.yml:25:13
+   |
+25 |     - uses: actions/checkout@v2
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/integration-tests.yml:51:13
+   |
+51 |       uses: actions/upload-artifact@v3
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/integration-tests.yml:66:13
+   |
+66 |       uses: actions/download-artifact@v3
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/integration-tests.yml:71:13
+   |
+71 |     - uses: actions/checkout@v2
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/integration-tests.yml:16:3
+   |
+16 |   build-linux:
+   |   ^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/integration-tests.yml:56:3
+   |
+56 |   build-windows:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/integration-tests.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches: [ main ]
+ 6 | |   pull_request:
+ 7 | |     branches: [ main ]
+   | |______________________^ workflow is missing concurrency setting
+...
+16 |     build-linux:
+   |     ----------- job affected by missing workflow concurrency
+...
+56 |     build-windows:
+   |     ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+12 findings: 2 informational, 1 low, 5 medium, 4 high

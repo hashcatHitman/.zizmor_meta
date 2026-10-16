@@ -1,0 +1,166 @@
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / name: Release-plz
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+54 | |         env:
+55 | |           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   | |____________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/publish.yml:16:7
+   |
+16 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+17 |       pull-requests: read
+   |       ^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+18 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/publish.yml:42:7
+   |
+42 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+43 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/publish.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches:
+ 6 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+11 |       name: Release-plz release
+   |       ------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:25:9
+   |
+25 |       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:43:9
+   |
+43 |       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:55:9
+   |
+55 |       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:62:9
+   |
+62 |       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:70:9
+   |
+70 |       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/rust.yml:47:40
+   |
+46 |       - run: |
+   |         --- this run block
+47 |           cargo miri test --target=${{ matrix.target }} --all-features
+   |                                        ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:18:3
+   |
+18 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:31:3
+   |
+31 |   cross-test:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:52:3
+   |
+52 |   fmt:
+   |   ^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:59:3
+   |
+59 |   docs:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:67:3
+   |
+67 |   clippy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+15 findings: 5 informational, 4 low, 6 medium, 0 high

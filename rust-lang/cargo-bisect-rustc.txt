@@ -1,0 +1,288 @@
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> .github/dependabot.yml:3:5
+  |
+3 |   - package-ecosystem: "cargo"
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+  --> .github/dependabot.yml:11:5
+   |
+11 |   - package-ecosystem: "github-actions"
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:18:7
+   |
+18 |       - name: Checkout repository
+   |  _______^
+19 | |       uses: actions/checkout@v7
+   | |_______________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:39:9
+   |
+39 |         - name: Checkout source
+   |  _________^
+40 | |         uses: actions/checkout@v7
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:19:13
+   |
+19 |       uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:21:13
+   |
+21 |       uses: dtolnay/rust-toolchain@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:24:13
+   |
+24 |     - uses: Swatinem/rust-cache@v2
+   |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:40:15
+   |
+40 |         uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:42:15
+   |
+42 |         uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   pull_request:
+ 4 | |   push:
+ 5 | |     branches-ignore:
+ 6 | |       - 'dependabot/**'
+   | |_______________________^ workflow is missing concurrency setting
+...
+11 |       name: Test
+   |       ---------- job affected by missing workflow concurrency
+...
+36 |       name: rustfmt
+   |       ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/ci.yml:21:13
+   |
+20 |     - name: Install Rust
+   |       ------------------ this step
+21 |       uses: dtolnay/rust-toolchain@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/ci.yml:42:15
+   |
+41 |       - name: Install Rust
+   |         ------------------ this step
+42 |         uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/docs.yml:16:7
+   |
+16 |       - uses: actions/checkout@v7
+   |  _______^
+17 | |       with:
+18 | |         fetch-depth: 0
+   | |______________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docs.yml:16:13
+   |
+16 |     - uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docs.yml:29:13
+   |
+29 |       uses: actions/upload-pages-artifact@v5
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docs.yml:48:15
+   |
+48 |         uses: actions/deploy-pages@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/docs.yml:37:7
+   |
+37 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+38 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/docs.yml:11:3
+   |
+11 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/docs.yml:33:3
+   |
+33 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/docs.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push:
+ 4 | |     branches:
+ 5 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+11 |     build:
+   |     ----- job affected by missing workflow concurrency
+...
+33 |     deploy:
+   |     ------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/publish.yml:20:9
+   |
+20 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:12:3
+   |
+12 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/publish.yml:20:15
+   |
+20 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/publish.yml:23:15
+   |
+23 |       - uses: rust-lang/crates-io-auth-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/publish.yml:12:3
+   |
+12 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/publish.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   release:
+ 4 | |     types: [created]
+   | |____________________^ workflow is missing concurrency setting
+...
+16 |       name: Publish to crates.io
+   |       -------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+26 findings: 4 informational, 9 low, 2 medium, 11 high

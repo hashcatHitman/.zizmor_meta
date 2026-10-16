@@ -1,0 +1,79 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:18:7
+   |
+18 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+21 | |     - name: Run tests
+22 | |       run: cargo test --locked --verbose
+   | |_________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:13:3
+   |
+13 | /   build:
+14 | |
+15 | |     runs-on: ubuntu-latest
+...  |
+21 | |     - name: Run tests
+22 | |       run: cargo test --locked --verbose
+   | |                                         ^
+   | |                                         |
+   | |_________________________________________this job
+   |                                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rust.yml:18:13
+   |
+18 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:13:3
+   |
+13 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/rust.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches: [ "main" ]
+ 6 | |   pull_request:
+ 7 | |     branches: [ "main" ]
+   | |________________________^ workflow is missing concurrency setting
+...
+13 |     build:
+   |     ----- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+6 findings: 1 informational, 1 low, 3 medium, 1 high

@@ -1,0 +1,232 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:12:9
+   |
+12 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:45:9
+   |
+45 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:71:9
+   |
+71 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:89:9
+   |
+89 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/main.yml:111:9
+    |
+111 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/main.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - master
+...   |
+139 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+140 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
+    | |____________________________________________________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:8:3
+   |
+ 8 | /   rust:
+ 9 | |     name: Rust projects
+10 | |     runs-on: ubuntu-24.04
+11 | |     steps:
+...  |
+23 | |       - name: Run clippy
+24 | |         run: cargo clippy --all -- -Dwarnings
+   | |                                             ^
+   | |                                             |
+   | |_____________________________________________this job
+   |                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:26:3
+   |
+26 | /   fastly-workers:
+27 | |     name: ${{ matrix.name }} Fastly worker
+28 | |     runs-on: ubuntu-24.04
+29 | |     env:
+...  |
+64 | |         working-directory: ${{ matrix.workspace }}
+65 | |         run: ${{ matrix.test-command }}
+   | |                                       ^
+   | |                                       |
+   | |_______________________________________this job
+   |                                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:67:3
+   |
+67 | /   terraform:
+68 | |     name: Terraform configuration
+69 | |     runs-on: ubuntu-24.04
+70 | |     steps:
+...  |
+82 | |           terraform init -backend=false -input=false
+83 | |           terraform test
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/main.yml:85:3
+    |
+ 85 | /   actions-js:
+ 86 | |     name: GitHub Actions (JS)
+ 87 | |     runs-on: ubuntu-24.04
+ 88 | |     steps:
+...   |
+104 | |             fi
+105 | |           done
+    | |              ^
+    | |              |
+    | |______________this job
+    |                default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/main.yml:107:3
+    |
+107 | /   javascript-tests:
+108 | |     name: JavaScript Tests
+109 | |     runs-on: ubuntu-24.04
+110 | |     steps:
+...   |
+119 | |   # Summary job for the merge queue.
+120 | |   # ALL THE PREVIOUS JOBS NEED TO BE ADDED TO THE `needs` SECTION OF THIS JOB!
+    | |                                                                              ^
+    | |                                                                              |
+    | |______________________________________________________________________________this job
+    |                                                                                default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/main.yml:121:3
+    |
+121 | /   CI:
+122 | |     # Keep `name` matching the status check.
+123 | |     name: CI
+124 | |     needs: [ terraform, actions-js, javascript-tests, rust, fastly-workers]
+...   |
+139 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+140 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
+    | |                                                                                            ^
+    | |                                                                                            |
+    | |____________________________________________________________________________________________this job
+    |                                                                                              default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/main.yml:65:18
+   |
+65 |         run: ${{ matrix.test-command }}
+   |         ---      ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |         |
+   |         this run block
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - master
+...   |
+139 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+140 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
+    | |____________________________________________________________________________________________^ this workflow
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this workflow a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/main.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - master
+  5 | |   pull_request:
+    | |_______________^ workflow is missing concurrency setting
+...
+  9 |       name: Rust projects
+    |       ------------------- job affected by missing workflow concurrency
+...
+ 27 |       name: ${{ matrix.name }} Fastly worker
+    |       -------------------------------------- job affected by missing workflow concurrency
+...
+ 68 |       name: Terraform configuration
+    |       ----------------------------- job affected by missing workflow concurrency
+...
+ 86 |       name: GitHub Actions (JS)
+    |       ------------------------- job affected by missing workflow concurrency
+...
+108 |       name: JavaScript Tests
+    |       ---------------------- job affected by missing workflow concurrency
+...
+123 |       name: CI
+    |       -------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+15 findings: 0 informational, 8 low, 7 medium, 0 high

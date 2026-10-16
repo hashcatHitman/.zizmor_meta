@@ -1,0 +1,42 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:19:9
+   |
+19 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/ci.yml:35:7
+   |
+35 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+36 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:16:3
+   |
+16 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:30:3
+   |
+30 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+4 findings: 2 informational, 2 low, 0 medium, 0 high

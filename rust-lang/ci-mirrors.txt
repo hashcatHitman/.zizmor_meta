@@ -1,0 +1,85 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:14:9
+   |
+14 |         - name: Checkout the source code
+   |  _________^
+15 | |         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | |
+ 3 | | on:
+ 4 | |   pull_request:
+...  |
+85 | |       - name: Check if all jobs were successful or skipped
+86 | |         run: echo "${NEEDS}" | jq --exit-status 'all(.result == "success" or .result == "skipped")'
+   | |____________________________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:77:3
+   |
+77 | /   finished:
+78 | |     name: Build finished
+79 | |     runs-on: ubuntu-latest
+80 | |     needs: [ build, apply ]
+...  |
+85 | |       - name: Check if all jobs were successful or skipped
+86 | |         run: echo "${NEEDS}" | jq --exit-status 'all(.result == "success" or .result == "skipped")'
+   | |                                                                                                    ^
+   | |                                                                                                    |
+   | |____________________________________________________________________________________________________this job
+   |                                                                                                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:66:15
+   |
+66 |         uses: aws-actions/configure-aws-credentials@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/ci.yml:48:7
+   |
+48 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request:
+ 5 | |   merge_group:
+   | |______________^ workflow is missing concurrency setting
+...
+ 9 |       name: Build and test
+   |       -------------------- job affected by missing workflow concurrency
+...
+42 |       name: Apply to production
+   |       ------------------------- job affected by missing workflow concurrency
+...
+78 |       name: Build finished
+   |       -------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+6 findings: 0 informational, 3 low, 2 medium, 1 high

@@ -1,0 +1,145 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:12:7
+   |
+12 |     - uses: actions/checkout@master
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:47:7
+   |
+47 |     - uses: actions/checkout@master
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:66:7
+   |
+66 |     - uses: actions/checkout@master
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/main.yml:1:1
+    |
+  1 | / name: CI
+  2 | | on: [push, pull_request]
+  3 | |
+  4 | | env:
+...   |
+104 | |         # Cannot use --all here because of the generated redirect pages aren't available.
+105 | |         sh linkcheck.sh book
+    | |_____________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:8:3
+   |
+ 8 | /   test:
+ 9 | |     name: Run tests
+10 | |     runs-on: ubuntu-latest
+11 | |     steps:
+...  |
+41 | |       run:
+42 | |         mdbook test --library-path packages/trpl/target/debug/deps
+   | |                                                                  ^
+   | |                                                                  |
+   | |__________________________________________________________________this job
+   |                                                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:43:3
+   |
+43 | /   package_tests:
+44 | |     name: Run package tests
+45 | |     runs-on: ubuntu-latest
+46 | |     steps:
+...  |
+60 | |       run: |
+61 | |         cargo test
+   | |                  ^
+   | |                  |
+   | |__________________this job
+   |                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/main.yml:62:3
+    |
+ 62 | /   lint:
+ 63 | |     name: Run lints
+ 64 | |     runs-on: ubuntu-latest
+ 65 | |     steps:
+...   |
+104 | |         # Cannot use --all here because of the generated redirect pages aren't available.
+105 | |         sh linkcheck.sh book
+    | |                             ^
+    | |                             |
+    | |_____________________________this job
+    |                               default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:12:13
+   |
+12 |     - uses: actions/checkout@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:47:13
+   |
+47 |     - uses: actions/checkout@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:66:13
+   |
+66 |     - uses: actions/checkout@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/main.yml:2:1
+   |
+ 2 | on: [push, pull_request]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
+...
+ 9 |     name: Run tests
+   |     --------------- job affected by missing workflow concurrency
+...
+44 |     name: Run package tests
+   |     ----------------------- job affected by missing workflow concurrency
+...
+63 |     name: Run lints
+   |     --------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+11 findings: 0 informational, 1 low, 7 medium, 3 high

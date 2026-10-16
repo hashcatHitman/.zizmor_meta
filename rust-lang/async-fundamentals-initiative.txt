@@ -1,0 +1,120 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/mdbook.yml:32:9
+   |
+32 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/mdbook.yml:18:3
+   |
+18 |   pages: write
+   |   ^^^^^^^^^^^^ pages: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/mdbook.yml:19:3
+   |
+19 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:32:15
+   |
+32 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:34:15
+   |
+34 |         uses: baptiste0928/cargo-install@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:40:15
+   |
+40 |         uses: baptiste0928/cargo-install@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:46:15
+   |
+46 |         uses: actions/configure-pages@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:50:15
+   |
+50 |         uses: actions/upload-pages-artifact@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:64:15
+   |
+64 |         uses: actions/deploy-pages@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/mdbook.yml:18:3
+   |
+18 |   pages: write
+   |   ^^^^^^^^^^^^ needs an explanatory comment
+19 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/mdbook.yml:29:3
+   |
+29 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/mdbook.yml:55:3
+   |
+55 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+12 findings: 2 informational, 1 low, 1 medium, 8 high

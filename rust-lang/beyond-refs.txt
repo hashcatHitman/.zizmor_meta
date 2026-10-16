@@ -1,0 +1,309 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/field-projections-ci.yml:22:9
+   |
+22 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/field-projections-ci.yml:34:9
+   |
+34 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/field-projections-ci.yml:1:1
+   |
+ 1 | / name: Field Projections CI
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+48 | |         env:
+49 | |           RUSTFLAGS: "-Dwarnings"
+   | |__________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/field-projections-ci.yml:19:3
+   |
+19 | /   fmt:
+20 | |     runs-on: ubuntu-latest
+21 | |     steps:
+22 | |       - uses: actions/checkout@v4
+...  |
+28 | |         run: cargo fmt --check --all
+29 | |         working-directory: field-projections
+   | |                                            ^
+   | |                                            |
+   | |____________________________________________this job
+   |                                              default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/field-projections-ci.yml:31:3
+   |
+31 | /   test:
+32 | |     runs-on: ubuntu-latest
+33 | |     steps:
+34 | |       - uses: actions/checkout@v4
+...  |
+48 | |         env:
+49 | |           RUSTFLAGS: "-Dwarnings"
+   | |                                  ^
+   | |                                  |
+   | |__________________________________this job
+   |                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/field-projections-ci.yml:22:15
+   |
+22 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/field-projections-ci.yml:23:15
+   |
+23 |       - uses: actions-rust-lang/setup-rust-toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/field-projections-ci.yml:34:15
+   |
+34 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/field-projections-ci.yml:35:15
+   |
+35 |       - uses: extractions/setup-just@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/field-projections-ci.yml:36:15
+   |
+36 |       - uses: actions-rust-lang/setup-rust-toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/field-projections-ci.yml:19:3
+   |
+19 |   fmt:
+   |   ^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/field-projections-ci.yml:31:3
+   |
+31 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+warning[unpinned-tools]: action installs an unpinned external tool
+  --> .github/workflows/field-projections-ci.yml:35:15
+   |
+35 |       - uses: extractions/setup-just@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/mdbook.yml:35:9
+   |
+35 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/mdbook.yml:21:3
+   |
+21 |   pages: write
+   |   ^^^^^^^^^^^^ pages: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/mdbook.yml:22:3
+   |
+22 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:35:15
+   |
+35 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:36:15
+   |
+36 |       - uses: taiki-e/cache-cargo-install-action@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:40:15
+   |
+40 |         uses: baptiste0928/cargo-install@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:47:15
+   |
+47 |         uses: baptiste0928/cargo-install@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:54:15
+   |
+54 |         uses: actions/configure-pages@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:58:15
+   |
+58 |         uses: extractions/setup-just@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:60:15
+   |
+60 |         uses: actions-rust-lang/setup-rust-toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:73:15
+   |
+73 |         uses: actions/upload-pages-artifact@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:88:15
+   |
+88 |         uses: actions/deploy-pages@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/mdbook.yml:21:3
+   |
+21 |   pages: write
+   |   ^^^^^^^^^^^^ needs an explanatory comment
+22 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/mdbook.yml:32:3
+   |
+32 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/mdbook.yml:78:3
+   |
+78 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+warning[unpinned-tools]: action installs an unpinned external tool
+  --> .github/workflows/mdbook.yml:58:15
+   |
+58 |         uses: extractions/setup-just@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+29 findings: 4 informational, 1 low, 8 medium, 16 high

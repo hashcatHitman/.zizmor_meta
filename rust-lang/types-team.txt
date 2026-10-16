@@ -1,0 +1,83 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:13:9
+   |
+13 |         - uses: actions/checkout@v3
+   |  _________^
+14 | |         with:
+15 | |           fetch-depth: 0
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:1:1
+   |
+ 1 | / name: Continuous Integration
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+42 | |           git commit -m "Deploy $GITHUB_SHA to gh-pages"
+43 | |           git push --force
+   | |___________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:10:3
+   |
+10 | /   book-test:
+11 | |     runs-on: ubuntu-22.04
+12 | |     steps:
+13 | |       - uses: actions/checkout@v3
+...  |
+42 | |           git commit -m "Deploy $GITHUB_SHA to gh-pages"
+43 | |           git push --force
+   | |                           ^
+   | |                           |
+   | |___________________________this job
+   |                             default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:13:15
+   |
+13 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/main.yml:10:3
+   |
+10 |   book-test:
+   |   ^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/main.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches:
+ 6 | |       - main
+ 7 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+10 |     book-test:
+   |     --------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+6 findings: 1 informational, 1 low, 3 medium, 1 high

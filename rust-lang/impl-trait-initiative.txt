@@ -1,0 +1,95 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/deploy_mdbook.yml:11:9
+   |
+11 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy_mdbook.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     branches:
+ 4 | |       - master
+...  |
+13 | |         with:
+14 | |           token: ${{ secrets.GITHUB_TOKEN }}
+   | |_____________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy_mdbook.yml:7:3
+   |
+ 7 | /   ci:
+ 8 | |     name: CI
+ 9 | |     runs-on: ubuntu-latest
+10 | |     steps:
+...  |
+13 | |         with:
+14 | |           token: ${{ secrets.GITHUB_TOKEN }}
+   | |                                             ^
+   | |                                             |
+   | |_____________________________________________this job
+   |                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_mdbook.yml:11:15
+   |
+11 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_mdbook.yml:12:15
+   |
+12 |       - uses: XAMPPRocky/deploy-mdbook@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/deploy_mdbook.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     branches:
+ 4 | |       - master
+...  |
+13 | |         with:
+14 | |           token: ${{ secrets.GITHUB_TOKEN }}
+   | |_____________________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+ --> .github/workflows/deploy_mdbook.yml:1:1
+  |
+1 | / on:
+2 | |   push:
+3 | |     branches:
+4 | |       - master
+  | |______________^ workflow is missing concurrency setting
+...
+8 |       name: CI
+  |       -------- job affected by missing workflow concurrency
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+7 findings: 0 informational, 2 low, 3 medium, 2 high

@@ -1,0 +1,781 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/test.yml:29:9
+   |
+29 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/test.yml:65:9
+   |
+65 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/test.yml:90:9
+   |
+90 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:112:9
+    |
+112 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:134:9
+    |
+134 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:181:9
+    |
+181 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:205:9
+    |
+205 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:236:9
+    |
+236 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:257:9
+    |
+257 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:276:9
+    |
+276 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:319:9
+    |
+319 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/test.yml:338:9
+    |
+338 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:30:33
+   |
+30 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal
+   |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:66:33
+   |
+66 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal
+   |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:68:48
+   |
+68 |         run: rustup target add --toolchain ${{ env.RUSTUP_TOOLCHAIN }} ${{ matrix.extra_target }}
+   |         --- this run block                     ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:68:76
+   |
+68 |         run: rustup target add --toolchain ${{ env.RUSTUP_TOOLCHAIN }} ${{ matrix.extra_target }}
+   |         --- this run block                                                 ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:69:45
+   |
+69 |       - run: cargo test --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} -- --nocapture
+   |         --- this run block                  ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:69:68
+   |
+69 |       - run: cargo test --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} -- --nocapture
+   |         --- this run block                                         ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:70:45
+   |
+70 |       - run: cargo test --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} --examples -- --nocapture
+   |         --- this run block                  ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:70:68
+   |
+70 |       - run: cargo test --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} --examples -- --nocapture
+   |         --- this run block                                         ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:72:38
+   |
+72 |         run: cargo test --target=${{ matrix.extra_target }} --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} -- --nocapture
+   |         --- this run block           ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:72:81
+   |
+72 |         run: cargo test --target=${{ matrix.extra_target }} --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} -- --nocapture
+   |         --- this run block                                                      ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:72:104
+   |
+72 |         run: cargo test --target=${{ matrix.extra_target }} --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} -- --nocapture
+   |         --- this run block                                                                             ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:74:38
+   |
+74 | ...   run: cargo test --target=${{ matrix.extra_target }} --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} --examples -- --...
+   |       --- this run block           ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:74:81
+   |
+74 |         run: cargo test --target=${{ matrix.extra_target }} --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} --examples -- ...
+   |         --- this run block                                                      ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:74:104
+   |
+74 |         run: cargo test --target=${{ matrix.extra_target }} --manifest-path=${{ matrix.manifest }} ${{ matrix.mode }} --examples -- ...
+   |         --- this run block                                                                             ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:91:33
+   |
+91 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+   |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:91:88
+   |
+91 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+   |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:92:38
+   |
+92 |       - run: cargo test --target=${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }} -- --nocapture
+   |         --- this run block           ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:92:80
+   |
+92 |       - run: cargo test --target=${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }} -- --nocapture
+   |         --- this run block                                                     ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:113:33
+    |
+113 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:114:38
+    |
+114 |       - run: cargo test --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block           ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:114:80
+    |
+114 |       - run: cargo test --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block                                                     ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:143:83
+    |
+143 |         run: curl -L https://github.com/mstorsjo/llvm-mingw/releases/download/${{ env.LLVM_MINGW_VERSION }}/llvm-mingw-${{ env.LLVM...
+    |         --- this run block                                                        ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:143:124
+    |
+143 | ...   run: curl -L https://github.com/mstorsjo/llvm-mingw/releases/download/${{ env.LLVM_MINGW_VERSION }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}...
+    |       --- this run block                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:145:24
+    |
+145 |         run: echo "${{ github.workspace }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-ubuntu-22.04-x86_64/bin" >> $GITHUB_PATH
+    |         ---            ^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |         |
+    |         this run block
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:145:59
+    |
+145 |         run: echo "${{ github.workspace }}/llvm-mingw-${{ env.LLVM_MINGW_VERSION }}-ucrt-ubuntu-22.04-x86_64/bin" >> $GITHUB_PATH
+    |         --- this run block                                ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:146:33
+    |
+146 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:146:88
+    |
+146 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:147:39
+    |
+147 |       - run: cargo check --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block            ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:147:81
+    |
+147 |       - run: cargo check --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block                                                      ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:182:33
+    |
+182 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:182:88
+    |
+182 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:188:35
+    |
+187 | ...   run: |
+    |       --- this run block
+188 | ...     cross test --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}  ${{ matrix.mode }} -- --test-threads=...
+    |                                 ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:188:77
+    |
+187 |         run: |
+    |         --- this run block
+188 |           cross test --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}  ${{ matrix.mode }} -- --test-thread...
+    |                                                                             ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:188:101
+    |
+187 |         run: |
+    |         --- this run block
+188 |           cross test --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}  ${{ matrix.mode }} -- --test-thread...
+    |                                                                                                     ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:206:33
+    |
+206 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:206:88
+    |
+206 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:207:39
+    |
+207 |       - run: cargo build --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block            ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:207:81
+    |
+207 |       - run: cargo build --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block                                                      ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:237:33
+    |
+237 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:237:88
+    |
+237 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:240:39
+    |
+240 |       - run: cross build --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block            ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:240:81
+    |
+240 |       - run: cross build --target ${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block                                                      ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:258:33
+    |
+258 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:258:88
+    |
+258 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:259:39
+    |
+259 |       - run: cargo build --target=${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block            ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:259:81
+    |
+259 |       - run: cargo build --target=${{ matrix.rust_target }} --manifest-path=${{ matrix.manifest }}
+    |         --- this run block                                                      ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:277:33
+    |
+277 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:277:88
+    |
+277 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target ${{ matrix.rust_target }}
+    |         --- this run block                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:287:28
+    |
+285 |         run: |
+    |         --- this run block
+286 |           set -eux
+287 |           xwin_version=${{ matrix.xwin_version }}
+    |                            ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:310:36
+    |
+308 |         run: |
+    |         --- this run block
+309 |           set -eux
+310 |           cargo build --target ${{ matrix.rust_target }} --manifest-path ${{ matrix.manifest }}
+    |                                    ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:310:78
+    |
+308 |         run: |
+    |         --- this run block
+309 |           set -eux
+310 |           cargo build --target ${{ matrix.rust_target }} --manifest-path ${{ matrix.manifest }}
+    |                                                                              ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:320:33
+    |
+320 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --target wasm32-wasip1
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:322:147
+    |
+321 | ... - run: |
+    |       --- this run block
+322 | ...     curl -Lf https://github.com/bytecodealliance/wasmtime/releases/download/v24.0.0/wasmtime-v24.0.0-x86_64-linux.tar.xz | tar xJf - -C ${{ runner.tool_cache }}
+    |                                                                                                                                                 ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:323:21
+    |
+321 |       - run: |
+    |         --- this run block
+322 |           curl -Lf https://github.com/bytecodealliance/wasmtime/releases/download/v2...
+323 |           echo "${{ runner.tool_cache }}/wasmtime-v24.0.0-x86_64-linux" >> $GITHUB_PATH
+    |                     ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:339:33
+    |
+339 |       - run: rustup install ${{ env.RUSTUP_TOOLCHAIN }} --profile minimal --component miri
+    |         --- this run block      ^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:29:15
+   |
+29 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:65:15
+   |
+65 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:90:15
+   |
+90 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:112:15
+    |
+112 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:134:15
+    |
+134 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:137:15
+    |
+137 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:181:15
+    |
+181 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:205:15
+    |
+205 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:236:15
+    |
+236 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:257:15
+    |
+257 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:276:15
+    |
+276 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:319:15
+    |
+319 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/test.yml:338:15
+    |
+338 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+80 findings: 0 informational, 67 low, 0 medium, 13 high

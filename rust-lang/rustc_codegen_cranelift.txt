@@ -1,0 +1,554 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/abi-cafe.yml:46:7
+   |
+46 |     - uses: actions/checkout@v6
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/abi-cafe.yml:46:13
+   |
+46 |     - uses: actions/checkout@v6
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/abi-cafe.yml:59:13
+   |
+59 |       uses: actions/cache@v5
+   |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/abi-cafe.yml:10:3
+   |
+10 |   abi_cafe:
+   |   ^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/cranelift-release-branch.yml:20:9
+   |
+20 |       - uses: actions/checkout@v6
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/cranelift-release-branch.yml:20:15
+   |
+20 |       - uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/cranelift-release-branch.yml:15:3
+   |
+15 |   test_upcoming_cranelift_release:
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/cranelift-release-branch.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   schedule:
+ 5 | |     - cron: "0 3 6 * *"
+ 6 | |   workflow_dispatch: {}
+   | |_______________________^ workflow is missing concurrency setting
+...
+15 |     test_upcoming_cranelift_release:
+   |     ------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/freebsd.yml:17:9
+   |
+17 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/freebsd.yml:17:15
+   |
+17 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/freebsd.yml:20:15
+   |
+20 |         uses: vmactions/freebsd-vm@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/freebsd.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+12 |       name: freebsd
+   |       ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:27:7
+   |
+27 |     - uses: actions/checkout@v6
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:37:7
+   |
+37 |     - uses: actions/checkout@v6
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:91:7
+   |
+91 |     - uses: actions/checkout@v6
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/main.yml:142:7
+    |
+142 |     - uses: actions/checkout@v6
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/main.yml:165:7
+    |
+165 |     - uses: actions/checkout@v6
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/main.yml:217:7
+    |
+217 |     - uses: actions/checkout@v6
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/main.yml:258:9
+    |
+258 |       - uses: actions/checkout@v6
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:111:37
+    |
+109 |       run: |
+    |       --- this run block
+110 |         sudo apt-get update
+111 |         sudo apt-get install -y ${{ matrix.apt_deps }}
+    |                                     ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:123:28
+    |
+123 |       run: ./y.sh test ${{ runner.os == 'Windows' && '--skip-test test.graviola' || '' }}
+    |       --- this run block   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:126:34
+    |
+126 |       run: rustup target add ${{ matrix.env.TARGET_TUPLE }}
+    |       --- this run block         ^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:133:66
+    |
+133 |       run: ./y.sh test --sysroot llvm --no-unstable-features ${{ runner.os == 'Windows' && '--skip-test test.graviola' || '' }}
+    |       --- this run block                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:27:13
+   |
+27 |     - uses: actions/checkout@v6
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:37:13
+   |
+37 |     - uses: actions/checkout@v6
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:91:13
+   |
+91 |     - uses: actions/checkout@v6
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:98:13
+   |
+98 |       uses: actions/cache@v5
+   |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:142:13
+    |
+142 |     - uses: actions/checkout@v6
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:165:13
+    |
+165 |     - uses: actions/checkout@v6
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:171:13
+    |
+171 |       uses: actions/cache@v5
+    |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:217:13
+    |
+217 |     - uses: actions/checkout@v6
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:220:13
+    |
+220 |       uses: actions/cache@v5
+    |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:239:13
+    |
+239 |       uses: actions/upload-artifact@v6
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:258:15
+    |
+258 |       - uses: actions/checkout@v6
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/main.yml:261:15
+    |
+261 |         uses: actions/download-artifact@v8
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/main.yml:22:3
+   |
+22 |   todo_check:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/main.yml:32:3
+   |
+32 |   rustfmt:
+   |   ^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/main.yml:52:3
+   |
+52 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:137:3
+    |
+137 |   test_llvm:
+    |   ^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:160:3
+    |
+160 |   bench:
+    |   ^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:188:3
+    |
+188 |   dist:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:244:3
+    |
+244 |   release:
+    |   ^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/main.yml:3:1
+    |
+  3 | / on:
+  4 | |   - push
+  5 | |   - pull_request
+    | |________________^ workflow is missing concurrency setting
+...
+ 22 |     todo_check:
+    |     ---------- job affected by missing workflow concurrency
+...
+ 32 |     rustfmt:
+    |     ------- job affected by missing workflow concurrency
+...
+ 52 |     test:
+    |     ---- job affected by missing workflow concurrency
+...
+137 |     test_llvm:
+    |     --------- job affected by missing workflow concurrency
+...
+160 |     bench:
+    |     ----- job affected by missing workflow concurrency
+...
+188 |     dist:
+    |     ---- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rustc.yml:14:7
+   |
+14 |     - uses: actions/checkout@v6
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rustc.yml:34:7
+   |
+34 |     - uses: actions/checkout@v6
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rustc.yml:14:13
+   |
+14 |     - uses: actions/checkout@v6
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rustc.yml:20:13
+   |
+20 |       uses: actions/cache@v5
+   |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rustc.yml:34:13
+   |
+34 |     - uses: actions/checkout@v6
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rustc.yml:40:13
+   |
+40 |       uses: actions/cache@v5
+   |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/rustc.yml:9:3
+  |
+9 |   bootstrap_rustc:
+  |   ^^^^^^^^^^^^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rustc.yml:29:3
+   |
+29 |   rustc_test_suite:
+   |   ^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/rustc.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   - push
+   | |________^ workflow is missing concurrency setting
+...
+ 9 |     bootstrap_rustc:
+   |     --------------- job affected by missing workflow concurrency
+...
+29 |     rustc_test_suite:
+   |     ---------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+52 findings: 11 informational, 20 low, 0 medium, 21 high

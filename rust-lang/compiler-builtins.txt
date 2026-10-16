@@ -1,0 +1,117 @@
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/main.yaml:243:7
+    |
+243 |       security-events: write
+    |       ^^^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yaml:416:3
+    |
+416 |   success:
+    |   ^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/publish.yaml:4:3
+  |
+4 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/publish.yaml:5:3
+  |
+5 |   contents: write
+  |   ^^^^^^^^^^^^^^^ contents: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/publish.yaml:6:3
+  |
+6 |   id-token: write
+  |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/publish.yaml:4:3
+  |
+4 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+5 |   contents: write
+  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+6 |   id-token: write
+  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/publish.yaml:8:1
+   |
+ 8 | / on:
+ 9 | |   push: { branches: [main] }
+   | |____________________________^ workflow is missing concurrency setting
+...
+13 |       name: Release-plz
+   |       ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rustc-pull.yml:2:1
+   |
+ 2 | / name: rustc-pull
+ 3 | |
+ 4 | | on:
+ 5 | |   workflow_dispatch:
+...  |
+31 | |       contents: write
+32 | |       pull-requests: write
+   | |___________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/rustc-pull.yml:31:7
+   |
+31 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+32 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[stale-action-refs]: commit hash does not point to a Git tag
+  --> .github/workflows/rustc-pull.yml:17:11
+   |
+17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
+
+warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
+  --> .github/workflows/rustc-pull.yml:17:107
+   |
+17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
+   |                                                                                                           ^^^^ branch points to commit 1f897d1ffb4a
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
+
+12 findings (1 suppressed): 1 informational, 5 low, 2 medium, 3 high

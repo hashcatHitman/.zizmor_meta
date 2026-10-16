@@ -1,0 +1,455 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:10:9
+   |
+10 |       - uses: actions/checkout@v6
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:29:9
+   |
+29 |       - uses: actions/checkout@v6
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:54:9
+   |
+54 |       - uses: actions/checkout@v6
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:72:9
+   |
+72 |       - uses: actions/checkout@v6
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:1:1
+    |
+  1 | / name: CI
+  2 | | on:
+  3 | |   merge_group:
+...   |
+132 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+133 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    | |__________________________________________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:6:3
+   |
+ 6 | /   lint:
+ 7 | |     name: Linting
+ 8 | |     runs-on: ubuntu-latest
+ 9 | |     steps:
+...  |
+18 | |       - name: Ensure there are no warnings with Clippy
+19 | |         run: cargo clippy --all -- -Dwarnings
+   | |                                             ^
+   | |                                             |
+   | |_____________________________________________this job
+   |                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:21:3
+   |
+21 | /   test:
+22 | |     name: Testing
+23 | |     strategy:
+24 | |       matrix:
+...  |
+44 | |           cargo run --release -- create-lists
+45 | |           cargo test --release
+   | |                              ^
+   | |                              |
+   | |______________________________this job
+   |                                default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:47:3
+   |
+47 | /   minicrater:
+48 | |     name: Minicrater
+49 | |     strategy:
+50 | |       matrix:
+...  |
+65 | |           MINICRATER_FAST_WORKSPACE_INIT: 1
+66 | |           MINICRATER_SHOW_OUTPUT: 1
+   | |                                   ^
+   | |                                   |
+   | |___________________________________this job
+   |                                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:68:3
+   |
+68 | /   docker-build:
+69 | |     name: Build the Docker image
+70 | |     runs-on: ubuntu-latest
+71 | |     steps:
+...  |
+85 | |           name: docker-images
+86 | |           path: /tmp/docker-images
+   | |                                  ^
+   | |                                  |
+   | |__________________________________this job
+   |                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:88:3
+    |
+ 88 | /   docker-upload:
+ 89 | |     name: Upload the Docker images to ECR
+ 90 | |     runs-on: ubuntu-latest
+ 91 | |     needs:
+...   |
+113 | |           aws_access_key_id: "${{ secrets.aws_access_key_id }}"
+114 | |           aws_secret_access_key: "${{ secrets.aws_secret_access_key }}"
+    | |                                                                       ^
+    | |                                                                       |
+    | |_______________________________________________________________________this job
+    |                                                                         default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:116:3
+    |
+116 | /   conclusion:
+117 | |     needs: [docker-upload]
+118 | |     # We need to ensure this job does *not* get skipped if its dependencies fail,
+119 | |     # because a skipped job is considered a success by GitHub. So we have to
+...   |
+132 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+133 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    | |                                                                                  ^
+    | |                                                                                  |
+    | |__________________________________________________________________________________this job
+    |                                                                                    default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:131:33
+    |
+129 |         run: |
+    |         --- this run block
+130 |           # Print the dependent jobs to see them in the CI log
+131 |           jq -C <<< '${{ toJson(needs) }}'
+    |                                 ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:133:72
+    |
+129 |         run: |
+    |         --- this run block
+...
+133 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    |                                                                        ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:10:15
+   |
+10 |       - uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:29:15
+   |
+29 |       - uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:54:15
+   |
+54 |       - uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:72:15
+   |
+72 |       - uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:83:15
+   |
+83 |         uses: actions/upload-artifact@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:99:15
+   |
+99 |         uses: actions/download-artifact@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:108:15
+    |
+108 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@master
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:116:3
+    |
+116 |   conclusion:
+    |   ^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:2:1
+    |
+  2 | / on:
+  3 | |   merge_group:
+    | |______________^ workflow is missing concurrency setting
+...
+  7 |       name: Linting
+    |       ------------- job affected by missing workflow concurrency
+...
+ 22 |       name: Testing
+    |       ------------- job affected by missing workflow concurrency
+...
+ 48 |       name: Minicrater
+    |       ---------------- job affected by missing workflow concurrency
+...
+ 69 |       name: Build the Docker image
+    |       ---------------------------- job affected by missing workflow concurrency
+...
+ 89 |       name: Upload the Docker images to ECR
+    |       ------------------------------------- job affected by missing workflow concurrency
+...
+116 |     conclusion:
+    |     ---------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+ --> .github/workflows/pr.yml:9:9
+  |
+9 |       - uses: actions/checkout@v6
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+  |
+  = note: audit confidence → Low
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/pr.yml:24:9
+   |
+24 |       - uses: actions/checkout@v6
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/pr.yml:1:1
+   |
+ 1 | / name: PR build
+ 2 | | on: [pull_request]
+ 3 | |
+ 4 | | jobs:
+...  |
+59 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+60 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   | |__________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/pr.yml:5:3
+   |
+ 5 | /   lint:
+ 6 | |     name: Linting
+ 7 | |     runs-on: ubuntu-latest
+ 8 | |     steps:
+...  |
+17 | |       - name: Ensure there are no warnings with Clippy
+18 | |         run: cargo clippy --all -- -Dwarnings
+   | |                                             ^
+   | |                                             |
+   | |_____________________________________________this job
+   |                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/pr.yml:20:3
+   |
+20 | /   test:
+21 | |     name: Linux testing
+22 | |     runs-on: ubuntu-latest
+23 | |     steps:
+...  |
+41 | |   # Note: this job is used so that there is a job named "conclusion" both in the PR and merge queue
+42 | |   # CI. Otherwise, it would not be possible for PR CI to succeed.
+   | |                                                                 ^
+   | |                                                                 |
+   | |_________________________________________________________________this job
+   |                                                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/pr.yml:43:3
+   |
+43 | /   conclusion:
+44 | |     needs: [lint, test]
+45 | |     # We need to ensure this job does *not* get skipped if its dependencies fail,
+46 | |     # because a skipped job is considered a success by GitHub. So we have to
+...  |
+59 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+60 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   | |                                                                                  ^
+   | |                                                                                  |
+   | |__________________________________________________________________________________this job
+   |                                                                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/pr.yml:58:33
+   |
+56 |         run: |
+   |         --- this run block
+57 |           # Print the dependent jobs to see them in the CI log
+58 |           jq -C <<< '${{ toJson(needs) }}'
+   |                                 ^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/pr.yml:60:72
+   |
+56 |         run: |
+   |         --- this run block
+...
+60 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   |                                                                        ^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+ --> .github/workflows/pr.yml:9:15
+  |
+9 |       - uses: actions/checkout@v6
+  |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/pr.yml:24:15
+   |
+24 |       - uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/pr.yml:43:3
+   |
+43 |   conclusion:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/pr.yml:2:1
+   |
+ 2 | on: [pull_request]
+   | ^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
+...
+ 6 |     name: Linting
+   |     ------------- job affected by missing workflow concurrency
+...
+21 |     name: Linux testing
+   |     ------------------- job affected by missing workflow concurrency
+...
+43 |   conclusion:
+   |   ---------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+36 findings (2 suppressed): 6 informational, 8 low, 11 medium, 9 high

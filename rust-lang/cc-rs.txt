@@ -1,0 +1,540 @@
+error[github-env]: dangerous use of environment file
+  --> .github/actions/get-msrv/action.yaml:8:7
+   |
+ 8 | /       run: |
+ 9 | |         cargo metadata --no-deps --format-version 1 \
+10 | |         | jq -r '.packages[] | select(.name == "cc") | .rust_version | split(".") | if length == 2 then . + ["0"] else . end | joi...
+11 | |         | xargs -0 printf "MSRV=%s" \
+12 | |         | tee "$GITHUB_ENV"
+   | |____________________________^ write to GITHUB_ENV may allow code execution
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#github-env
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+  --> .github/dependabot.yml:10:5
+   |
+10 |     default-days: 7
+   |     ^^^^^^^^^^^^^^^ insufficient default-days configured (less than 14)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+  --> .github/dependabot.yml:21:5
+   |
+21 |     default-days: 7
+   |     ^^^^^^^^^^^^^^^ insufficient default-days configured (less than 14)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/conventional-commits.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request:
+ 5 | |     types: [opened, edited, reopened, synchronize]
+   | |__________________________________________________^ workflow is missing concurrency setting
+...
+11 |       name: PR title
+   |       -------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:203:28
+    |
+202 |         run: |
+    |         --- this run block
+203 |           $msysRoot = "${{ steps.msys2.outputs.msys2-location }}"
+    |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:243:45
+    |
+237 |         run: |
+    |         --- this run block
+...
+243 |           UPPERCASE_TARGET_NAME=$(echo "${{ matrix.target }}" | tr '[:lower:]-' '[:upper:]_')
+    |                                             ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:258:51
+    |
+257 |         run: |
+    |         --- this run block
+258 |           cargo build --bins --tests --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                   ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:258:72
+    |
+257 |         run: |
+    |         --- this run block
+258 |           cargo build --bins --tests --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                                        ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:262:70
+    |
+261 |         run: |
+    |         --- this run block
+262 |           cargo test --no-run --workspace --all-targets --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:262:91
+    |
+261 |         run: |
+    |         --- this run block
+262 |           cargo test --no-run --workspace --all-targets --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                                                           ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:266:54
+    |
+265 |         run: |
+    |         --- this run block
+266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:266:75
+    |
+265 |         run: |
+    |         --- this run block
+266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                                           ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:267:53
+    |
+265 |         run: |
+    |         --- this run block
+266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+267 |           cargo test --doc --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:267:74
+    |
+265 |         run: |
+    |         --- this run block
+266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+267 |           cargo test --doc --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |                                                                          ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:337:76
+    |
+337 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }}
+    |         --- this run block                                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:338:76
+    |
+338 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }} --release
+    |         --- this run block                                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:339:76
+    |
+339 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }} --features parallel,compile-commands
+    |         --- this run block                                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:362:47
+    |
+362 |       - run: cargo test --no-run --target ${{ matrix.target }}
+    |         --- this run block                    ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:363:47
+    |
+363 |       - run: cargo test --no-run --target ${{ matrix.target }} --release
+    |         --- this run block                    ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:364:47
+    |
+364 |       - run: cargo test --no-run --target ${{ matrix.target }} --features parallel,compile-commands
+    |         --- this run block                    ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:390:74
+    |
+390 |       - run: cargo check -Z build-std=std,panic_abort -p cc --target ${{ matrix.target }}
+    |         --- this run block                                               ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:391:74
+    |
+391 |       - run: cargo check -Z build-std=std,panic_abort -p cc --target ${{ matrix.target }} --release
+    |         --- this run block                                               ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:446:61
+    |
+446 |         run: cargo +nightly build -p wasi-test --target ${{ matrix.target }}
+    |         --- this run block                                  ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:577:3
+    |
+577 |   semver-checks:
+    |   ^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:270:15
+    |
+269 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+270 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:298:16
+    |
+297 |        - name: check clean Git workting tree
+    |          ----------------------------------- this step
+298 |          uses: ./.github/actions/check-clean-git-working-tree
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:342:15
+    |
+341 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+342 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:367:15
+    |
+366 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+367 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:394:15
+    |
+393 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+394 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:450:15
+    |
+449 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+450 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:484:15
+    |
+483 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+484 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:506:15
+    |
+505 |       - name: Get msrv
+    |         -------------- this step
+506 |         uses: ./.github/actions/get-msrv
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:555:15
+    |
+554 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+555 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/publish.yml:17:7
+   |
+17 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+18 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/publish.yml:5:1
+   |
+ 5 | / on:
+ 6 | |   push:
+ 7 | |     branches:
+ 8 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+13 |       name: Release-plz release
+   |       ------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/publish.yml:27:15
+   |
+26 |       - name: Install Rust toolchain
+   |         ---------------------------- this step
+27 |         uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/regenerate-target-info.yml:30:54
+   |
+29 |         run: |
+   |         --- this run block
+30 |           git checkout -b regenerate-target-info-${{ github.run_id }}
+   |                                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/regenerate-target-info.yml:21:7
+   |
+21 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+22 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/regenerate-target-info.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch: # Allow running on-demand
+ 5 | |   schedule:
+ 6 | |     - cron: '0 3 * * 4'
+...  |
+10 | |     paths:
+11 | |       - 'dev-tools/gen-target-info/**'
+   | |______________________________________^ workflow is missing concurrency setting
+...
+18 |       name: Regenerate target info & Open Pull Request if necessary
+   |       ------------------------------------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/regenerate-target-info.yml:33:15
+   |
+32 |       - name: Get msrv
+   |         -------------- this step
+33 |         uses: ./.github/actions/get-msrv
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/regenerate-windows-sys.yml:30:54
+   |
+29 |         run: |
+   |         --- this run block
+30 |           git checkout -b regenerate-windows-sys-${{ github.run_id }}
+   |                                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/regenerate-windows-sys.yml:21:7
+   |
+21 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+22 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/regenerate-windows-sys.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch: # Allow running on-demand
+ 5 | |   schedule:
+ 6 | |     - cron: '0 3 * * 4'
+...  |
+10 | |     paths:
+11 | |       - 'dev-tools/gen-windows-sys-binding/**'
+   | |______________________________________________^ workflow is missing concurrency setting
+...
+18 |       name: Regenerate windows sys bindings & Open Pull Request if necessary
+   |       ---------------------------------------------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/release-pr.yml:18:7
+   |
+18 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+19 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/release-pr.yml:27:15
+   |
+26 |       - name: Install Rust toolchain
+   |         ---------------------------- this step
+27 |         uses: dtolnay/rust-toolchain@683b588c487a69d01f6c6ddf40f036ff682cc2c8 # v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/test-rustc-targets.yml:16:3
+   |
+16 |   rustc_target_test:
+   |   ^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/test-rustc-targets.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch: # Allow running on-demand
+ 5 | |   schedule:
+ 6 | |     - cron: '0 3 * * 1,4' # Every Monday and Thursdag
+...  |
+10 | |     paths:
+11 | |       - 'src/target/**'
+   | |_______________________^ workflow is missing concurrency setting
+...
+16 |     rustc_target_test:
+   |     ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+51 findings (4 suppressed): 5 informational, 39 low, 2 medium, 1 high

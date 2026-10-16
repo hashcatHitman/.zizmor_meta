@@ -1,0 +1,266 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/check.yml:20:7
+   |
+20 |     - uses: actions/checkout@v4
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/check.yml:1:1
+   |
+ 1 | / name: Check goal documents
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+24 | |         cache-bin: false
+25 | |     - run: make check
+   | |______________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/check.yml:17:3
+   |
+17 | /   build:
+18 | |     runs-on: ubuntu-latest
+19 | |     steps:
+20 | |     - uses: actions/checkout@v4
+...  |
+24 | |         cache-bin: false
+25 | |     - run: make check
+   | |                      ^
+   | |                      |
+   | |______________________this job
+   |                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/check.yml:20:13
+   |
+20 |     - uses: actions/checkout@v4
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/check.yml:21:13
+   |
+21 |     - uses: Swatinem/rust-cache@v2
+   |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/check.yml:17:3
+   |
+17 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/compile.yml:20:7
+   |
+20 |     - uses: actions/checkout@v4
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/compile.yml:1:1
+   |
+ 1 | / name: Compile Rust code
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+24 | |         cache-bin: false
+25 | |     - run: cargo check --workspace
+   | |___________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/compile.yml:17:3
+   |
+17 | /   build:
+18 | |     runs-on: ubuntu-latest
+19 | |     steps:
+20 | |     - uses: actions/checkout@v4
+...  |
+24 | |         cache-bin: false
+25 | |     - run: cargo check --workspace
+   | |                                   ^
+   | |                                   |
+   | |___________________________________this job
+   |                                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/compile.yml:20:13
+   |
+20 |     - uses: actions/checkout@v4
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/compile.yml:21:13
+   |
+21 |     - uses: Swatinem/rust-cache@v2
+   |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/compile.yml:17:3
+   |
+17 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/mdbook.yml:31:9
+   |
+31 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/mdbook.yml:15:3
+   |
+15 |   pages: write
+   |   ^^^^^^^^^^^^ pages: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/mdbook.yml:16:3
+   |
+16 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:31:15
+   |
+31 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:32:15
+   |
+32 |       - uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:37:15
+   |
+37 |         uses: taiki-e/install-action@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:43:15
+   |
+43 |         uses: actions/configure-pages@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:48:15
+   |
+48 |         uses: actions/upload-pages-artifact@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/mdbook.yml:60:15
+   |
+60 |         uses: actions/deploy-pages@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/mdbook.yml:15:3
+   |
+15 |   pages: write
+   |   ^^^^^^^^^^^^ needs an explanatory comment
+16 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/mdbook.yml:25:3
+   |
+25 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/mdbook.yml:51:3
+   |
+51 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+24 findings: 4 informational, 1 low, 7 medium, 12 high

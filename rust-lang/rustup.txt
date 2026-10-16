@@ -1,0 +1,2011 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yaml:77:9
+   |
+77 |         - uses: actions/checkout@v7
+   |  _________^
+78 | |         # v2 defaults to a shallow checkout, but we need at least to the previous tag
+79 | |         with:
+80 | |           fetch-depth: 0
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yaml:286:9
+    |
+286 |         - uses: actions/checkout@v7
+    |  _________^
+287 | |         # v2 defaults to a shallow checkout, but we need at least to the previous tag
+288 | |         with:
+289 | |           fetch-depth: 0
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yaml:501:9
+    |
+501 |         - uses: actions/checkout@v7
+    |  _________^
+502 | |         # v2 defaults to a shallow checkout, but we need at least to the previous tag
+503 | |         with:
+504 | |           fetch-depth: 0
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yaml:697:9
+    |
+697 |         - name: Clone repo
+    |  _________^
+698 | |         uses: actions/checkout@v7
+699 | |         with:
+700 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+701 | |           fetch-depth: 0
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yaml:885:9
+    |
+885 |         - name: Clone repo
+    |  _________^
+886 | |         uses: actions/checkout@v7
+887 | |         with:
+888 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+889 | |           fetch-depth: 0
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1100:9
+     |
+1100 |         - name: Clone repo
+     |  _________^
+1101 | |         uses: actions/checkout@v7
+1102 | |         with:
+1103 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+1104 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1267:9
+     |
+1267 |         - uses: actions/checkout@v7
+     |  _________^
+1268 | |         with:
+1269 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+1270 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1413:9
+     |
+1413 |         - uses: actions/checkout@v7
+     |  _________^
+1414 | |         with:
+1415 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+1416 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1547:9
+     |
+1547 |         - uses: actions/checkout@v7
+     |  _________^
+1548 | |         with:
+1549 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+1550 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1578:9
+     |
+1578 |         - uses: actions/checkout@v7
+     |  _________^
+1579 | |         with:
+1580 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+1581 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1610:9
+     |
+1610 |         - name: Clone repo
+     |  _________^
+1611 | |         uses: actions/checkout@v7
+1612 | |         with:
+1613 | |           # v2 defaults to a shallow checkout, but we need at least to the previous tag
+1614 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1718:9
+     |
+1718 |         - name: Clone repo
+     |  _________^
+1719 | |         uses: actions/checkout@v7
+     | |_________________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+    --> .github/workflows/ci.yaml:1763:9
+     |
+1763 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+     |  _________^
+1764 | |         with:
+1765 | |           fetch-depth: 0
+     | |________________________^ does not set persist-credentials: false
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+    --> .github/workflows/ci.yaml:4:1
+     |
+   4 | / name: CI
+   5 | |
+   6 | | on:
+   7 | |   merge_group:
+...    |
+1839 | |       - build-windows-main
+1840 | |       - build-windows-stable
+     | |_____________________________^ default permissions used due to no permissions: block
+     |
+     = note: audit confidence → Medium
+     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+    --> .github/workflows/ci.yaml:1543:3
+     |
+1543 | /   build-freebsd-main: # job-name skip-stable
+1544 | |     runs-on: ubuntu-latest
+1545 | |     if: ${{ (github.event_name == 'push' && (github.ref_name == 'main' || startsWith(github.ref_name, 'release/'))) || contains(...
+1546 | |     steps:
+...    |
+1572 | |   # This is ci/actions-templates/freebsd-builds-template.yaml
+1573 | |   # Do not edit this file in .github/workflows
+     | |                                              ^
+     | |                                              |
+     | |______________________________________________this job
+     |                                                default permissions used due to no permissions: block
+     |
+     = note: audit confidence → Medium
+     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+    --> .github/workflows/ci.yaml:1574:3
+     |
+1574 | /   build-freebsd-stable: # job-name skip-main
+1575 | |     runs-on: ubuntu-latest
+1576 | |     if: ${{ github.event_name == 'push' && github.ref_name == 'stable' }} # skip-main
+1577 | |     steps:
+...    |
+1603 | |   # This is ci/actions-templates/centos-fmt-clippy.yaml
+1604 | |   # Do not edit this file in .github/workflows
+     | |                                              ^
+     | |                                              |
+     | |______________________________________________this job
+     |                                                default permissions used due to no permissions: block
+     |
+     = note: audit confidence → Medium
+     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+    --> .github/workflows/ci.yaml:1605:3
+     |
+1605 | /   check: # job-name
+1606 | |     runs-on: ubuntu-latest
+1607 | |     strategy:
+1608 | |       fail-fast: false
+...    |
+1703 | |   # nor run on the rust docker images. This permits a smaller workflow without the
+1704 | |   # templating and so on.
+     | |                         ^
+     | |                         |
+     | |_________________________this job
+     |                           default permissions used due to no permissions: block
+     |
+     = note: audit confidence → Medium
+     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+    --> .github/workflows/ci.yaml:1705:3
+     |
+1705 | /   build-all-features: # job-name
+1706 | |     runs-on: ${{ matrix.os }}
+1707 | |     if: ${{ contains(fromJSON('["pull_request", "merge_group"]'), github.event_name) }}
+1708 | |     strategy:
+...    |
+1756 | |   # Builds docs for both stable and main branches.
+1757 | |   # stable is placed in the root of the gh-pages branch, while main is placed at /devel
+     | |                                                                                       ^
+     | |                                                                                       |
+     | |_______________________________________________________________________________________this job
+     |                                                                                         default permissions used due to no permissions: block
+     |
+     = note: audit confidence → Medium
+     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+    --> .github/workflows/ci.yaml:1814:3
+     |
+1814 | /   conclusion:
+1815 | |     # https://github.com/PyO3/pyo3/blob/42601f3af94242b017402b763a495798a92da8f8/.github/workflows/ci.yml#L452-L472
+1816 | |     if: always()
+1817 | |     runs-on: ubuntu-latest
+...    |
+1839 | |       - build-windows-main
+1840 | |       - build-windows-stable
+     | |                             ^
+     | |                             |
+     | |_____________________________this job
+     |                               default permissions used due to no permissions: block
+     |
+     = note: audit confidence → Medium
+     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:105:27
+    |
+104 |         run: |
+    |         --- this run block
+105 |           $version = "${{ matrix.llvm_mingw_version }}"
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:106:52
+    |
+104 |         run: |
+    |         --- this run block
+105 |           $version = "${{ matrix.llvm_mingw_version }}"
+106 |           $archive = "llvm-mingw-$version-ucrt-${{ matrix.rustup_arch }}.zip"
+    |                                                    ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:109:82
+    |
+104 |         run: |
+    |         --- this run block
+...
+109 |           $installDir = Join-Path $env:RUNNER_TEMP "llvm-mingw-$version-ucrt-${{ matrix.rustup_arch }}"
+    |                                                                                  ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:117:34
+    |
+104 |         run: |
+    |         --- this run block
+...
+117 |           $targetEnvUpper = "${{ matrix.target }}".Replace('-', '_').ToUpperInvariant()
+    |                                  ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:120:37
+    |
+104 |         run: |
+    |         --- this run block
+...
+120 |           "CC_${targetEnvUpper}=${{ matrix.gcc }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:120:37
+    |
+104 |         run: |
+    |         --- this run block
+...
+120 |           "CC_${targetEnvUpper}=${{ matrix.gcc }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:125:27
+    |
+124 |         run: |
+    |         --- this run block
+125 |           Get-Command ${{ matrix.gcc }}
+    |                           ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:126:15
+    |
+124 |         run: |
+    |         --- this run block
+125 |           Get-Command ${{ matrix.gcc }}
+126 |           ${{ matrix.gcc }} --version
+    |               ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:130:28
+    |
+128 |         run: |
+    |         --- this run block
+129 |           echo "${env:USERPROFILE}\.cargo\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+130 |           echo "TARGET=${{ matrix.target }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:178:37
+    |
+177 |         run: |
+    |         --- this run block
+178 |           rustup target install ${{ matrix.target }}
+    |                                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:228:69
+    |
+227 |         run: |
+    |         --- this run block
+228 |           aws --debug s3 cp --recursive dist s3://rustup-builds/${{ github.sha }}/dist
+    |                                                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:314:27
+    |
+313 |         run: |
+    |         --- this run block
+314 |           $version = "${{ matrix.llvm_mingw_version }}"
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:315:52
+    |
+313 |         run: |
+    |         --- this run block
+314 |           $version = "${{ matrix.llvm_mingw_version }}"
+315 |           $archive = "llvm-mingw-$version-ucrt-${{ matrix.rustup_arch }}.zip"
+    |                                                    ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:318:82
+    |
+313 |         run: |
+    |         --- this run block
+...
+318 |           $installDir = Join-Path $env:RUNNER_TEMP "llvm-mingw-$version-ucrt-${{ matrix.rustup_arch }}"
+    |                                                                                  ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:326:34
+    |
+313 |         run: |
+    |         --- this run block
+...
+326 |           $targetEnvUpper = "${{ matrix.target }}".Replace('-', '_').ToUpperInvariant()
+    |                                  ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:329:37
+    |
+313 |         run: |
+    |         --- this run block
+...
+329 |           "CC_${targetEnvUpper}=${{ matrix.gcc }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:329:37
+    |
+313 |         run: |
+    |         --- this run block
+...
+329 |           "CC_${targetEnvUpper}=${{ matrix.gcc }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:334:27
+    |
+333 |         run: |
+    |         --- this run block
+334 |           Get-Command ${{ matrix.gcc }}
+    |                           ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:335:15
+    |
+333 |         run: |
+    |         --- this run block
+334 |           Get-Command ${{ matrix.gcc }}
+335 |           ${{ matrix.gcc }} --version
+    |               ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:339:28
+    |
+337 |         run: |
+    |         --- this run block
+338 |           echo "${env:USERPROFILE}\.cargo\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+339 |           echo "TARGET=${{ matrix.target }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:387:37
+    |
+386 |         run: |
+    |         --- this run block
+387 |           rustup target install ${{ matrix.target }}
+    |                                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:437:69
+    |
+436 |         run: |
+    |         --- this run block
+437 |           aws --debug s3 cp --recursive dist s3://rustup-builds/${{ github.sha }}/dist
+    |                                                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:529:27
+    |
+528 |         run: |
+    |         --- this run block
+529 |           $version = "${{ matrix.llvm_mingw_version }}"
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:530:52
+    |
+528 |         run: |
+    |         --- this run block
+529 |           $version = "${{ matrix.llvm_mingw_version }}"
+530 |           $archive = "llvm-mingw-$version-ucrt-${{ matrix.rustup_arch }}.zip"
+    |                                                    ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:533:82
+    |
+528 |         run: |
+    |         --- this run block
+...
+533 |           $installDir = Join-Path $env:RUNNER_TEMP "llvm-mingw-$version-ucrt-${{ matrix.rustup_arch }}"
+    |                                                                                  ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:541:34
+    |
+528 |         run: |
+    |         --- this run block
+...
+541 |           $targetEnvUpper = "${{ matrix.target }}".Replace('-', '_').ToUpperInvariant()
+    |                                  ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:544:37
+    |
+528 |         run: |
+    |         --- this run block
+...
+544 |           "CC_${targetEnvUpper}=${{ matrix.gcc }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:544:37
+    |
+528 |         run: |
+    |         --- this run block
+...
+544 |           "CC_${targetEnvUpper}=${{ matrix.gcc }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:549:27
+    |
+548 |         run: |
+    |         --- this run block
+549 |           Get-Command ${{ matrix.gcc }}
+    |                           ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:550:15
+    |
+548 |         run: |
+    |         --- this run block
+549 |           Get-Command ${{ matrix.gcc }}
+550 |           ${{ matrix.gcc }} --version
+    |               ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:554:28
+    |
+552 |         run: |
+    |         --- this run block
+553 |           echo "${env:USERPROFILE}\.cargo\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
+554 |           echo "TARGET=${{ matrix.target }}" | Out-File -Append -FilePath $env:GITHUB_ENV -Encoding utf8
+    |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:602:37
+    |
+601 |         run: |
+    |         --- this run block
+602 |           rustup target install ${{ matrix.target }}
+    |                                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:652:69
+    |
+651 |         run: |
+    |         --- this run block
+652 |           aws --debug s3 cp --recursive dist s3://rustup-builds/${{ github.sha }}/dist
+    |                                                                     ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:715:28
+    |
+713 |         run: |
+    |         --- this run block
+714 |           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+715 |           echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+    |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:838:72
+    |
+837 |         run: |
+    |         --- this run block
+838 |           aws --debug s3 cp --recursive deploy/ s3://rustup-builds/${{ github.sha }}
+    |                                                                        ^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:903:28
+    |
+901 |         run: |
+    |         --- this run block
+902 |           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+903 |           echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+    |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1026:72
+     |
+1025 |         run: |
+     |         --- this run block
+1026 |           aws --debug s3 cp --recursive deploy/ s3://rustup-builds/${{ github.sha }}
+     |                                                                        ^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1118:28
+     |
+1116 |         run: |
+     |         --- this run block
+1117 |           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+1118 |           echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+     |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1241:72
+     |
+1240 |         run: |
+     |         --- this run block
+1241 |           aws --debug s3 cp --recursive deploy/ s3://rustup-builds/${{ github.sha }}
+     |                                                                        ^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1284:28
+     |
+1282 |         run: |
+     |         --- this run block
+1283 |           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+1284 |           echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+     |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1381:72
+     |
+1380 |         run: |
+     |         --- this run block
+1381 |           aws --debug s3 cp --recursive deploy/ s3://rustup-builds/${{ github.sha }}
+     |                                                                        ^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1430:28
+     |
+1428 |         run: |
+     |         --- this run block
+1429 |           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+1430 |           echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+     |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1526:72
+     |
+1525 |         run: |
+     |         --- this run block
+1526 |           aws --debug s3 cp --recursive deploy/ s3://rustup-builds/${{ github.sha }}
+     |                                                                        ^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1739:28
+     |
+1737 |         run: |
+     |         --- this run block
+1738 |           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+1739 |           echo "TARGET=${{ matrix.target }}" >> $GITHUB_ENV
+     |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1747:37
+     |
+1746 |         run: |
+     |         --- this run block
+1747 |           rustup target install ${{ matrix.target }}
+     |                                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1778:23
+     |
+1774 |         run: |
+     |         --- this run block
+...
+1778 |           mv book ${{ runner.temp }}
+     |                       ^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1784:23
+     |
+1780 |         run: |
+     |         --- this run block
+...
+1784 |           mv book ${{ runner.temp }}/book/devel
+     |                       ^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+    --> .github/workflows/ci.yaml:1790:23
+     |
+1786 |         run: |
+     |         --- this run block
+...
+1790 |           mv book ${{ runner.temp }}/book/dev-guide
+     |                       ^^^^^^^^^^^ may expand into attacker-controllable code
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yaml:77:15
+   |
+77 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yaml:95:15
+   |
+95 |         uses: ilammy/setup-nasm@v1
+   |               ^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yaml:98:15
+   |
+98 |         uses: bwoodsend/setup-winlibs-action@v1.16
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:137:15
+    |
+137 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:169:15
+    |
+169 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:196:15
+    |
+196 |         uses: actions/upload-artifact@v7
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:221:15
+    |
+221 |         uses: aws-actions/configure-aws-credentials@v6
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:286:15
+    |
+286 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:304:15
+    |
+304 |         uses: ilammy/setup-nasm@v1
+    |               ^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:307:15
+    |
+307 |         uses: bwoodsend/setup-winlibs-action@v1.16
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:346:15
+    |
+346 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:378:15
+    |
+378 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:405:15
+    |
+405 |         uses: actions/upload-artifact@v7
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:430:15
+    |
+430 |         uses: aws-actions/configure-aws-credentials@v6
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:501:15
+    |
+501 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:519:15
+    |
+519 |         uses: ilammy/setup-nasm@v1
+    |               ^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:522:15
+    |
+522 |         uses: bwoodsend/setup-winlibs-action@v1.16
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:561:15
+    |
+561 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:593:15
+    |
+593 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:620:15
+    |
+620 |         uses: actions/upload-artifact@v7
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:645:15
+    |
+645 |         uses: aws-actions/configure-aws-credentials@v6
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:698:15
+    |
+698 |         uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:721:15
+    |
+721 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:751:15
+    |
+751 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:805:15
+    |
+805 |         uses: actions/upload-artifact@v7
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:831:15
+    |
+831 |         uses: aws-actions/configure-aws-credentials@v6
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:886:15
+    |
+886 |         uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:909:15
+    |
+909 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:939:15
+    |
+939 |         uses: actions/cache@v6
+    |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yaml:993:15
+    |
+993 |         uses: actions/upload-artifact@v7
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1019:15
+     |
+1019 |         uses: aws-actions/configure-aws-credentials@v6
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1101:15
+     |
+1101 |         uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1124:15
+     |
+1124 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1154:15
+     |
+1154 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1208:15
+     |
+1208 |         uses: actions/upload-artifact@v7
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1234:15
+     |
+1234 |         uses: aws-actions/configure-aws-credentials@v6
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1267:15
+     |
+1267 |       - uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1292:15
+     |
+1292 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1322:15
+     |
+1322 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1347:15
+     |
+1347 |         uses: actions/upload-artifact@v7
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1374:15
+     |
+1374 |         uses: aws-actions/configure-aws-credentials@v6
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1413:15
+     |
+1413 |       - uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1438:15
+     |
+1438 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1468:15
+     |
+1468 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1492:15
+     |
+1492 |         uses: actions/upload-artifact@v7
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1519:15
+     |
+1519 |         uses: aws-actions/configure-aws-credentials@v6
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1547:15
+     |
+1547 |       - uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1555:15
+     |
+1555 |         uses: vmactions/freebsd-vm@v1
+     |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1578:15
+     |
+1578 |       - uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1586:15
+     |
+1586 |         uses: vmactions/freebsd-vm@v1
+     |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1611:15
+     |
+1611 |         uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1633:15
+     |
+1633 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1657:15
+     |
+1657 |         uses: actions/cache@v6
+     |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1680:15
+     |
+1680 |         uses: taiki-e/install-action@v2
+     |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1719:15
+     |
+1719 |         uses: actions/checkout@v7
+     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1733:15
+     |
+1733 |         uses: ilammy/setup-nasm@v1
+     |               ^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+    --> .github/workflows/ci.yaml:1741:15
+     |
+1741 |         uses: Swatinem/rust-cache@v2
+     |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+     |
+     = note: audit confidence → High
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/ci.yaml:41:7
+   |
+41 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yaml:250:7
+    |
+250 |       id-token: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yaml:459:7
+    |
+459 |       id-token: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yaml:667:7
+    |
+667 |       id-token: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yaml:853:7
+    |
+853 |       id-token: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+    --> .github/workflows/ci.yaml:1041:7
+     |
+1041 |       id-token: write
+     |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+    --> .github/workflows/ci.yaml:1257:7
+     |
+1257 |       id-token: write
+     |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+    --> .github/workflows/ci.yaml:1403:7
+     |
+1403 |       id-token: write
+     |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+    --> .github/workflows/ci.yaml:1803:7
+     |
+1803 |       pages: write
+     |       ^^^^^^^^^^^^ needs an explanatory comment
+1804 |       id-token: write
+     |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+     |
+     = note: audit confidence → High
+     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:137:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+137 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:169:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+169 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:346:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+346 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:378:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+378 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:561:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+561 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:593:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+593 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:721:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+721 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:751:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+751 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:909:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+909 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+   --> .github/workflows/ci.yaml:939:9
+    |
+  6 | / on:
+  7 | |   merge_group:
+  8 | |   pull_request:
+  9 | |     branches:
+...   |
+ 21 | | # run gets a group of its own so that pushes to main and stable, which
+ 22 | | # deploy artifacts, always run to completion.
+    | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+939 |           uses: actions/cache@v6
+    |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1124:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1124 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1154:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1154 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1292:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1292 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1322:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1322 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1438:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1438 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1468:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1468 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1633:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1633 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1657:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1657 |           uses: actions/cache@v6
+     |           ^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
+    --> .github/workflows/ci.yaml:1741:9
+     |
+   6 | / on:
+   7 | |   merge_group:
+   8 | |   pull_request:
+   9 | |     branches:
+...    |
+  21 | | # run gets a group of its own so that pushes to main and stable, which
+  22 | | # deploy artifacts, always run to completion.
+     | |_____________________________________________- generally used when publishing artifacts generated at runtime
+...
+1741 |           uses: Swatinem/rust-cache@v2
+     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `lookup-only` enables caching
+     |
+     = note: audit confidence → Low
+     = note: this finding has an auto-fix
+     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yaml:30:3
+   |
+30 |   build-windows-pr: # job-name skip-main skip-stable
+   |   ^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yaml:239:3
+    |
+239 |   build-windows-main: # job-name skip-pr skip-stable
+    |   ^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yaml:448:3
+    |
+448 |   build-windows-stable: # job-name skip-main skip-pr
+    |   ^^^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yaml:663:3
+    |
+663 |   build-linux-pr: # job-name skip-main skip-stable
+    |   ^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yaml:849:3
+    |
+849 |   build-linux-main: # job-name skip-pr skip-stable
+    |   ^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1037:3
+     |
+1037 |   build-linux-stable: # job-name skip-main skip-pr
+     |   ^^^^^^^^^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1252:3
+     |
+1252 |   build-macos-x86_64: # job-name skip-aarch64
+     |   ^^^^^^^^^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1398:3
+     |
+1398 |   build-macos-aarch64: # job-name skip-x86_64
+     |   ^^^^^^^^^^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1543:3
+     |
+1543 |   build-freebsd-main: # job-name skip-stable
+     |   ^^^^^^^^^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1574:3
+     |
+1574 |   build-freebsd-stable: # job-name skip-main
+     |   ^^^^^^^^^^^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1605:3
+     |
+1605 |   check: # job-name
+     |   ^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1705:3
+     |
+1705 |   build-all-features: # job-name
+     |   ^^^^^^^^^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1758:3
+     |
+1758 |   doc: # job-name
+     |   ^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1798:3
+     |
+1798 |   doc-deploy: # job-name
+     |   ^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+    --> .github/workflows/ci.yaml:1814:3
+     |
+1814 |   conclusion:
+     |   ^^^^^^^^^^ this job
+     |
+     = note: audit confidence → High
+     = tip: use 'name: ...' to give this job a name
+     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+184 findings (17 suppressed): 15 informational, 70 low, 6 medium, 76 high

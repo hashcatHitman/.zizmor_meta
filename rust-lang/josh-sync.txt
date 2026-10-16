@@ -1,0 +1,287 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rustc-pull.yml:60:9
+   |
+60 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |  _________^
+61 | |         with:
+62 | |           fetch-depth: '0'
+   | |__________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/rustc-pull.yml:135:9
+    |
+135 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/rustc-pull.yml:1:1
+    |
+  1 | / name: 'Josh Subtree Sync'
+  2 | |
+  3 | | on:
+  4 | |   workflow_call:
+...   |
+171 | |           topic: ${{ inputs.zulip-topic }}
+172 | |           content: ${{ steps.create-message.outputs.message }}
+    | |_______________________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/rustc-pull.yml:129:3
+    |
+129 | /   send-zulip-notification:
+130 | |     needs: [ perform-pull ]
+131 | |     if: ${{ !cancelled() && inputs.zulip-stream-id != '' }}
+132 | |     runs-on: ubuntu-latest
+...   |
+171 | |           topic: ${{ inputs.zulip-topic }}
+172 | |           content: ${{ steps.create-message.outputs.message }}
+    | |                                                               ^
+    | |                                                               |
+    | |_______________________________________________________________this job
+    |                                                                 default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:106:23
+    |
+105 |         run: |
+    |         --- this run block
+106 |           BRANCH="${{ inputs.branch-name }}"
+    |                       ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:117:43
+    |
+115 | ...   run: |
+    |       --- this run block
+116 | ...     # Check if an open pull request already exists
+117 | ...     RESULT=`gh pr list --author ${{ inputs.pr-author }} --state open -q 'map(select(.title=="Rustc pull update")) | length' --j...
+    |                                         ^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:120:41
+    |
+115 |         run: |
+    |         --- this run block
+...
+120 |             PR_URL=`gh pr create -B ${{ inputs.pr-base-branch }} --title 'Rustc pull update' --body 'Latest update from rustc.'`
+    |                                         ^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:124:45
+    |
+115 | ...   run: |
+    |       --- this run block
+...
+124 | ...       PR_URL=`gh pr list --author ${{ inputs.pr-author }} --state open -q 'map(select(.title=="Rustc pull update")) | .[0].url'...
+    |                                           ^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:148:21
+    |
+147 |         run: |
+    |         --- this run block
+148 |           if [ "${{ needs.perform-pull.result }}" == "failure" ]; then
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:149:31
+    |
+147 |         run: |
+    |         --- this run block
+148 |           if [ "${{ needs.perform-pull.result }}" == "failure" ]; then
+149 |             WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+    |                               ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:149:56
+    |
+147 |         run: |
+    |         --- this run block
+148 |           if [ "${{ needs.perform-pull.result }}" == "failure" ]; then
+149 |             WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+    |                                                        ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:149:94
+    |
+147 |         run: |
+    |         --- this run block
+148 |           if [ "${{ needs.perform-pull.result }}" == "failure" ]; then
+149 |             WORKFLOW_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+    |                                                                                              ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:152:49
+    |
+147 | ...   run: |
+    |       --- this run block
+...
+152 | ...       CREATED_AT=`gh pr list --author ${{ inputs.pr-author }} --state open -q 'map(select(.title=="Rustc pull update")) | .[0]....
+    |                                               ^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+   --> .github/workflows/rustc-pull.yml:153:45
+    |
+147 | ...   run: |
+    |       --- this run block
+...
+153 | ...       PR_URL=`gh pr list --author ${{ inputs.pr-author }} --state open -q 'map(select(.title=="Rustc pull update")) | .[0].url'...
+    |                                           ^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/rustc-pull.yml:57:7
+   |
+57 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+58 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rustc-pull.yml:50:3
+   |
+50 |   perform-pull:
+   |   ^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/rustc-pull.yml:129:3
+    |
+129 |   send-zulip-notification:
+    |   ^^^^^^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+error[github-app]: dangerous use of GitHub App tokens
+  --> .github/workflows/rustc-pull.yml:97:15
+   |
+97 |       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
+   |
+   = note: audit confidence → High
+   = tip: specify at least one `permission-<name>` input to limit the token's permissions
+   = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
+
+error[github-app]: dangerous use of GitHub App tokens
+   --> .github/workflows/rustc-pull.yml:137:15
+    |
+137 |       - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
+    |
+    = note: audit confidence → High
+    = tip: specify at least one `permission-<name>` input to limit the token's permissions
+    = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/test.yml:10:9
+   |
+10 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/test.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | | on:
+ 3 | |   pull_request:
+...  |
+15 | |       - name: Check formatting
+16 | |         run: cargo fmt --all --check
+   | |_____________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/test.yml:6:3
+   |
+ 6 | /   test:
+ 7 | |     name: Test
+ 8 | |     runs-on: ubuntu-latest
+ 9 | |     steps:
+...  |
+15 | |       - name: Check formatting
+16 | |         run: cargo fmt --all --check
+   | |                                     ^
+   | |                                     |
+   | |_____________________________________this job
+   |                                       default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+ --> .github/workflows/test.yml:2:1
+  |
+2 | / on:
+3 | |   pull_request:
+  | |_______________^ workflow is missing concurrency setting
+...
+7 |       name: Test
+  |       ---------- job affected by missing workflow concurrency
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+23 findings: 2 informational, 9 low, 4 medium, 8 high

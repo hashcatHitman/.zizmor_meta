@@ -1,0 +1,201 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:10:9
+   |
+10 |       - uses: actions/checkout@v4.1.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:18:9
+   |
+18 |       - uses: actions/checkout@v4.1.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | / on: [push, pull_request]
+ 2 | |
+ 3 | | name: continuous integration
+...  |
+21 | |           components: rustfmt
+22 | |       - run: cargo fmt --all -- --check
+   | |________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:6:3
+   |
+ 6 | /   test:
+ 7 | |     name: test
+ 8 | |     runs-on: ubuntu-20.04
+ 9 | |     steps:
+10 | |       - uses: actions/checkout@v4.1.1
+11 | |       - uses: dtolnay/rust-toolchain@stable
+12 | |       - run: cargo test --release --all-features
+   | |                                                ^
+   | |                                                |
+   | |________________________________________________this job
+   |                                                  default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:14:3
+   |
+14 | /   fmt:
+15 | |     name: rustfmt
+16 | |     runs-on: ubuntu-20.04
+17 | |     steps:
+...  |
+21 | |           components: rustfmt
+22 | |       - run: cargo fmt --all -- --check
+   | |                                        ^
+   | |                                        |
+   | |________________________________________this job
+   |                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:10:15
+   |
+10 |       - uses: actions/checkout@v4.1.1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:11:15
+   |
+11 |       - uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:18:15
+   |
+18 |       - uses: actions/checkout@v4.1.1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:19:15
+   |
+19 |       - uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | on: [push, pull_request]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
+...
+ 7 |     name: test
+   |     ---------- job affected by missing workflow concurrency
+...
+15 |     name: rustfmt
+   |     ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/ci.yml:11:15
+   |
+11 |       - uses: dtolnay/rust-toolchain@stable
+   |         ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |         |     |
+   |         |     use `rustup` and/or `cargo` in a script step
+   |         this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/ci.yml:19:15
+   |
+19 |         - uses: dtolnay/rust-toolchain@stable
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+20 | |         with:
+21 | |           components: rustfmt
+   | |_____________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+help[template-injection]: code injection via template expansion
+  --> action.yml:22:16
+   |
+22 |       run: ${{ github.action_path }}/action.sh ${{ inputs.input_directory }} ${{ inputs.output_directory }}
+   |       ---      ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |       |
+   |       this run block
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> action.yml:22:52
+   |
+22 |       run: ${{ github.action_path }}/action.sh ${{ inputs.input_directory }} ${{ inputs.output_directory }}
+   |       --- this run block                           ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> action.yml:22:82
+   |
+22 |       run: ${{ github.action_path }}/action.sh ${{ inputs.input_directory }} ${{ inputs.output_directory }}
+   |       --- this run block                                                         ^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> action.yml:16:13
+   |
+16 |       uses: dtolnay/rust-toolchain@stable
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> action.yml:16:13
+   |
+15 |     - name: Install Rust toolchain
+   |       ---------------------------- this step
+16 |       uses: dtolnay/rust-toolchain@stable
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+17 findings: 3 informational, 2 low, 5 medium, 7 high

@@ -1,0 +1,106 @@
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/audit.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   schedule:
+ 5 | |     # Runs at 00:00 UTC everyday
+ 6 | |     - cron: "0 0 * * *"
+...  |
+12 | |       - "**/Cargo.lock"
+13 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+20 |       name: Security audit
+   |       -------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/deploy-production.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+14 |       concurrency: production
+   |       ----------------------- job concurrency is missing cancel-in-progress
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/deploy-production.yml:25:15
+   |
+24 |       - name: Deploy to ECS
+   |         ------------------- this step
+25 |         uses: ./.github/actions/deploy-ecs
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/deploy-staging.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches:
+ 6 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+16 |       concurrency: staging
+   |       -------------------- job concurrency is missing cancel-in-progress
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/deploy-staging.yml:27:15
+   |
+26 |       - name: Deploy to ECS
+   |         ------------------- this step
+27 |         uses: ./.github/actions/deploy-ecs
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/test.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request: { }
+ 5 | |   merge_group: { }
+ 6 | |   # We only run this on push to main to prime CI cache
+ 7 | |   push:
+ 8 | |     branches:
+ 9 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+16 |       name: Test
+   |       ---------- job affected by missing workflow concurrency
+...
+58 |       name: Test Docker
+   |       ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/zizmor.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request:
+ 5 | |   merge_group:
+   | |______________^ workflow is missing concurrency setting
+...
+12 |       name: Run zizmor
+   |       ---------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+7 findings: 0 informational, 7 low, 0 medium, 0 high

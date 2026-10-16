@@ -1,0 +1,461 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/check_diff.yml:52:7
+   |
+52 |       - name: checkout
+   |  _______^
+53 | |       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |______________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:67:23
+   |
+64 |       run: |
+   |       --- this run block
+...
+67 |         if [[ -n "${{ github.event.inputs.commit_hash }}" ]]; then
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:68:39
+   |
+64 |       run: |
+   |       --- this run block
+...
+68 |           OPTIONS+="--commit-hash ${{ github.event.inputs.commit_hash }} "
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:71:23
+   |
+64 |       run: |
+   |       --- this run block
+...
+71 |         if [[ -n "${{ github.event.inputs.rustfmt_configs }}" ]]; then
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:72:42
+   |
+64 |       run: |
+   |       --- this run block
+...
+72 |           OPTIONS+="--rustfmt-config ${{ github.event.inputs.rustfmt_configs }} "
+   |                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:75:39
+   |
+64 |       run: |
+   |       --- this run block
+...
+75 |         target/release/check_diff ${{ github.event.inputs.clone_url }} ${{ github.event.inputs.branch_name }} \
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:75:76
+   |
+64 |       run: |
+   |       --- this run block
+...
+75 |         target/release/check_diff ${{ github.event.inputs.clone_url }} ${{ github.event.inputs.branch_name }} \
+   |                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:76:25
+   |
+64 |       run: |
+   |       --- this run block
+...
+76 |           --edition ${{ github.event.inputs.language_edition }} \
+   |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/check_diff.yml:77:31
+   |
+64 |       run: |
+   |       --- this run block
+...
+77 |           --style-edition ${{ github.event.inputs.style_edition }} \
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/check_diff.yml:48:3
+   |
+48 |   diff_check:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/check_diff.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   workflow_dispatch:
+ 4 | |     inputs:
+ 5 | |       clone_url:
+...  |
+41 | |           - beta
+42 | |           - nightly
+   | |___________________^ workflow is missing concurrency setting
+...
+48 |     diff_check:
+   |     ---------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/clippy.yml:14:9
+   |
+14 |         - name: checkout
+   |  _________^
+15 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/clippy.yml:36:9
+   |
+36 |         - name: checkout
+   |  _________^
+37 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/clippy.yml:43:56
+   |
+43 |         run: cargo clippy --locked --manifest-path ${{ matrix.package }}/Cargo.toml
+   |         --- this run block                             ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/clippy.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   merge_group:
+ 4 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+12 |       name: check clippy configs
+   |       -------------------------- job affected by missing workflow concurrency
+...
+26 |       name: clippy ${{ matrix.package }}
+   |       ---------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/integration.yml:61:7
+   |
+61 |       - name: checkout
+   |  _______^
+62 | |       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+63 | |
+64 | |       # Run build
+   | |_________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/integration.yml:73:77
+   |
+73 |       run: cargo run --locked --manifest-path ci/Cargo.toml integration ${{ matrix.integration }}
+   |       --- this run block                                                    ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/integration.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+11 |       name: ${{ matrix.integration }}
+   |       ------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rustdoc_check.yml:14:7
+   |
+14 |       - name: checkout
+   |  _______^
+15 | |       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |______________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/rustdoc_check.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   merge_group:
+ 4 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+12 |       name: rustdoc check
+   |       ------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/test.yml:44:7
+   |
+44 |       - name: checkout
+   |  _______^
+45 | |       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |______________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:55:31
+   |
+49 |       run: |
+   |       --- this run block
+...
+55 |         rustup target add ${{ matrix.target }}
+   |                               ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/test.yml:74:31
+   |
+71 |       run: |
+   |       --- this run block
+...
+74 |         rustup target add ${{ matrix.target }}
+   |                               ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:100:33
+    |
+ 98 |         run: |
+    |         --- this run block
+ 99 |           # Print the dependent jobs to see them in the CI log
+100 |           jq -C <<< '${{ toJson(needs) }}'
+    |                                 ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/test.yml:102:96
+    |
+ 98 |         run: |
+    |         --- this run block
+...
+102 |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< '${{ toJson(needs) }}'
+    |                                                                                                ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/test.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   merge_group:
+ 4 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+12 |       name: (${{ matrix.target }}, ${{ matrix.cfg_release_channel }})
+   |       --------------------------------------------------------------- job affected by missing workflow concurrency
+...
+84 |       name: "test conclusion"
+   |       ----------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/upload-assets.yml:34:9
+   |
+34 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |  _________^
+35 | |
+36 | |         # Run build
+   | |___________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/upload-assets.yml:1:1
+   |
+ 1 | / name: upload
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+72 | |           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+73 | |         run: gh release upload "${{ github.event.release.tag_name }}" "${{ env.ASSET }}"
+   | |_________________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/upload-assets.yml:10:3
+   |
+10 | /   build-release:
+11 | |     name: build-release
+12 | |     strategy:
+13 | |       matrix:
+...  |
+72 | |           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+73 | |         run: gh release upload "${{ github.event.release.tag_name }}" "${{ env.ASSET }}"
+   | |                                                                                         ^
+   | |                                                                                         |
+   | |_________________________________________________________________________________________this job
+   |                                                                                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/upload-assets.yml:41:33
+   |
+38 |         run: |
+   |         --- this run block
+...
+41 |           rustup target add ${{ matrix.target }}
+   |                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/upload-assets.yml:54:32
+   |
+53 |         run: |
+   |         --- this run block
+54 |           staging="rustfmt_${{ matrix.build }}_${{ github.event.release.tag_name }}"
+   |                                ^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/upload-assets.yml:54:52
+   |
+53 |         run: |
+   |         --- this run block
+54 |           staging="rustfmt_${{ matrix.build }}_${{ github.event.release.tag_name }}"
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/upload-assets.yml:59:21
+   |
+53 |         run: |
+   |         --- this run block
+...
+59 |           if [ "${{ matrix.os }}" = "windows-latest" ]; then
+   |                     ^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[template-injection]: code injection via template expansion
+  --> .github/workflows/upload-assets.yml:73:37
+   |
+73 |         run: gh release upload "${{ github.event.release.tag_name }}" "${{ env.ASSET }}"
+   |         --- this run block          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/upload-assets.yml:73:76
+   |
+73 |         run: gh release upload "${{ github.event.release.tag_name }}" "${{ env.ASSET }}"
+   |         --- this run block                                                 ^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/upload-assets.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |   release:
+ 6 | |     types: [created]
+ 7 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+11 |       name: build-release
+   |       ------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+36 findings: 3 informational, 21 low, 2 medium, 10 high

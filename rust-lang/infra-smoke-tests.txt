@@ -1,0 +1,373 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/json.yml:17:9
+   |
+17 |         - name: Checkout code
+   |  _________^
+18 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/json.yml:2:1
+   |
+ 2 | / name: JSON
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+23 | |           dry: true
+24 | |           prettier_options: "--check **/*.json"
+   | |________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/json.yml:12:3
+   |
+12 | /   style:
+13 | |     name: Check JSON style
+14 | |     runs-on: ubuntu-latest
+...  |
+23 | |           dry: true
+24 | |           prettier_options: "--check **/*.json"
+   | |                                                ^
+   | |                                                |
+   | |________________________________________________this job
+   |                                                  default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/json.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+13 |       name: Check JSON style
+   |       ---------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/markdown.yml:17:9
+   |
+17 |         - name: Checkout code
+   |  _________^
+18 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/markdown.yml:30:9
+   |
+30 |         - name: Checkout code
+   |  _________^
+31 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/markdown.yml:2:1
+   |
+ 2 | / name: Markdown
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+36 | |           dry: true
+37 | |           prettier_options: "--check **/*.md"
+   | |______________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/markdown.yml:12:3
+   |
+12 | /   lint:
+13 | |     name: Lint Markdown files
+14 | |     runs-on: ubuntu-latest
+...  |
+22 | |         with:
+23 | |           files: "**.md"
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/markdown.yml:25:3
+   |
+25 | /   style:
+26 | |     name: Check Markdown style
+27 | |     runs-on: ubuntu-latest
+...  |
+36 | |           dry: true
+37 | |           prettier_options: "--check **/*.md"
+   | |                                              ^
+   | |                                              |
+   | |______________________________________________this job
+   |                                                default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/markdown.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+13 |       name: Lint Markdown files
+   |       ------------------------- job affected by missing workflow concurrency
+...
+26 |       name: Check Markdown style
+   |       -------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:26:9
+   |
+26 |         - name: Checkout code
+   |  _________^
+27 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:48:9
+   |
+48 |         - name: Checkout code
+   |  _________^
+49 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:62:9
+   |
+62 |         - name: Checkout code
+   |  _________^
+63 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:2:1
+   |
+ 2 | / name: Rust
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+73 | |       - name: Run tests
+74 | |         run: just test
+   | |_______________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:18:3
+   |
+18 | /   lint:
+19 | |     name: Lint Rust code
+20 | |     runs-on: ubuntu-latest
+...  |
+37 | |       - name: Run Clippy
+38 | |         run: just lint
+   | |                      ^
+   | |                      |
+   | |______________________this job
+   |                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:40:3
+   |
+40 | /   style:
+41 | |     name: Check Rust style
+42 | |     runs-on: ubuntu-latest
+...  |
+51 | |       - name: Run Rustfmt
+52 | |         run: just format --check
+   | |                                ^
+   | |                                |
+   | |________________________________this job
+   |                                  default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:54:3
+   |
+54 | /   test:
+55 | |     name: Run tests
+56 | |     runs-on: ubuntu-latest
+...  |
+73 | |       - name: Run tests
+74 | |         run: just test
+   | |                       ^
+   | |                       |
+   | |_______________________this job
+   |                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/rust.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+19 |       name: Lint Rust code
+   |       -------------------- job affected by missing workflow concurrency
+...
+41 |       name: Check Rust style
+   |       ---------------------- job affected by missing workflow concurrency
+...
+55 |       name: Run tests
+   |       --------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/yaml.yml:17:9
+   |
+17 |         - name: Checkout code
+   |  _________^
+18 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/yaml.yml:28:9
+   |
+28 |         - name: Checkout code
+   |  _________^
+29 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/yaml.yml:2:1
+   |
+ 2 | / name: YAML
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+34 | |           dry: true
+35 | |           prettier_options: "--check **/*.{yml,yaml}"
+   | |______________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/yaml.yml:12:3
+   |
+12 | /   lint:
+13 | |     name: Lint YAML files
+14 | |     runs-on: ubuntu-latest
+...  |
+20 | |       - name: Run yamllint
+21 | |         uses: actionshub/yamllint@00f4f7f756a93a38e77ea1af41a46b48fd893dcd # v1.8.3
+   | |                                                                                   ^
+   | |                                                                                   |
+   | |___________________________________________________________________________________this job
+   |                                                                                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/yaml.yml:23:3
+   |
+23 | /   style:
+24 | |     name: Check YAML style
+25 | |     runs-on: ubuntu-latest
+...  |
+34 | |           dry: true
+35 | |           prettier_options: "--check **/*.{yml,yaml}"
+   | |                                                      ^
+   | |                                                      |
+   | |______________________________________________________this job
+   |                                                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/yaml.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+13 |       name: Lint YAML files
+   |       --------------------- job affected by missing workflow concurrency
+...
+24 |       name: Check YAML style
+   |       ---------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+24 findings: 0 informational, 12 low, 12 medium, 0 high

@@ -1,0 +1,82 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/deploy_mdbook.yml:24:9
+   |
+24 |         - name: Checkout
+   |  _________^
+25 | |         uses: actions/checkout@v6
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy_mdbook.yml:11:3
+   |
+11 |   pages: write
+   |   ^^^^^^^^^^^^ pages: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy_mdbook.yml:12:3
+   |
+12 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_mdbook.yml:25:15
+   |
+25 |         uses: actions/checkout@v6
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_mdbook.yml:27:15
+   |
+27 |       - uses: Swatinem/rust-cache@v2.9.1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_mdbook.yml:35:15
+   |
+35 |         uses: actions/upload-pages-artifact@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_mdbook.yml:53:15
+   |
+53 |         uses: actions/deploy-pages@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/deploy_mdbook.yml:11:3
+   |
+11 |   pages: write
+   |   ^^^^^^^^^^^^ needs an explanatory comment
+12 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+8 findings: 0 informational, 2 low, 0 medium, 6 high

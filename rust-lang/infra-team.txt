@@ -1,0 +1,348 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/json.yml:17:9
+   |
+17 |         - name: Checkout code
+   |  _________^
+18 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/json.yml:2:1
+   |
+ 2 | / name: JSON
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+23 | |           dry: true
+24 | |           prettier_options: "--check **/*.json"
+   | |________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/json.yml:12:3
+   |
+12 | /   style:
+13 | |     name: Check style
+14 | |     runs-on: ubuntu-latest
+...  |
+23 | |           dry: true
+24 | |           prettier_options: "--check **/*.json"
+   | |                                                ^
+   | |                                                |
+   | |________________________________________________this job
+   |                                                  default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/json.yml:18:15
+   |
+18 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/json.yml:21:15
+   |
+21 |         uses: creyD/prettier_action@v4.3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/json.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+13 |       name: Check style
+   |       ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/markdown.yml:17:9
+   |
+17 |         - name: Checkout code
+   |  _________^
+18 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/markdown.yml:30:9
+   |
+30 |         - name: Checkout code
+   |  _________^
+31 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/markdown.yml:2:1
+   |
+ 2 | / name: Markdown
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+36 | |           dry: true
+37 | |           prettier_options: "--check **/*.md"
+   | |______________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/markdown.yml:12:3
+   |
+12 | /   lint:
+13 | |     name: Lint code
+14 | |     runs-on: ubuntu-latest
+...  |
+22 | |         with:
+23 | |           files: "**/*.md"
+   | |                          ^
+   | |                          |
+   | |__________________________this job
+   |                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/markdown.yml:25:3
+   |
+25 | /   style:
+26 | |     name: Check style
+27 | |     runs-on: ubuntu-latest
+...  |
+36 | |           dry: true
+37 | |           prettier_options: "--check **/*.md"
+   | |                                              ^
+   | |                                              |
+   | |______________________________________________this job
+   |                                                default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/markdown.yml:18:15
+   |
+18 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/markdown.yml:21:15
+   |
+21 |         uses: nosborn/github-action-markdown-cli@v3.3.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/markdown.yml:31:15
+   |
+31 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/markdown.yml:34:15
+   |
+34 |         uses: creyD/prettier_action@v4.3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/markdown.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+13 |       name: Lint code
+   |       --------------- job affected by missing workflow concurrency
+...
+26 |       name: Check style
+   |       ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/yaml.yml:17:9
+   |
+17 |         - name: Checkout code
+   |  _________^
+18 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/yaml.yml:28:9
+   |
+28 |         - name: Checkout code
+   |  _________^
+29 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/yaml.yml:2:1
+   |
+ 2 | / name: YAML
+ 3 | |
+ 4 | | "on":
+ 5 | |   push:
+...  |
+34 | |           dry: true
+35 | |           prettier_options: "--check **/*.{yml,yaml}"
+   | |______________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/yaml.yml:12:3
+   |
+12 | /   lint:
+13 | |     name: Lint code
+14 | |     runs-on: ubuntu-latest
+...  |
+20 | |       - name: Run yamllint
+21 | |         uses: actionshub/yamllint@v1.8.2
+   | |                                        ^
+   | |                                        |
+   | |________________________________________this job
+   |                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/yaml.yml:23:3
+   |
+23 | /   style:
+24 | |     name: Check style
+25 | |     runs-on: ubuntu-latest
+...  |
+34 | |           dry: true
+35 | |           prettier_options: "--check **/*.{yml,yaml}"
+   | |                                                      ^
+   | |                                                      |
+   | |______________________________________________________this job
+   |                                                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/yaml.yml:18:15
+   |
+18 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/yaml.yml:21:15
+   |
+21 |         uses: actionshub/yamllint@v1.8.2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/yaml.yml:29:15
+   |
+29 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/yaml.yml:32:15
+   |
+32 |         uses: creyD/prettier_action@v4.3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/yaml.yml:4:1
+   |
+ 4 | / "on":
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |   pull_request:
+ 9 | |   workflow_dispatch:
+   | |____________________^ workflow is missing concurrency setting
+...
+13 |       name: Lint code
+   |       --------------- job affected by missing workflow concurrency
+...
+24 |       name: Check style
+   |       ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+26 findings: 0 informational, 3 low, 13 medium, 10 high

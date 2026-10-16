@@ -1,0 +1,95 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:18:9
+   |
+18 |         - uses: actions/checkout@v2
+   |  _________^
+19 | |         with:
+20 | |           fetch-depth: 1
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:2:1
+   |
+ 2 | / name: CI
+ 3 | |
+ 4 | | on:
+ 5 | |   push:
+...  |
+33 | |       - name: Check examples
+34 | |         run: cargo check --examples
+   | |____________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:10:3
+   |
+10 | /   test:
+11 | |     name: Run tests
+12 | |     runs-on: ubuntu-latest
+13 | |     continue-on-error: ${{ matrix.rust == 'nightly' }}
+...  |
+33 | |       - name: Check examples
+34 | |         run: cargo check --examples
+   | |                                    ^
+   | |                                    |
+   | |____________________________________this job
+   |                                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/main.yml:24:40
+   |
+23 |         run: |
+   |         --- this run block
+24 |           rustup toolchain install ${{ matrix.rust }} --profile minimal
+   |                                        ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/main.yml:25:30
+   |
+23 |         run: |
+   |         --- this run block
+24 |           rustup toolchain install ${{ matrix.rust }} --profile minimal
+25 |           rustup default ${{ matrix.rust }}
+   |                              ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:18:15
+   |
+18 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/main.yml:4:1
+   |
+ 4 | / on:
+ 5 | |   push:
+ 6 | |     branches: [ master ]
+ 7 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+11 |       name: Run tests
+   |       --------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+7 findings: 0 informational, 3 low, 3 medium, 1 high

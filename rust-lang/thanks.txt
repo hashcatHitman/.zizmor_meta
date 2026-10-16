@@ -1,0 +1,254 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:16:9
+   |
+16 |         - name: Checkout the source code
+   |  _________^
+17 | |         uses: actions/checkout@v7
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:40:9
+   |
+40 |         - name: Checkout the source code
+   |  _________^
+41 | |         uses: actions/checkout@v7
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:63:9
+   |
+63 |         - name: Checkout the source code
+   |  _________^
+64 | |         uses: actions/checkout@v7
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:1:1
+    |
+  1 | / name: CI
+  2 | | on:
+  3 | |   push:
+  4 | |     branches:
+...   |
+121 | |           # Check if all jobs that we depend on (in the needs array) were successful (or have been skipped).
+122 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< '${{ toJson(needs) }}'
+    | |__________________________________________________________________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:12:3
+   |
+12 | /   test:
+13 | |     name: Test
+14 | |     runs-on: ubuntu-latest
+15 | |     steps:
+...  |
+33 | |       - name: Format
+34 | |         run: cargo fmt --check
+   | |                              ^
+   | |                              |
+   | |______________________________this job
+   |                                default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:36:3
+   |
+36 | /   build:
+37 | |     name: Build
+38 | |     runs-on: ubuntu-latest
+39 | |     steps:
+...  |
+56 | |         with:
+57 | |           path: ./output
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:59:3
+   |
+59 | /   regression:
+60 | |     name: Regression test
+61 | |     runs-on: ubuntu-latest
+62 | |     steps:
+...  |
+76 | |       - name: Run tests
+77 | |         run: cargo test
+   | |                       ^
+   | |                       |
+   | |_______________________this job
+   |                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:101:3
+    |
+101 | /   conclusion:
+102 | |     name: Conclusion
+103 | |     needs:
+104 | |       - test
+...   |
+121 | |           # Check if all jobs that we depend on (in the needs array) were successful (or have been skipped).
+122 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< '${{ toJson(needs) }}'
+    | |                                                                                                          ^
+    | |                                                                                                          |
+    | |__________________________________________________________________________________________________________this job
+    |                                                                                                            default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:120:33
+    |
+118 |         run: |
+    |         --- this run block
+119 |           # Print the dependent jobs to see them in the CI log
+120 |           jq -C <<< '${{ toJson(needs) }}'
+    |                                 ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:122:96
+    |
+118 |         run: |
+    |         --- this run block
+...
+122 |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< '${{ toJson(needs) }}'
+    |                                                                                                ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:17:15
+   |
+17 |         uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:41:15
+   |
+41 |         uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:55:15
+   |
+55 |         uses: actions/upload-pages-artifact@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:64:15
+   |
+64 |         uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:98:15
+   |
+98 |         uses: actions/deploy-pages@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/ci.yml:89:7
+   |
+89 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+90 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push:
+ 4 | |     branches:
+ 5 | |       - main
+...  |
+ 8 | |   schedule:
+ 9 | |     - cron: "0 0 * * *" # Every day at 00:00 UTC
+   | |________________________________________________^ workflow is missing concurrency setting
+...
+86 |       concurrency: deploy
+   |       ------------------- job concurrency is missing cancel-in-progress
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:2:1
+    |
+  2 | / on:
+  3 | |   push:
+  4 | |     branches:
+  5 | |       - main
+...   |
+  8 | |   schedule:
+  9 | |     - cron: "0 0 * * *" # Every day at 00:00 UTC
+    | |________________________________________________^ workflow is missing concurrency setting
+...
+ 13 |       name: Test
+    |       ---------- job affected by missing workflow concurrency
+...
+ 37 |       name: Build
+    |       ----------- job affected by missing workflow concurrency
+...
+ 60 |       name: Regression test
+    |       --------------------- job affected by missing workflow concurrency
+...
+102 |       name: Conclusion
+    |       ---------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+18 findings: 2 informational, 6 low, 5 medium, 5 high

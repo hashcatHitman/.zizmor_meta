@@ -1,0 +1,109 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/deploy_skill_tree.yml:12:9
+   |
+12 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy_skill_tree.yml:1:1
+   |
+ 1 | / name: github pages
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+39 | |           github_token: ${{ secrets.GITHUB_TOKEN }}
+40 | |           publish_dir: ./book
+   | |______________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy_skill_tree.yml:9:3
+   |
+ 9 | /   deploy:
+10 | |     runs-on: ubuntu-18.04
+11 | |     steps:
+12 | |       - uses: actions/checkout@v2
+...  |
+39 | |           github_token: ${{ secrets.GITHUB_TOKEN }}
+40 | |           publish_dir: ./book
+   | |                              ^
+   | |                              |
+   | |______________________________this job
+   |                                default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_skill_tree.yml:12:15
+   |
+12 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_skill_tree.yml:15:15
+   |
+15 |         uses: peaceiris/actions-mdbook@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_skill_tree.yml:21:15
+   |
+21 |         uses: actions/cache@v2
+   |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy_skill_tree.yml:37:15
+   |
+37 |         uses: peaceiris/actions-gh-pages@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/deploy_skill_tree.yml:9:3
+  |
+9 |   deploy:
+  |   ^^^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+ --> .github/workflows/deploy_skill_tree.yml:3:1
+  |
+3 | / on:
+4 | |   push:
+5 | |     branches:
+6 | |       - master
+  | |______________^ workflow is missing concurrency setting
+...
+9 |     deploy:
+  |     ------ job affected by missing workflow concurrency
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+9 findings: 1 informational, 1 low, 3 medium, 4 high

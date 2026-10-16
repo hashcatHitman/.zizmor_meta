@@ -1,0 +1,4253 @@
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/beta-stable-benchmarks.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   pull_request:
+ 4 | |   schedule:
+ 5 | |     - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
+   | |____________________________________________________^ workflow is missing concurrency setting
+...
+12 |       name: Test stable benchmarks
+   |       ---------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:69:9
+   |
+69 |         - name: Checkout the source code
+   |  _________^
+70 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+71 | |         with:
+72 | |           fetch-depth: 1
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:120:9
+    |
+120 |         - name: Checkout the source code
+    |  _________^
+121 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+122 | |         with:
+123 | |           fetch-depth: 1
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:160:9
+    |
+160 |         - name: Checkout the source code
+    |  _________^
+161 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+162 | |         with:
+163 | |           fetch-depth: 1
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:187:9
+    |
+187 |         - name: Checkout the source code
+    |  _________^
+188 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+189 | |         with:
+190 | |           fetch-depth: 1
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:223:9
+    |
+223 |         - name: Checkout the source code
+    |  _________^
+224 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+225 | |         with:
+226 | |           fetch-depth: 1
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:256:9
+    |
+256 |         - name: Checkout the source code
+    |  _________^
+257 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+258 | |         with:
+259 | |           fetch-depth: 1
+    | |________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:318:9
+    |
+318 |         - name: Check out repository code
+    |  _________^
+319 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    | |________________________________________________________________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:371:9
+    |
+371 |         - name: Check out repository code
+    |  _________^
+372 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    | |________________________________________________________________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:423:9
+    |
+423 |         - name: Checkout the source code
+    |  _________^
+424 | |         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    | |________________________________________________________________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:459:33
+    |
+457 |         run: |
+    |         --- this run block
+458 |           # Print the dependent jobs to see them in the CI log
+459 |           jq -C <<< '${{ toJson(needs) }}'
+    |                                 ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:461:72
+    |
+457 |         run: |
+    |         --- this run block
+...
+461 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+    |                                                                        ^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → Low
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-images]: unpinned image references
+  --> .github/workflows/ci.yml:22:9
+   |
+22 |         image: postgres:16-alpine
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ container image is not pinned to a SHA256 hash
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
+
+error[unpinned-images]: unpinned image references
+   --> .github/workflows/ci.yml:306:9
+    |
+306 |         image: postgres
+    |         ^^^^^^^^^^^^^^^ container image is unpinned
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
+
+error[unpinned-images]: unpinned image references
+   --> .github/workflows/ci.yml:364:9
+    |
+364 |         image: postgres
+    |         ^^^^^^^^^^^^^^^ container image is unpinned
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:420:3
+    |
+420 |   docker:
+    |   ^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:436:3
+    |
+436 |   conclusion:
+    |   ^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:2:1
+    |
+  2 | / on:
+  3 | |   merge_group:
+  4 | |   pull_request:
+  5 | |   schedule:
+  6 | |     - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
+    | |____________________________________________________^ workflow is missing concurrency setting
+...
+ 16 |       name: Test on Linux
+    |       ------------------- job affected by missing workflow concurrency
+...
+ 66 |       name: Test on Windows
+    |       --------------------- job affected by missing workflow concurrency
+...
+117 |       name: Test benchmarks on Linux
+    |       ------------------------------ job affected by missing workflow concurrency
+...
+157 |       name: Test benchmarks on Windows
+    |       -------------------------------- job affected by missing workflow concurrency
+...
+184 |       name: Test codegen backend benchmarks
+    |       ------------------------------------- job affected by missing workflow concurrency
+...
+220 |       name: Test runtime benchmarks
+    |       ----------------------------- job affected by missing workflow concurrency
+...
+253 |       name: Test profiling
+    |       -------------------- job affected by missing workflow concurrency
+...
+302 |       name: Database Check
+    |       -------------------- job affected by missing workflow concurrency
+...
+360 |       name: Compare page endpoint test
+    |       -------------------------------- job affected by missing workflow concurrency
+...
+420 |     docker:
+    |     ------ job affected by missing workflow concurrency
+...
+436 |     conclusion:
+    |     ---------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[stale-action-refs]: commit hash does not point to a Git tag
+  --> .github/workflows/deploy.yml:39:15
+   |
+39 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@8a84f3f40d2cf82dbea7dd67d027ded23a008521 # master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
+
+warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
+  --> .github/workflows/deploy.yml:39:115
+   |
+39 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@8a84f3f40d2cf82dbea7dd67d027ded23a008521 # master
+   |                                                                                                                   ^^^^^^ branch points to commit d7cab1aa8112
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/deploy.yml:14:1
+   |
+14 | concurrency: deploy
+   | ^^^^^^^^^^^^^^^^^^^ workflow concurrency is missing cancel-in-progress
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/nightly.yml:53:46
+   |
+52 |         run: |
+   |         --- this run block
+53 |           export ARCHIVE_NAME=rustc-perf-${{ env.RUSTC_PERF_VERSION }}-linux-x64.tar.gz
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/nightly.yml:15:7
+   |
+15 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/nightly.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   workflow_dispatch:
+ 4 | |   schedule:
+ 5 | |     - cron: "0 23 * * *"
+   | |________________________^ workflow is missing concurrency setting
+...
+12 |       name: Publish release
+   |       --------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/nightly.yml:59:15
+   |
+58 |       - name: Create release
+   |         -------------------- this step
+59 |         uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh release` in a script step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> collector/compile-benchmarks/bitmaps-3.2.1/.github/dependabot.yml:3:3
+  |
+3 | - package-ecosystem: cargo
+  |   ^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:20:9
+   |
+20 |       - uses: actions/checkout@v1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:33:9
+   |
+33 |       - uses: actions/checkout@v1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:1:1
+   |
+ 1 | / name: Continuous Integration
+ 2 | | on:
+ 3 | |   push:
+ 4 | |   pull_request:
+...  |
+34 | |       - name: Clippy
+35 | |         run: cargo clippy -- -D warnings
+   | |_________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:9:3
+   |
+ 9 | /   test:
+10 | |     runs-on: ${{ matrix.os }}
+11 | |     strategy:
+12 | |       matrix:
+...  |
+23 | |       - name: Run tests (with no features)
+24 | |         run: cargo test --no-default-features
+   | |                                             ^
+   | |                                             |
+   | |_____________________________________________this job
+   |                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:26:3
+   |
+26 | /   clippy:
+27 | |     runs-on: ubuntu-latest
+28 | |     steps:
+29 | |       - uses: hecrj/setup-rust-action@v1
+...  |
+34 | |       - name: Clippy
+35 | |         run: cargo clippy -- -D warnings
+   | |                                         ^
+   | |                                         |
+   | |_________________________________________this job
+   |                                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:17:15
+   |
+17 |       - uses: hecrj/setup-rust-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:20:15
+   |
+20 |       - uses: actions/checkout@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:29:15
+   |
+29 |       - uses: hecrj/setup-rust-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:33:15
+   |
+33 |       - uses: actions/checkout@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:9:3
+  |
+9 |   test:
+  |   ^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:26:3
+   |
+26 |   clippy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push:
+ 4 | |   pull_request:
+ 5 | |   schedule:
+ 6 | |     - cron: "0 0 1,15 * *"
+   | |__________________________^ workflow is missing concurrency setting
+...
+ 9 |     test:
+   |     ---- job affected by missing workflow concurrency
+...
+26 |     clippy:
+   |     ------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/dependabot.yml:3:3
+  |
+3 | - package-ecosystem: cargo
+  |   ^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:20:9
+   |
+20 |       - uses: actions/checkout@v1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:33:9
+   |
+33 |       - uses: actions/checkout@v1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:1:1
+   |
+ 1 | / name: Continuous Integration
+ 2 | | on:
+ 3 | |   push:
+ 4 | |   pull_request:
+...  |
+34 | |       - name: Clippy
+35 | |         run: cargo clippy -- -D warnings
+   | |_________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:9:3
+   |
+ 9 | /   test:
+10 | |     runs-on: ${{ matrix.os }}
+11 | |     strategy:
+12 | |       matrix:
+...  |
+23 | |       - name: Run tests (with no features)
+24 | |         run: cargo test --no-default-features
+   | |                                             ^
+   | |                                             |
+   | |_____________________________________________this job
+   |                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:26:3
+   |
+26 | /   clippy:
+27 | |     runs-on: ubuntu-latest
+28 | |     steps:
+29 | |       - uses: hecrj/setup-rust-action@v1
+...  |
+34 | |       - name: Clippy
+35 | |         run: cargo clippy -- -D warnings
+   | |                                         ^
+   | |                                         |
+   | |_________________________________________this job
+   |                                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:17:15
+   |
+17 |       - uses: hecrj/setup-rust-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:20:15
+   |
+20 |       - uses: actions/checkout@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:29:15
+   |
+29 |       - uses: hecrj/setup-rust-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:33:15
+   |
+33 |       - uses: actions/checkout@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:9:3
+  |
+9 |   test:
+  |   ^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:26:3
+   |
+26 |   clippy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push:
+ 4 | |   pull_request:
+ 5 | |   schedule:
+ 6 | |     - cron: "0 0 1,15 * *"
+   | |__________________________^ workflow is missing concurrency setting
+...
+ 9 |     test:
+   |     ---- job affected by missing workflow concurrency
+...
+26 |     clippy:
+   |     ------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:24:7
+   |
+24 |     - uses: actions/checkout@v4
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:24:13
+   |
+24 |     - uses: actions/checkout@v4
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:25:13
+   |
+25 |     - uses: EmbarkStudios/cargo-deny-action@v2
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:16:3
+   |
+16 |   cargo_deny:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:6:1
+   |
+ 6 | / on:
+ 7 | |   pull_request:
+ 8 | |     paths:
+ 9 | |       - '**/Cargo.toml'
+...  |
+12 | |     branches:
+13 | |     - master
+   | |____________^ workflow is missing concurrency setting
+...
+16 |     cargo_deny:
+   |     ---------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/contrib.yml:20:7
+   |
+20 |       - uses: actions/checkout@v4
+   |  _______^
+21 | |       with:
+22 | |         fetch-depth: 0
+   | |______________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/contrib.yml:20:13
+   |
+20 |     - uses: actions/checkout@v4
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/contrib.yml:15:3
+   |
+15 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:55:7
+   |
+55 |     - uses: actions/checkout@v4
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:64:9
+   |
+64 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:72:9
+   |
+72 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:79:9
+   |
+79 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:87:9
+   |
+87 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:97:9
+   |
+97 |         - uses: actions/checkout@v4
+   |  _________^
+98 | |         with:
+99 | |           fetch-depth: 0
+   | |________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:155:7
+    |
+155 |     - uses: actions/checkout@v4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:212:7
+    |
+212 |     - uses: actions/checkout@v4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:219:7
+    |
+219 |     - uses: actions/checkout@v4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:226:9
+    |
+226 |       - uses: actions/checkout@v4
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:239:7
+    |
+239 |     - uses: actions/checkout@v4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:249:7
+    |
+249 |     - uses: actions/checkout@v4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:276:7
+    |
+276 |     - uses: actions/checkout@v4
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+info[template-injection]: code injection via template expansion
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:47:33
+   |
+45 |         run: |
+   |         --- this run block
+46 |           # Print the dependent jobs to see them in the CI log
+47 |           jq -C <<< '${{ toJson(needs) }}'
+   |                                 ^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:49:72
+   |
+45 |         run: |
+   |         --- this run block
+...
+49 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   |                                                                        ^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:162:47
+    |
+162 |     - run: rustup update --no-self-update ${{ matrix.rust }} && rustup default ${{ matrix.rust }}
+    |       --- this run block                      ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:162:84
+    |
+162 |     - run: rustup update --no-self-update ${{ matrix.rust }} && rustup default ${{ matrix.rust }}
+    |       --- this run block                                                           ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:163:34
+    |
+163 |     - run: rustup target add ${{ matrix.other }}
+    |       --- this run block         ^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:55:13
+   |
+55 |     - uses: actions/checkout@v4
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:64:15
+   |
+64 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:72:15
+   |
+72 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:79:15
+   |
+79 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:87:15
+   |
+87 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:97:15
+   |
+97 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:155:13
+    |
+155 |     - uses: actions/checkout@v4
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:212:13
+    |
+212 |     - uses: actions/checkout@v4
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:219:13
+    |
+219 |     - uses: actions/checkout@v4
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:226:15
+    |
+226 |       - uses: actions/checkout@v4
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:239:13
+    |
+239 |     - uses: actions/checkout@v4
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:249:13
+    |
+249 |     - uses: actions/checkout@v4
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:276:13
+    |
+276 |     - uses: actions/checkout@v4
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:277:13
+    |
+277 |     - uses: taiki-e/install-action@cargo-hack
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:33:7
+   |
+33 |       contents: none
+   |       ^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:20:3
+   |
+20 |   conclusion:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:52:3
+   |
+52 |   rustfmt:
+   |   ^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:61:3
+   |
+61 |   clippy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:69:3
+   |
+69 |   stale-label:
+   |   ^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:76:3
+   |
+76 |   lint-docs:
+   |   ^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:84:3
+   |
+84 |   lockfile:
+   |   ^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:91:3
+   |
+91 |   check-version-bump:
+   |   ^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:209:3
+    |
+209 |   schema:
+    |   ^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:216:3
+    |
+216 |   resolver:
+    |   ^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:223:3
+    |
+223 |   test_gitoxide:
+    |   ^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:236:3
+    |
+236 |   build_std:
+    |   ^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:246:3
+    |
+246 |   docs:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:273:3
+    |
+273 |   msrv:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/release.yml:27:9
+   |
+27 |         - name: Checkout the source code
+   |  _________^
+28 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/release.yml:5:1
+   |
+ 5 | / name: Release
+ 6 | | on:
+ 7 | |   push:
+ 8 | |     tags:
+...  |
+32 | |         env:
+33 | |           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+   | |____________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/release.yml:28:15
+   |
+28 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:16:9
+   |
+16 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:22:9
+   |
+22 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:32:9
+   |
+32 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:52:9
+   |
+52 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:69:9
+   |
+69 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:75:9
+   |
+75 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:81:9
+   |
+81 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:92:9
+   |
+92 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:100:9
+    |
+100 |       - uses: actions/checkout@v2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:109:9
+    |
+109 |       - uses: actions/checkout@v2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:133:9
+    |
+133 |       - uses: actions/checkout@v2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:1:1
+    |
+  1 | / name: nalgebra CI build
+  2 | |
+  3 | | on:
+  4 | |   push:
+...   |
+134 | |       - name: Generate documentation
+135 | |         run: cargo doc
+    | |_______________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:13:3
+   |
+13 | /   check-fmt:
+14 | |     runs-on: ubuntu-latest
+15 | |     steps:
+16 | |       - uses: actions/checkout@v2
+17 | |       - name: Check formatting
+18 | |         run: cargo fmt -- --check
+   | |                                 ^
+   | |                                 |
+   | |_________________________________this job
+   |                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:19:3
+   |
+19 | /   clippy:
+20 | |     runs-on: ubuntu-latest
+21 | |     steps:
+22 | |       - uses: actions/checkout@v2
+...  |
+25 | |       - name: Run clippy
+26 | |         run: cargo clippy
+   | |                         ^
+   | |                         |
+   | |_________________________this job
+   |                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:27:3
+   |
+27 | /   build-nalgebra:
+28 | |     runs-on: ubuntu-latest
+29 | |     #    env:
+30 | |     #      RUSTFLAGS: -D warnings
+...  |
+47 | |   # Run this on it’s own job because it alone takes a lot of time.
+48 | |   # So it’s best to let it run in parallel to the other jobs.
+   | |                                                             ^
+   | |                                                             |
+   | |_____________________________________________________________this job
+   |                                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:49:3
+   |
+49 | /   build-nalgebra-all-features:
+50 | |     runs-on: ubuntu-latest
+51 | |     steps:
+52 | |       - uses: actions/checkout@v2
+53 | |       - run: cargo build --all-features;
+54 | |       - run: cargo build -p nalgebra-glm --all-features;
+   | |                                                        ^
+   | |                                                        |
+   | |________________________________________________________this job
+   |                                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:55:3
+   |
+55 | /   test-nalgebra:
+56 | |     runs-on: ubuntu-latest
+57 | |     #    env:
+58 | |     #      RUSTFLAGS: -D warnings
+...  |
+70 | |       - name: test
+71 | |         run: cargo test --features arbitrary,rand,serde-serialize,sparse,debug,io,compare,libm,proptest-support,slow-tests,rkyv-safe-deser,rayon;
+   | |                                                                                                                                                 ^
+   | |                                                                                                                                                 |
+   | |_________________________________________________________________________________________________________________________________________________this job
+   |                                                                                                                                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:72:3
+   |
+72 | /   test-nalgebra-glm:
+73 | |     runs-on: ubuntu-latest
+74 | |     steps:
+75 | |       - uses: actions/checkout@v2
+76 | |       - name: test nalgebra-glm
+77 | |         run: cargo test -p nalgebra-glm --features arbitrary,serde-serialize;
+   | |                                                                             ^
+   | |                                                                             |
+   | |_____________________________________________________________________________this job
+   |                                                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:78:3
+   |
+78 | /   test-nalgebra-sparse:
+79 | |     runs-on: ubuntu-latest
+80 | |     steps:
+81 | |       - uses: actions/checkout@v2
+...  |
+87 | |         # Unfortunately, the "slow-tests" take so much time that we need to run them with --release
+88 | |         run: PROPTEST_CASES=10000 cargo test --release --manifest-path=nalgebra-sparse/Cargo.toml --features compare,proptest-support,io,serde-serialize,slow-tests slow
+   | |                                                                                                                                                                        ^
+   | |                                                                                                                                                                        |
+   | |________________________________________________________________________________________________________________________________________________________________________this job
+   |                                                                                                                                                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:89:3
+   |
+89 | /   test-nalgebra-macros:
+90 | |     runs-on: ubuntu-latest
+91 | |     steps:
+92 | |       - uses: actions/checkout@v2
+93 | |       - name: test nalgebra-macros
+94 | |         run: cargo test -p nalgebra-macros
+   | |                                          ^
+   | |                                          |
+   | |__________________________________________this job
+   |                                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:95:3
+    |
+ 95 | /   build-wasm:
+ 96 | |     runs-on: ubuntu-latest
+ 97 | |     #    env:
+ 98 | |     #      RUSTFLAGS: -D warnings
+...   |
+104 | |       - name: build nalgebra-glm
+105 | |         run: cargo build -p nalgebra-glm --verbose --target wasm32-unknown-unknown;
+    | |                                                                                   ^
+    | |                                                                                   |
+    | |___________________________________________________________________________________this job
+    |                                                                                     default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:106:3
+    |
+106 | /   build-no-std:
+107 | |     runs-on: ubuntu-latest
+108 | |     steps:
+109 | |       - uses: actions/checkout@v2
+...   |
+128 | |       - name: build thumbv7em-none-eabihf nalgebra-glm
+129 | |         run: xargo build --verbose --no-default-features -p nalgebra-glm --target=thumbv7em-none-eabihf;
+    | |                                                                                                        ^
+    | |                                                                                                        |
+    | |________________________________________________________________________________________________________this job
+    |                                                                                                          default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:130:3
+    |
+130 | /   docs:
+131 | |     runs-on: ubuntu-latest
+132 | |     steps:
+133 | |       - uses: actions/checkout@v2
+134 | |       - name: Generate documentation
+135 | |         run: cargo doc
+    | |                       ^
+    | |                       |
+    | |_______________________this job
+    |                         default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:16:15
+   |
+16 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:22:15
+   |
+22 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:32:15
+   |
+32 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:52:15
+   |
+52 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:65:15
+   |
+65 |         uses: actions-rs/toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:69:15
+   |
+69 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:75:15
+   |
+75 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:81:15
+   |
+81 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:92:15
+   |
+92 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:100:15
+    |
+100 |       - uses: actions/checkout@v2
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:109:15
+    |
+109 |       - uses: actions/checkout@v2
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:111:15
+    |
+111 |         uses: actions-rs/toolchain@v1
+    |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:133:15
+    |
+133 |       - uses: actions/checkout@v2
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:13:3
+   |
+13 |   check-fmt:
+   |   ^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:19:3
+   |
+19 |   clippy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:27:3
+   |
+27 |   build-nalgebra:
+   |   ^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:49:3
+   |
+49 |   build-nalgebra-all-features:
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:55:3
+   |
+55 |   test-nalgebra:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:72:3
+   |
+72 |   test-nalgebra-glm:
+   |   ^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:78:3
+   |
+78 |   test-nalgebra-sparse:
+   |   ^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:89:3
+   |
+89 |   test-nalgebra-macros:
+   |   ^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:95:3
+   |
+95 |   build-wasm:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:106:3
+    |
+106 |   build-no-std:
+    |   ^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:130:3
+    |
+130 |   docs:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:3:1
+    |
+  3 | / on:
+  4 | |   push:
+  5 | |     branches: [ dev, master ]
+  6 | |   pull_request:
+  7 | |     branches: [ dev, master ]
+    | |_____________________________^ workflow is missing concurrency setting
+...
+ 13 |     check-fmt:
+    |     --------- job affected by missing workflow concurrency
+...
+ 19 |     clippy:
+    |     ------ job affected by missing workflow concurrency
+...
+ 27 |     build-nalgebra:
+    |     -------------- job affected by missing workflow concurrency
+...
+ 49 |     build-nalgebra-all-features:
+    |     --------------------------- job affected by missing workflow concurrency
+...
+ 55 |     test-nalgebra:
+    |     ------------- job affected by missing workflow concurrency
+...
+ 72 |     test-nalgebra-glm:
+    |     ----------------- job affected by missing workflow concurrency
+...
+ 78 |     test-nalgebra-sparse:
+    |     -------------------- job affected by missing workflow concurrency
+...
+ 89 |     test-nalgebra-macros:
+    |     -------------------- job affected by missing workflow concurrency
+...
+ 95 |     build-wasm:
+    |     ---------- job affected by missing workflow concurrency
+...
+106 |     build-no-std:
+    |     ------------ job affected by missing workflow concurrency
+...
+130 |     docs:
+    |     ---- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:65:15
+   |
+64 |       - name: Select rustc  version
+   |         --------------------------- this step
+65 |         uses: actions-rs/toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^ repository is archived
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+warning[archived-uses]: action or reusable workflow from archived repository
+   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:111:15
+    |
+110 |       - name: Install latest nightly
+    |         ---------------------------- this step
+111 |         uses: actions-rs/toolchain@v1
+    |               ^^^^^^^^^^^^^^^^^^^^ repository is archived
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:16:9
+   |
+16 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:22:9
+   |
+22 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:32:9
+   |
+32 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:52:9
+   |
+52 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:69:9
+   |
+69 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:75:9
+   |
+75 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:81:9
+   |
+81 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:92:9
+   |
+92 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:100:9
+    |
+100 |       - uses: actions/checkout@v2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:109:9
+    |
+109 |       - uses: actions/checkout@v2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:133:9
+    |
+133 |       - uses: actions/checkout@v2
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:1:1
+    |
+  1 | / name: nalgebra CI build
+  2 | |
+  3 | | on:
+  4 | |   push:
+...   |
+134 | |       - name: Generate documentation
+135 | |         run: cargo doc
+    | |_______________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:13:3
+   |
+13 | /   check-fmt:
+14 | |     runs-on: ubuntu-latest
+15 | |     steps:
+16 | |       - uses: actions/checkout@v2
+17 | |       - name: Check formatting
+18 | |         run: cargo fmt -- --check
+   | |                                 ^
+   | |                                 |
+   | |_________________________________this job
+   |                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:19:3
+   |
+19 | /   clippy:
+20 | |     runs-on: ubuntu-latest
+21 | |     steps:
+22 | |       - uses: actions/checkout@v2
+...  |
+25 | |       - name: Run clippy
+26 | |         run: cargo clippy
+   | |                         ^
+   | |                         |
+   | |_________________________this job
+   |                           default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:27:3
+   |
+27 | /   build-nalgebra:
+28 | |     runs-on: ubuntu-latest
+29 | |     #    env:
+30 | |     #      RUSTFLAGS: -D warnings
+...  |
+47 | |   # Run this on it’s own job because it alone takes a lot of time.
+48 | |   # So it’s best to let it run in parallel to the other jobs.
+   | |                                                             ^
+   | |                                                             |
+   | |_____________________________________________________________this job
+   |                                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:49:3
+   |
+49 | /   build-nalgebra-all-features:
+50 | |     runs-on: ubuntu-latest
+51 | |     steps:
+52 | |       - uses: actions/checkout@v2
+53 | |       - run: cargo build --all-features;
+54 | |       - run: cargo build -p nalgebra-glm --all-features;
+   | |                                                        ^
+   | |                                                        |
+   | |________________________________________________________this job
+   |                                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:55:3
+   |
+55 | /   test-nalgebra:
+56 | |     runs-on: ubuntu-latest
+57 | |     #    env:
+58 | |     #      RUSTFLAGS: -D warnings
+...  |
+70 | |       - name: test
+71 | |         run: cargo test --features arbitrary,rand,serde-serialize,sparse,debug,io,compare,libm,proptest-support,slow-tests,rkyv-safe-deser,rayon;
+   | |                                                                                                                                                 ^
+   | |                                                                                                                                                 |
+   | |_________________________________________________________________________________________________________________________________________________this job
+   |                                                                                                                                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:72:3
+   |
+72 | /   test-nalgebra-glm:
+73 | |     runs-on: ubuntu-latest
+74 | |     steps:
+75 | |       - uses: actions/checkout@v2
+76 | |       - name: test nalgebra-glm
+77 | |         run: cargo test -p nalgebra-glm --features arbitrary,serde-serialize;
+   | |                                                                             ^
+   | |                                                                             |
+   | |_____________________________________________________________________________this job
+   |                                                                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:78:3
+   |
+78 | /   test-nalgebra-sparse:
+79 | |     runs-on: ubuntu-latest
+80 | |     steps:
+81 | |       - uses: actions/checkout@v2
+...  |
+87 | |         # Unfortunately, the "slow-tests" take so much time that we need to run them with --release
+88 | |         run: PROPTEST_CASES=10000 cargo test --release --manifest-path=nalgebra-sparse/Cargo.toml --features compare,proptest-support,io,serde-serialize,slow-tests slow
+   | |                                                                                                                                                                        ^
+   | |                                                                                                                                                                        |
+   | |________________________________________________________________________________________________________________________________________________________________________this job
+   |                                                                                                                                                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:89:3
+   |
+89 | /   test-nalgebra-macros:
+90 | |     runs-on: ubuntu-latest
+91 | |     steps:
+92 | |       - uses: actions/checkout@v2
+93 | |       - name: test nalgebra-macros
+94 | |         run: cargo test -p nalgebra-macros
+   | |                                          ^
+   | |                                          |
+   | |__________________________________________this job
+   |                                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:95:3
+    |
+ 95 | /   build-wasm:
+ 96 | |     runs-on: ubuntu-latest
+ 97 | |     #    env:
+ 98 | |     #      RUSTFLAGS: -D warnings
+...   |
+104 | |       - name: build nalgebra-glm
+105 | |         run: cargo build -p nalgebra-glm --verbose --target wasm32-unknown-unknown;
+    | |                                                                                   ^
+    | |                                                                                   |
+    | |___________________________________________________________________________________this job
+    |                                                                                     default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:106:3
+    |
+106 | /   build-no-std:
+107 | |     runs-on: ubuntu-latest
+108 | |     steps:
+109 | |       - uses: actions/checkout@v2
+...   |
+128 | |       - name: build thumbv7em-none-eabihf nalgebra-glm
+129 | |         run: xargo build --verbose --no-default-features -p nalgebra-glm --target=thumbv7em-none-eabihf;
+    | |                                                                                                        ^
+    | |                                                                                                        |
+    | |________________________________________________________________________________________________________this job
+    |                                                                                                          default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:130:3
+    |
+130 | /   docs:
+131 | |     runs-on: ubuntu-latest
+132 | |     steps:
+133 | |       - uses: actions/checkout@v2
+134 | |       - name: Generate documentation
+135 | |         run: cargo doc
+    | |                       ^
+    | |                       |
+    | |_______________________this job
+    |                         default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:16:15
+   |
+16 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:22:15
+   |
+22 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:32:15
+   |
+32 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:52:15
+   |
+52 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:65:15
+   |
+65 |         uses: actions-rs/toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:69:15
+   |
+69 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:75:15
+   |
+75 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:81:15
+   |
+81 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:92:15
+   |
+92 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:100:15
+    |
+100 |       - uses: actions/checkout@v2
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:109:15
+    |
+109 |       - uses: actions/checkout@v2
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:111:15
+    |
+111 |         uses: actions-rs/toolchain@v1
+    |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:133:15
+    |
+133 |       - uses: actions/checkout@v2
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:13:3
+   |
+13 |   check-fmt:
+   |   ^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:19:3
+   |
+19 |   clippy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:27:3
+   |
+27 |   build-nalgebra:
+   |   ^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:49:3
+   |
+49 |   build-nalgebra-all-features:
+   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:55:3
+   |
+55 |   test-nalgebra:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:72:3
+   |
+72 |   test-nalgebra-glm:
+   |   ^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:78:3
+   |
+78 |   test-nalgebra-sparse:
+   |   ^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:89:3
+   |
+89 |   test-nalgebra-macros:
+   |   ^^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:95:3
+   |
+95 |   build-wasm:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:106:3
+    |
+106 |   build-no-std:
+    |   ^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:130:3
+    |
+130 |   docs:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:3:1
+    |
+  3 | / on:
+  4 | |   push:
+  5 | |     branches: [ dev, master ]
+  6 | |   pull_request:
+  7 | |     branches: [ dev, master ]
+    | |_____________________________^ workflow is missing concurrency setting
+...
+ 13 |     check-fmt:
+    |     --------- job affected by missing workflow concurrency
+...
+ 19 |     clippy:
+    |     ------ job affected by missing workflow concurrency
+...
+ 27 |     build-nalgebra:
+    |     -------------- job affected by missing workflow concurrency
+...
+ 49 |     build-nalgebra-all-features:
+    |     --------------------------- job affected by missing workflow concurrency
+...
+ 55 |     test-nalgebra:
+    |     ------------- job affected by missing workflow concurrency
+...
+ 72 |     test-nalgebra-glm:
+    |     ----------------- job affected by missing workflow concurrency
+...
+ 78 |     test-nalgebra-sparse:
+    |     -------------------- job affected by missing workflow concurrency
+...
+ 89 |     test-nalgebra-macros:
+    |     -------------------- job affected by missing workflow concurrency
+...
+ 95 |     build-wasm:
+    |     ---------- job affected by missing workflow concurrency
+...
+106 |     build-no-std:
+    |     ------------ job affected by missing workflow concurrency
+...
+130 |     docs:
+    |     ---- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:65:15
+   |
+64 |       - name: Select rustc  version
+   |         --------------------------- this step
+65 |         uses: actions-rs/toolchain@v1
+   |               ^^^^^^^^^^^^^^^^^^^^ repository is archived
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+warning[archived-uses]: action or reusable workflow from archived repository
+   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:111:15
+    |
+110 |       - name: Install latest nightly
+    |         ---------------------------- this step
+111 |         uses: actions-rs/toolchain@v1
+    |               ^^^^^^^^^^^^^^^^^^^^ repository is archived
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:20:9
+   |
+20 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:30:9
+   |
+30 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:42:9
+   |
+42 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:51:9
+   |
+51 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:60:9
+   |
+60 |       - uses: actions/checkout@v2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+61 | |       - uses: dtolnay/install@cargo-outdated
+62 | |       - run: cargo outdated --exit-code 1
+   | |__________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:12:3
+   |
+12 | /   test:
+13 | |     name: Rust ${{matrix.rust}}
+14 | |     runs-on: ubuntu-latest
+15 | |     strategy:
+...  |
+23 | |           toolchain: ${{matrix.rust}}
+24 | |       - run: cargo test
+   | |                       ^
+   | |                       |
+   | |_______________________this job
+   |                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:26:3
+   |
+26 | /   nightly:
+27 | |     name: Rust nightly
+28 | |     runs-on: ubuntu-latest
+29 | |     steps:
+...  |
+35 | |       - run: cargo update -Z minimal-versions
+36 | |       - run: cargo build
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:38:3
+   |
+38 | /   msrv:
+39 | |     name: Rust 1.31.0
+40 | |     runs-on: ubuntu-latest
+41 | |     steps:
+42 | |       - uses: actions/checkout@v2
+43 | |       - uses: dtolnay/rust-toolchain@1.31.0
+44 | |       - run: cargo check
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:46:3
+   |
+46 | /   clippy:
+47 | |     name: Clippy
+48 | |     runs-on: ubuntu-latest
+49 | |     if: github.event_name != 'pull_request'
+...  |
+52 | |       - uses: dtolnay/rust-toolchain@clippy
+53 | |       - run: cargo clippy --tests -- -Dclippy::all -Dclippy::pedantic
+   | |                                                                     ^
+   | |                                                                     |
+   | |_____________________________________________________________________this job
+   |                                                                       default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:55:3
+   |
+55 | /   outdated:
+56 | |     name: Outdated
+57 | |     runs-on: ubuntu-latest
+58 | |     if: github.event_name != 'pull_request'
+...  |
+61 | |       - uses: dtolnay/install@cargo-outdated
+62 | |       - run: cargo outdated --exit-code 1
+   | |                                          ^
+   | |                                          |
+   | |__________________________________________this job
+   |                                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[ref-confusion]: git ref for action with ambiguous ref type
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:61:9
+   |
+61 |       - uses: dtolnay/install@cargo-outdated
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ uses a ref that's provided by both the branch and tag namespaces
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-confusion
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:20:15
+   |
+20 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:21:15
+   |
+21 |       - uses: dtolnay/rust-toolchain@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:30:15
+   |
+30 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:31:15
+   |
+31 |       - uses: dtolnay/rust-toolchain@nightly
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:42:15
+   |
+42 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:43:15
+   |
+43 |       - uses: dtolnay/rust-toolchain@1.31.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:51:15
+   |
+51 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:52:15
+   |
+52 |       - uses: dtolnay/rust-toolchain@clippy
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:60:15
+   |
+60 |       - uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:61:15
+   |
+61 |       - uses: dtolnay/install@cargo-outdated
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |   pull_request:
+ 6 | |   schedule: [cron: "40 1 * * *"]
+   | |________________________________^ workflow is missing concurrency setting
+...
+13 |       name: Rust ${{matrix.rust}}
+   |       --------------------------- job affected by missing workflow concurrency
+...
+27 |       name: Rust nightly
+   |       ------------------ job affected by missing workflow concurrency
+...
+39 |       name: Rust 1.31.0
+   |       ----------------- job affected by missing workflow concurrency
+...
+47 |       name: Clippy
+   |       ------------ job affected by missing workflow concurrency
+...
+56 |       name: Outdated
+   |       -------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:21:15
+   |
+21 |         - uses: dtolnay/rust-toolchain@master
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+22 | |         with:
+23 | |           toolchain: ${{matrix.rust}}
+   | |_____________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:31:15
+   |
+31 |         - uses: dtolnay/rust-toolchain@nightly
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+32 | |         with:
+33 | |           components: rust-src
+   | |______________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:43:15
+   |
+43 |       - uses: dtolnay/rust-toolchain@1.31.0
+   |         ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |         |     |
+   |         |     use `rustup` and/or `cargo` in a script step
+   |         this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:52:15
+   |
+52 |       - uses: dtolnay/rust-toolchain@clippy
+   |         ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |         |     |
+   |         |     use `rustup` and/or `cargo` in a script step
+   |         this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:49:9
+   |
+49 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:81:9
+   |
+81 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:92:9
+   |
+92 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:103:9
+    |
+103 |       - uses: actions/checkout@v3
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - main
+...   |
+106 | |       - run: just gen
+107 | |       - run: git diff --exit-code
+    | |__________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:12:3
+   |
+12 | /   all-succeeded:
+13 | |     name: All Succeeded
+14 | |     if: always()
+15 | |     runs-on: ubuntu-latest
+...  |
+24 | |         with:
+25 | |           jobs: ${{ toJSON(needs) }}
+   | |                                    ^
+   | |                                    |
+   | |____________________________________this job
+   |                                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:27:3
+   |
+27 | /   test-linux:
+28 | |     name: Test Linux
+29 | |     runs-on: ubuntu-latest
+30 | |     strategy:
+...  |
+64 | |           command: doc
+65 | |           args: --features "strict" ${{ matrix.mb_const_generics }} --target ${{ matrix.target }}-unknown-linux-gnu
+   | |                                                                                                                   ^
+   | |                                                                                                                   |
+   | |___________________________________________________________________________________________________________________this job
+   |                                                                                                                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:67:3
+   |
+67 | /   test-non-linux:
+68 | |     name: Test non-Linux
+69 | |     runs-on: ${{ matrix.os }}
+70 | |     strategy:
+...  |
+85 | |       - uses: extractions/setup-just@v2
+86 | |       - run: just test ${{ matrix.mb_const_generics }}
+   | |                                                      ^
+   | |                                                      |
+   | |______________________________________________________this job
+   |                                                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:88:3
+   |
+88 | /   lint:
+89 | |     name: Lint
+90 | |     runs-on: ubuntu-latest
+91 | |     steps:
+...  |
+96 | |       - uses: extractions/setup-just@v2
+97 | |       - run: just lint
+   | |                      ^
+   | |                      |
+   | |______________________this job
+   |                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:99:3
+    |
+ 99 | /   test-generated:
+100 | |     name: Test Generated
+101 | |     runs-on: ubuntu-latest
+102 | |     steps:
+...   |
+106 | |       - run: just gen
+107 | |       - run: git diff --exit-code
+    | |                                  ^
+    | |                                  |
+    | |__________________________________this job
+    |                                    default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:86:28
+   |
+86 |       - run: just test ${{ matrix.mb_const_generics }}
+   |         --- this run block ^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:23:15
+   |
+23 |         uses: re-actors/alls-green@release/v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:49:15
+   |
+49 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:53:15
+   |
+53 |       - uses: dtolnay/rust-toolchain@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:56:15
+   |
+56 |       - uses: actions-rs/cargo@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:61:15
+   |
+61 |       - uses: actions-rs/cargo@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:81:15
+   |
+81 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:82:15
+   |
+82 |       - uses: dtolnay/rust-toolchain@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:85:15
+   |
+85 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:92:15
+   |
+92 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:93:15
+   |
+93 |       - uses: dtolnay/rust-toolchain@nightly
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:96:15
+   |
+96 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:103:15
+    |
+103 |       - uses: actions/checkout@v3
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:104:15
+    |
+104 |       - uses: dtolnay/rust-toolchain@stable
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:105:15
+    |
+105 |       - uses: extractions/setup-just@v2
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - main
+  5 | |   pull_request:
+  6 | |     branches:
+  7 | |       - main
+    | |____________^ workflow is missing concurrency setting
+...
+ 13 |       name: All Succeeded
+    |       ------------------- job affected by missing workflow concurrency
+...
+ 28 |       name: Test Linux
+    |       ---------------- job affected by missing workflow concurrency
+...
+ 68 |       name: Test non-Linux
+    |       -------------------- job affected by missing workflow concurrency
+...
+ 89 |       name: Lint
+    |       ---------- job affected by missing workflow concurrency
+...
+100 |       name: Test Generated
+    |       -------------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:56:15
+   |
+56 |         - uses: actions-rs/cargo@v1
+   |           -     ^^^^^^^^^^^^^^^^ repository is archived
+   |  _________|
+   | |
+57 | |         with:
+58 | |           use-cross: ${{ matrix.target != 'x86_64' }}
+59 | |           command: test
+60 | |           args: --verbose --features "strict" ${{ matrix.mb_const_generics }} --target ${{ matrix.target }}-unknown-linux-gnu
+   | |_____________________________________________________________________________________________________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:61:15
+   |
+61 |         - uses: actions-rs/cargo@v1
+   |           -     ^^^^^^^^^^^^^^^^ repository is archived
+   |  _________|
+   | |
+62 | |         with:
+63 | |           use-cross: ${{ matrix.target != 'x86_64' }}
+64 | |           command: doc
+65 | |           args: --features "strict" ${{ matrix.mb_const_generics }} --target ${{ matrix.target }}-unknown-linux-gnu
+   | |___________________________________________________________________________________________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:53:15
+   |
+53 |         - uses: dtolnay/rust-toolchain@master
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+54 | |         with:
+55 | |           toolchain: ${{ matrix.rust }}
+   | |_______________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:82:15
+   |
+82 |         - uses: dtolnay/rust-toolchain@master
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+83 | |         with:
+84 | |           toolchain: ${{ matrix.rust }}
+   | |_______________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:93:15
+   |
+93 |         - uses: dtolnay/rust-toolchain@nightly
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+94 | |         with:
+95 | |           components: rustfmt, clippy
+   | |_____________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:104:15
+    |
+104 |       - uses: dtolnay/rust-toolchain@stable
+    |         ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |     |
+    |         |     use `rustup` and/or `cargo` in a script step
+    |         this step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[unpinned-tools]: action installs an unpinned external tool
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:85:15
+   |
+85 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[unpinned-tools]: action installs an unpinned external tool
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:96:15
+   |
+96 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[unpinned-tools]: action installs an unpinned external tool
+   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:105:15
+    |
+105 |       - uses: extractions/setup-just@v2
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:13:11
+   |
+13 |         - uses: actions/checkout@v3
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:23:11
+   |
+23 |         - uses: actions/checkout@v3
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       - 'v*'
+...  |
+26 | |           with:
+27 | |               registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+   | |__________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:9:3
+   |
+ 9 | /   release:
+10 | |     name: GitHub Release
+11 | |     runs-on: ubuntu-latest
+12 | |     steps:
+...  |
+16 | |             repo_token: "${{ secrets.GITHUB_TOKEN }}"
+17 | |             prerelease: false
+   | |                             ^
+   | |                             |
+   | |_____________________________this job
+   |                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:19:3
+   |
+19 | /   publish:
+20 | |     name: Crates.io Publish
+21 | |     runs-on: ubuntu-latest
+22 | |     steps:
+...  |
+26 | |           with:
+27 | |               registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+   | |                                                                  ^
+   | |                                                                  |
+   | |__________________________________________________________________this job
+   |                                                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:13:17
+   |
+13 |         - uses: actions/checkout@v3
+   |                 ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:14:17
+   |
+14 |         - uses: marvinpinto/action-automatic-releases@latest
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:23:17
+   |
+23 |         - uses: actions/checkout@v3
+   |                 ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:24:17
+   |
+24 |         - uses: dtolnay/rust-toolchain@stable
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:25:17
+   |
+25 |         - uses: katyo/publish-crates@v1
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       - 'v*'
+   | |____________^ workflow is missing concurrency setting
+...
+10 |       name: GitHub Release
+   |       -------------------- job affected by missing workflow concurrency
+...
+20 |       name: Crates.io Publish
+   |       ----------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:14:17
+   |
+14 |           - uses: marvinpinto/action-automatic-releases@latest
+   |             -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ repository is archived
+   |  ___________|
+   | |
+15 | |           with:
+16 | |             repo_token: "${{ secrets.GITHUB_TOKEN }}"
+17 | |             prerelease: false
+   | |_____________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:24:17
+   |
+24 |         - uses: dtolnay/rust-toolchain@stable
+   |           ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |           |     |
+   |           |     use `rustup` and/or `cargo` in a script step
+   |           this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:49:9
+   |
+49 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:81:9
+   |
+81 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:92:9
+   |
+92 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:103:9
+    |
+103 |       - uses: actions/checkout@v3
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - main
+...   |
+106 | |       - run: just gen
+107 | |       - run: git diff --exit-code
+    | |__________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:12:3
+   |
+12 | /   all-succeeded:
+13 | |     name: All Succeeded
+14 | |     if: always()
+15 | |     runs-on: ubuntu-latest
+...  |
+24 | |         with:
+25 | |           jobs: ${{ toJSON(needs) }}
+   | |                                    ^
+   | |                                    |
+   | |____________________________________this job
+   |                                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:27:3
+   |
+27 | /   test-linux:
+28 | |     name: Test Linux
+29 | |     runs-on: ubuntu-latest
+30 | |     strategy:
+...  |
+64 | |           command: doc
+65 | |           args: --features "strict" ${{ matrix.mb_const_generics }} --target ${{ matrix.target }}-unknown-linux-gnu
+   | |                                                                                                                   ^
+   | |                                                                                                                   |
+   | |___________________________________________________________________________________________________________________this job
+   |                                                                                                                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:67:3
+   |
+67 | /   test-non-linux:
+68 | |     name: Test non-Linux
+69 | |     runs-on: ${{ matrix.os }}
+70 | |     strategy:
+...  |
+85 | |       - uses: extractions/setup-just@v2
+86 | |       - run: just test ${{ matrix.mb_const_generics }}
+   | |                                                      ^
+   | |                                                      |
+   | |______________________________________________________this job
+   |                                                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:88:3
+   |
+88 | /   lint:
+89 | |     name: Lint
+90 | |     runs-on: ubuntu-latest
+91 | |     steps:
+...  |
+96 | |       - uses: extractions/setup-just@v2
+97 | |       - run: just lint
+   | |                      ^
+   | |                      |
+   | |______________________this job
+   |                        default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:99:3
+    |
+ 99 | /   test-generated:
+100 | |     name: Test Generated
+101 | |     runs-on: ubuntu-latest
+102 | |     steps:
+...   |
+106 | |       - run: just gen
+107 | |       - run: git diff --exit-code
+    | |                                  ^
+    | |                                  |
+    | |__________________________________this job
+    |                                    default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:86:28
+   |
+86 |       - run: just test ${{ matrix.mb_const_generics }}
+   |         --- this run block ^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:23:15
+   |
+23 |         uses: re-actors/alls-green@release/v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:49:15
+   |
+49 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:53:15
+   |
+53 |       - uses: dtolnay/rust-toolchain@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:56:15
+   |
+56 |       - uses: actions-rs/cargo@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:61:15
+   |
+61 |       - uses: actions-rs/cargo@v1
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:81:15
+   |
+81 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:82:15
+   |
+82 |       - uses: dtolnay/rust-toolchain@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:85:15
+   |
+85 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:92:15
+   |
+92 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:93:15
+   |
+93 |       - uses: dtolnay/rust-toolchain@nightly
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:96:15
+   |
+96 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:103:15
+    |
+103 |       - uses: actions/checkout@v3
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:104:15
+    |
+104 |       - uses: dtolnay/rust-toolchain@stable
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:105:15
+    |
+105 |       - uses: extractions/setup-just@v2
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:1:1
+    |
+  1 | / on:
+  2 | |   push:
+  3 | |     branches:
+  4 | |       - main
+  5 | |   pull_request:
+  6 | |     branches:
+  7 | |       - main
+    | |____________^ workflow is missing concurrency setting
+...
+ 13 |       name: All Succeeded
+    |       ------------------- job affected by missing workflow concurrency
+...
+ 28 |       name: Test Linux
+    |       ---------------- job affected by missing workflow concurrency
+...
+ 68 |       name: Test non-Linux
+    |       -------------------- job affected by missing workflow concurrency
+...
+ 89 |       name: Lint
+    |       ---------- job affected by missing workflow concurrency
+...
+100 |       name: Test Generated
+    |       -------------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:56:15
+   |
+56 |         - uses: actions-rs/cargo@v1
+   |           -     ^^^^^^^^^^^^^^^^ repository is archived
+   |  _________|
+   | |
+57 | |         with:
+58 | |           use-cross: ${{ matrix.target != 'x86_64' }}
+59 | |           command: test
+60 | |           args: --verbose --features "strict" ${{ matrix.mb_const_generics }} --target ${{ matrix.target }}-unknown-linux-gnu
+   | |_____________________________________________________________________________________________________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:61:15
+   |
+61 |         - uses: actions-rs/cargo@v1
+   |           -     ^^^^^^^^^^^^^^^^ repository is archived
+   |  _________|
+   | |
+62 | |         with:
+63 | |           use-cross: ${{ matrix.target != 'x86_64' }}
+64 | |           command: doc
+65 | |           args: --features "strict" ${{ matrix.mb_const_generics }} --target ${{ matrix.target }}-unknown-linux-gnu
+   | |___________________________________________________________________________________________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:53:15
+   |
+53 |         - uses: dtolnay/rust-toolchain@master
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+54 | |         with:
+55 | |           toolchain: ${{ matrix.rust }}
+   | |_______________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:82:15
+   |
+82 |         - uses: dtolnay/rust-toolchain@master
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+83 | |         with:
+84 | |           toolchain: ${{ matrix.rust }}
+   | |_______________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:93:15
+   |
+93 |         - uses: dtolnay/rust-toolchain@nightly
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+94 | |         with:
+95 | |           components: rustfmt, clippy
+   | |_____________________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:104:15
+    |
+104 |       - uses: dtolnay/rust-toolchain@stable
+    |         ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         |     |
+    |         |     use `rustup` and/or `cargo` in a script step
+    |         this step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[unpinned-tools]: action installs an unpinned external tool
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:85:15
+   |
+85 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[unpinned-tools]: action installs an unpinned external tool
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:96:15
+   |
+96 |       - uses: extractions/setup-just@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[unpinned-tools]: action installs an unpinned external tool
+   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:105:15
+    |
+105 |       - uses: extractions/setup-just@v2
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `just-version` implicitly selects an unpinned tool version
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:13:11
+   |
+13 |         - uses: actions/checkout@v3
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:23:11
+   |
+23 |         - uses: actions/checkout@v3
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       - 'v*'
+...  |
+26 | |           with:
+27 | |               registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+   | |__________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:9:3
+   |
+ 9 | /   release:
+10 | |     name: GitHub Release
+11 | |     runs-on: ubuntu-latest
+12 | |     steps:
+...  |
+16 | |             repo_token: "${{ secrets.GITHUB_TOKEN }}"
+17 | |             prerelease: false
+   | |                             ^
+   | |                             |
+   | |_____________________________this job
+   |                               default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:19:3
+   |
+19 | /   publish:
+20 | |     name: Crates.io Publish
+21 | |     runs-on: ubuntu-latest
+22 | |     steps:
+...  |
+26 | |           with:
+27 | |               registry-token: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+   | |                                                                  ^
+   | |                                                                  |
+   | |__________________________________________________________________this job
+   |                                                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:13:17
+   |
+13 |         - uses: actions/checkout@v3
+   |                 ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:14:17
+   |
+14 |         - uses: marvinpinto/action-automatic-releases@latest
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:23:17
+   |
+23 |         - uses: actions/checkout@v3
+   |                 ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:24:17
+   |
+24 |         - uses: dtolnay/rust-toolchain@stable
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:25:17
+   |
+25 |         - uses: katyo/publish-crates@v1
+   |                 ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       - 'v*'
+   | |____________^ workflow is missing concurrency setting
+...
+10 |       name: GitHub Release
+   |       -------------------- job affected by missing workflow concurrency
+...
+20 |       name: Crates.io Publish
+   |       ----------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:14:17
+   |
+14 |           - uses: marvinpinto/action-automatic-releases@latest
+   |             -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ repository is archived
+   |  ___________|
+   | |
+15 | |           with:
+16 | |             repo_token: "${{ secrets.GITHUB_TOKEN }}"
+17 | |             prerelease: false
+   | |_____________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:24:17
+   |
+24 |         - uses: dtolnay/rust-toolchain@stable
+   |           ------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |           |     |
+   |           |     use `rustup` and/or `cargo` in a script step
+   |           this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:26:7
+   |
+26 |     - uses: actions/checkout@v2
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:68:7
+   |
+68 |     - uses: actions/checkout@v2
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:78:7
+   |
+78 |     - uses: actions/checkout@v3
+   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:1:1
+   |
+ 1 | / name: Rust
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+86 | |     - name: Diff tests
+87 | |       run: diff tests/data/normalization_tests.rs scripts/normalization_tests.rs
+   | |_________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:17:3
+   |
+17 | /   build:
+18 | |     runs-on: ubuntu-latest
+19 | |     strategy:
+20 | |       matrix:
+...  |
+63 | |       working-directory: fuzz
+64 | |       run: cargo fmt --all --check
+   | |                                  ^
+   | |                                  |
+   | |__________________________________this job
+   |                                    default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:65:3
+   |
+65 | /   msrv:
+66 | |     runs-on: ubuntu-latest
+67 | |     steps:
+68 | |     - uses: actions/checkout@v2
+...  |
+73 | |     - name: Build
+74 | |       run: cargo build --verbose --all-features
+   | |                                               ^
+   | |                                               |
+   | |_______________________________________________this job
+   |                                                 default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:75:3
+   |
+75 | /   regen:
+76 | |     runs-on: ubuntu-latest
+77 | |     steps:
+78 | |     - uses: actions/checkout@v3
+...  |
+86 | |     - name: Diff tests
+87 | |       run: diff tests/data/normalization_tests.rs scripts/normalization_tests.rs
+   | |                                                                                 ^
+   | |                                                                                 |
+   | |_________________________________________________________________________________this job
+   |                                                                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:26:13
+   |
+26 |     - uses: actions/checkout@v2
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:28:13
+   |
+28 |       uses: actions-rs/toolchain@v1
+   |             ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:68:13
+   |
+68 |     - uses: actions/checkout@v2
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:70:13
+   |
+70 |       uses: dtolnay/rust-toolchain@1.36.0
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:78:13
+   |
+78 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:79:13
+   |
+79 |     - uses: actions/setup-python@v5
+   |             ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:17:3
+   |
+17 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:65:3
+   |
+65 |   msrv:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:75:3
+   |
+75 |   regen:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches: [ master ]
+ 6 | |   pull_request:
+ 7 | |     branches: [ master ]
+   | |________________________^ workflow is missing concurrency setting
+...
+17 |     build:
+   |     ----- job affected by missing workflow concurrency
+...
+65 |     msrv:
+   |     ---- job affected by missing workflow concurrency
+...
+75 |     regen:
+   |     ----- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[archived-uses]: action or reusable workflow from archived repository
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:28:13
+   |
+27 |     - name: Install toolchain
+   |       ----------------------- this step
+28 |       uses: actions-rs/toolchain@v1
+   |             ^^^^^^^^^^^^^^^^^^^^ repository is archived
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#archived-uses
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:70:13
+   |
+69 |     - name: Install msrv toolchain
+   |       ---------------------------- this step
+70 |       uses: dtolnay/rust-toolchain@1.36.0
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+353 findings (3 suppressed): 66 informational, 24 low, 151 medium, 109 high

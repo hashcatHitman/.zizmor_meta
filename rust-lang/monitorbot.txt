@@ -1,0 +1,81 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yml:15:9
+   |
+15 |         - name: Checkout the source code
+   |  _________^
+16 | |         uses: actions/checkout@v4
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:3:1
+   |
+ 3 | / name: CI
+ 4 | | on:
+ 5 | |   push:
+ 6 | |     branches:
+...  |
+42 | |           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+43 | |         if: github.event_name == 'push' && github.repository == 'rust-lang/monitorbot' && github.ref == 'refs/heads/master'
+   | |____________________________________________________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yml:11:3
+   |
+11 | /   test:
+12 | |     name: Test
+13 | |     runs-on: ubuntu-latest
+14 | |     steps:
+...  |
+42 | |           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+43 | |         if: github.event_name == 'push' && github.repository == 'rust-lang/monitorbot' && github.ref == 'refs/heads/master'
+   | |                                                                                                                            ^
+   | |                                                                                                                            |
+   | |____________________________________________________________________________________________________________________________this job
+   |                                                                                                                              default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:16:15
+   |
+16 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yml:34:15
+   |
+34 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/main.yml:4:1
+   |
+ 4 | / on:
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - master
+ 8 | |   pull_request: {}
+   | |__________________^ workflow is missing concurrency setting
+...
+12 |       name: Test
+   |       ---------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+8 findings (2 suppressed): 0 informational, 1 low, 3 medium, 2 high

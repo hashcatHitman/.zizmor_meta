@@ -1,0 +1,115 @@
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> .github/dependabot.yml:4:5
+  |
+4 |   - package-ecosystem: 'github-actions'
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/test.yml:44:9
+   |
+44 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/test.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+54 | |       - name: Run tests
+55 | |         run: make ci
+   | |_____________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/test.yml:15:3
+   |
+15 | /   test:
+16 | |     runs-on: ${{ matrix.os }}
+17 | |     strategy:
+18 | |       fail-fast: false
+...  |
+54 | |       - name: Run tests
+55 | |         run: make ci
+   | |                     ^
+   | |                     |
+   | |_____________________this job
+   |                       default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:44:15
+   |
+44 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:45:15
+   |
+45 |       - uses: jcs090218/setup-emacs@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:48:15
+   |
+48 |       - uses: dtolnay/rust-toolchain@stable
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/test.yml:51:15
+   |
+51 |       - uses: emacs-eask/setup-eask@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/test.yml:15:3
+   |
+15 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/test.yml:48:15
+   |
+48 |         - uses: dtolnay/rust-toolchain@stable
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |  _________|
+   | |
+49 | |         with:
+50 | |           components: rustfmt
+   | |_____________________________- this step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+10 findings: 2 informational, 1 low, 3 medium, 4 high

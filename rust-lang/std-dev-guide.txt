@@ -1,0 +1,352 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:12:9
+   |
+12 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:49:9
+   |
+49 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | / name: Continuous Integration
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+80 | |       - name: Build book for testing
+81 | |         run: mdbook build
+   | |__________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:9:3
+   |
+ 9 | /   book-test:
+10 | |     runs-on: ubuntu-22.04
+11 | |     steps:
+12 | |       - uses: actions/checkout@v3
+...  |
+43 | |       - name: Test book
+44 | |         run: mdbook test
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:46:3
+   |
+46 | /   book-build:
+47 | |     runs-on: ubuntu-22.04
+48 | |     steps:
+49 | |       - uses: actions/checkout@v3
+...  |
+80 | |       - name: Build book for testing
+81 | |         run: mdbook build
+   | |                          ^
+   | |                          |
+   | |__________________________this job
+   |                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:39:46
+   |
+38 |         run: |
+   |         --- this run block
+39 |           cargo install mdbook --version ${{ steps.mdbook-version.outputs.MDBOOK_VERSION }}
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:40:56
+   |
+38 |         run: |
+   |         --- this run block
+39 |           cargo install mdbook --version ${{ steps.mdbook-version.outputs.MDBOOK_VERSION }}
+40 |           cargo install mdbook-linkcheck --version ${{ steps.mdbook-version.outputs.MDBOOK_LINKCHECK_VERSION }}
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:41:50
+   |
+38 |         run: |
+   |         --- this run block
+...
+41 |           cargo install mdbook-toc --version ${{ steps.mdbook-version.outputs.MDBOOK_TOC_VERSION }}
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:76:46
+   |
+75 |         run: |
+   |         --- this run block
+76 |           cargo install mdbook --version ${{ steps.mdbook-version.outputs.MDBOOK_VERSION }}
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:77:56
+   |
+75 |         run: |
+   |         --- this run block
+76 |           cargo install mdbook --version ${{ steps.mdbook-version.outputs.MDBOOK_VERSION }}
+77 |           cargo install mdbook-linkcheck --version ${{ steps.mdbook-version.outputs.MDBOOK_LINKCHECK_VERSION }}
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:78:50
+   |
+75 |         run: |
+   |         --- this run block
+...
+78 |           cargo install mdbook-toc --version ${{ steps.mdbook-version.outputs.MDBOOK_TOC_VERSION }}
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:12:15
+   |
+12 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:24:15
+   |
+24 |         uses: actions/cache@v3
+   |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:49:15
+   |
+49 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:61:15
+   |
+61 |         uses: actions/cache@v3
+   |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/ci.yml:9:3
+  |
+9 |   book-test:
+  |   ^^^^^^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:46:3
+   |
+46 |   book-build:
+   |   ^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches: [main]
+ 6 | |   pull_request:
+   | |_______________^ workflow is missing concurrency setting
+...
+ 9 |     book-test:
+   |     --------- job affected by missing workflow concurrency
+...
+46 |     book-build:
+   |     ---------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/gh-pages.yml:12:9
+   |
+12 |       - uses: actions/checkout@v3
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/gh-pages.yml:1:1
+   |
+ 1 | / name: github pages
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+53 | |           chmod u+x ci/ghpages-deploy.sh
+54 | |           ./ci/ghpages-deploy.sh
+   | |_________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/gh-pages.yml:9:3
+   |
+ 9 | /   deploy:
+10 | |     runs-on: ubuntu-22.04
+11 | |     steps:
+12 | |       - uses: actions/checkout@v3
+...  |
+53 | |           chmod u+x ci/ghpages-deploy.sh
+54 | |           ./ci/ghpages-deploy.sh
+   | |                                 ^
+   | |                                 |
+   | |_________________________________this job
+   |                                   default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/gh-pages.yml:39:46
+   |
+38 |         run: |
+   |         --- this run block
+39 |           cargo install mdbook --version ${{ steps.mdbook-version.outputs.MDBOOK_VERSION }}
+   |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/gh-pages.yml:40:56
+   |
+38 |         run: |
+   |         --- this run block
+39 |           cargo install mdbook --version ${{ steps.mdbook-version.outputs.MDBOOK_VERSION }}
+40 |           cargo install mdbook-linkcheck --version ${{ steps.mdbook-version.outputs.MDBOOK_LINKCHECK_VERSION }}
+   |                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/gh-pages.yml:41:50
+   |
+38 |         run: |
+   |         --- this run block
+...
+41 |           cargo install mdbook-toc --version ${{ steps.mdbook-version.outputs.MDBOOK_TOC_VERSION }}
+   |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/gh-pages.yml:12:15
+   |
+12 |       - uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/gh-pages.yml:24:15
+   |
+24 |         uses: actions/cache@v3
+   |               ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/gh-pages.yml:9:3
+  |
+9 |   deploy:
+  |   ^^^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+ --> .github/workflows/gh-pages.yml:3:1
+  |
+3 | / on:
+4 | |   push:
+5 | |     branches:
+6 | |       - main
+  | |____________^ workflow is missing concurrency setting
+...
+9 |     deploy:
+  |     ------ job affected by missing workflow concurrency
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+28 findings: 12 informational, 2 low, 8 medium, 6 high

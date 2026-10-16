@@ -1,0 +1,59 @@
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:197:26
+    |
+194 |       - run: |
+    |         --- this run block
+...
+197 |             --target ${{ matrix.target }}
+    |                          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:202:26
+    |
+198 |       - run: |
+    |         --- this run block
+...
+202 |             --target ${{ matrix.target }}
+    |                          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:207:26
+    |
+203 |       - run: |
+    |         --- this run block
+...
+207 |             --target ${{ matrix.target }}
+    |                          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:212:26
+    |
+208 |       - run: |
+    |         --- this run block
+...
+212 |             --target ${{ matrix.target }}
+    |                          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:310:3
+    |
+310 |   tidy:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+5 findings: 1 informational, 4 low, 0 medium, 0 high

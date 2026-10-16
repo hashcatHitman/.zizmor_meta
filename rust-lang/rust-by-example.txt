@@ -1,0 +1,104 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rbe.yml:14:7
+   |
+14 |       - uses: actions/checkout@v4
+   |  _______^
+15 | |       with:
+16 | |         # We need the full history below.
+17 | |         fetch-depth: 0
+   | |______________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rbe.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | | on: [push, pull_request]
+ 3 | |
+ 4 | | env:
+...  |
+78 | |         name: rust-by-example
+79 | |         path: book
+   | |___________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rbe.yml:10:3
+   |
+10 | /   test:
+11 | |     name: Run tests
+12 | |     runs-on: ubuntu-latest
+13 | |     steps:
+...  |
+78 | |         name: rust-by-example
+79 | |         path: book
+   | |                   ^
+   | |                   |
+   | |___________________this job
+   |                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/rbe.yml:58:28
+   |
+57 |       run: |
+   |       --- this run block
+58 |         for po_lang in ${{ env.LANGUAGES }}; do
+   |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/rbe.yml:70:28
+   |
+69 |       run: |
+   |       --- this run block
+70 |         for po_lang in ${{ env.LANGUAGES }}; do
+   |                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rbe.yml:14:13
+   |
+14 |     - uses: actions/checkout@v4
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/rbe.yml:76:13
+   |
+76 |       uses: actions/upload-artifact@v4
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/rbe.yml:2:1
+   |
+ 2 | on: [push, pull_request]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
+...
+11 |     name: Run tests
+   |     --------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+8 findings: 0 informational, 3 low, 3 medium, 2 high

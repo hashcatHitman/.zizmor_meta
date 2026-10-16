@@ -1,0 +1,165 @@
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/checks.yml:66:30
+   |
+63 |         run: |
+   |         --- this run block
+...
+66 |                 --since "${{ github.event.pull_request.base.sha }}"
+   |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/checks.yml:112:24
+    |
+112 |         run: echo "${{ github.event.pull_request.number }}" > "${{ runner.temp }}/pr-number.txt"
+    |         ---            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |         |
+    |         this run block
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/checks.yml:112:68
+    |
+112 |         run: echo "${{ github.event.pull_request.number }}" > "${{ runner.temp }}/pr-number.txt"
+    |         --- this run block                                         ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/checks.yml:21:15
+   |
+21 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/checks.yml:115:15
+    |
+115 |         uses: actions/upload-artifact@v4
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
+  --> .github/workflows/checks.yml:26:91
+   |
+26 |         uses: py-actions/py-dependency-install@9c419aa98bfb42280bdae2b0a736befd9b01e3b1 # v4
+   |               -------------------------------------------------------------------------   ^^ tag points to commit 30aa0023464e
+   |               |
+   |               is pointed to by tag v4.0.0
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/checks.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   pull_request:
+ 4 | |
+ 5 | |   # We avoid running the push event on PR branches so that
+...  |
+ 9 | |     branches:
+10 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+17 |       name: Run Markdown Checks
+   |       ------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/comment-on-check-output.yml:13:3
+   |
+13 |   pull-requests: write
+   |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[dangerous-triggers]: use of fundamentally insecure workflow trigger
+ --> .github/workflows/comment-on-check-output.yml:7:3
+  |
+7 |   workflow_run:
+  |   ^^^^^^^^^^^^ workflow_run is almost always used insecurely
+  |
+  = note: audit confidence → Medium
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dangerous-triggers
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/comment-on-check-output.yml:25:15
+   |
+25 |         uses: actions/download-artifact@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/comment-on-check-output.yml:12:3
+   |
+12 |   actions: read
+   |   ^^^^^^^^^^^^^ needs an explanatory comment
+13 |   pull-requests: write
+   |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/comment-on-check-output.yml:6:1
+   |
+ 6 | / on:
+ 7 | |   workflow_run:
+ 8 | |     workflows: ["Correctness Checks"]
+ 9 | |     types: [completed]
+   | |______________________^ workflow is missing concurrency setting
+...
+17 |       name: Comment on PR check output
+   |       -------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/submerge.yml:24:15
+   |
+24 |         uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/submerge.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request:
+ 5 | |     paths:
+ 6 | |       - ".github/workflows/submerge.yml"
+...  |
+ 9 | |     branches:
+10 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+17 |       name: Format, clippy, and tests
+   |       ------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+14 findings: 0 informational, 7 low, 1 medium, 6 high

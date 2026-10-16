@@ -1,0 +1,82 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/rust.yml:20:9
+   |
+20 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:1:1
+   |
+ 1 | / name: Rust
+ 2 | |
+ 3 | | on:
+ 4 | |   workflow_dispatch:
+...  |
+56 | |       - name: Deploy pages
+57 | |         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128  # v3.0.2-node.24
+   | |______________________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/rust.yml:17:3
+   |
+17 | /   build:
+18 | |     runs-on: ubuntu-latest
+19 | |     steps:
+20 | |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+...  |
+39 | |         with:
+40 | |           path: ./output
+   | |                        ^
+   | |                        |
+   | |________________________this job
+   |                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:17:3
+   |
+17 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/rust.yml:42:3
+   |
+42 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/rust.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch:
+ 5 | |   push:
+ 6 | |     branches: [ main ]
+...  |
+10 | |     # Runs at 2:00 UTC every day (to give the release process 2h to complete).
+11 | |     - cron: '0 2 * * *'
+   | |_______________________^ workflow is missing concurrency setting
+...
+17 |     build:
+   |     ----- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+6 findings: 2 informational, 2 low, 2 medium, 0 high

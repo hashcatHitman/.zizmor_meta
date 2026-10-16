@@ -1,0 +1,122 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/deploy.yml:15:7
+   |
+15 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+   |  _______^
+16 | |       with:
+17 | |         fetch-depth: 0
+   | |______________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy.yml:1:1
+   |
+ 1 | / name: Deploy
+ 2 | | on:
+ 3 | |   push:
+ 4 | |     branches:
+...  |
+44 | |       - id: deployment
+45 | |         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+   | |_____________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy.yml:12:3
+   |
+12 | /   build:
+13 | |     runs-on: ubuntu-latest
+14 | |     steps:
+15 | |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+...  |
+28 | |       with:
+29 | |         path: ./book
+   | |                    ^
+   | |                    |
+   | |____________________this job
+   |                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/deploy.yml:21:77
+   |
+19 |       run: |
+   |       --- this run block
+20 |         mkdir mdbook
+21 |         curl -Lf https://github.com/rust-lang/mdBook/releases/download/v${{ env.MDBOOK_VERSION }}/mdbook-v${{ env.MDBOOK_VERSION }}-...
+   |                                                                             ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/deploy.yml:21:111
+   |
+19 |       run: |
+   |       --- this run block
+20 |         mkdir mdbook
+21 |         curl -Lf https://github.com/rust-lang/mdBook/releases/download/v${{ env.MDBOOK_VERSION }}/mdbook-v${{ env.MDBOOK_VERSION }}-...
+   |                                                                                                               ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/deploy.yml:35:7
+   |
+35 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+36 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/deploy.yml:12:3
+   |
+12 |   build:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/deploy.yml:31:3
+   |
+31 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/deploy.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push:
+ 4 | |     branches:
+ 5 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+12 |     build:
+   |     ----- job affected by missing workflow concurrency
+...
+31 |     deploy:
+   |     ------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+9 findings: 2 informational, 5 low, 2 medium, 0 high

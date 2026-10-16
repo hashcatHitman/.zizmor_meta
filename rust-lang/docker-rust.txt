@@ -1,0 +1,211 @@
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:46:9
+   |
+46 |       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:48:53
+   |
+48 |       - run: docker build -t rust:$RUST_VERSION-${{ matrix.name }} stable/${{ matrix.variant }}
+   |         --- this run block                          ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:48:79
+   |
+48 |       - run: docker build -t rust:$RUST_VERSION-${{ matrix.name }} stable/${{ matrix.variant }}
+   |         --- this run block                                                    ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:49:67
+   |
+49 |       - run: ~/official-images/test/run.sh rust:$RUST_VERSION-${{ matrix.name }}
+   |         --- this run block                                        ^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:6:1
+   |
+ 6 | / on:
+ 7 | |   pull_request:
+ 8 | |   push:
+ 9 | |     branches:
+10 | |       - master
+   | |______________^ workflow is missing concurrency setting
+...
+44 |       name: ${{ matrix.name }}
+   |       ------------------------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/mirror_stable.yml:1:1
+    |
+  1 | / name: Mirror Stable Images to GHCR
+  2 | |
+  3 | | on:
+  4 | |   workflow_dispatch:
+...   |
+122 | |           done
+123 | |
+    | |_^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/mirror_stable.yml:116:44
+    |
+115 |         run: |
+    |         --- this run block
+116 |           ./crane copy "docker.io/rust:${{ matrix.name }}" "ghcr.io/${{ github.repository_owner }}/rust:${{ matrix.name }}"
+    |                                            ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/mirror_stable.yml:116:73
+    |
+115 |         run: |
+    |         --- this run block
+116 |           ./crane copy "docker.io/rust:${{ matrix.name }}" "ghcr.io/${{ github.repository_owner }}/rust:${{ matrix.name }}"
+    |                                                                         ^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/mirror_stable.yml:116:109
+    |
+115 |         run: |
+    |         --- this run block
+116 |           ./crane copy "docker.io/rust:${{ matrix.name }}" "ghcr.io/${{ github.repository_owner }}/rust:${{ matrix.name }}"
+    |                                                                                                             ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/mirror_stable.yml:117:38
+    |
+115 |         run: |
+    |         --- this run block
+116 |           ./crane copy "docker.io/rust:${{ matrix.name }}" "ghcr.io/${{ github.repository_owner }}/rust:${{ matrix.name }}"
+117 |           readarray -t TAGS <<< "${{ matrix.tags }}"
+    |                                      ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/mirror_stable.yml:120:40
+    |
+115 |         run: |
+    |         --- this run block
+...
+120 |               ./crane tag "ghcr.io/${{ github.repository_owner }}/rust:${{ matrix.name }}" "${tag}"
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/mirror_stable.yml:120:76
+    |
+115 |         run: |
+    |         --- this run block
+...
+120 |               ./crane tag "ghcr.io/${{ github.repository_owner }}/rust:${{ matrix.name }}" "${tag}"
+    |                                                                            ^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/mirror_stable.yml:17:7
+   |
+17 |       packages: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/mirror_stable.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch:
+ 5 | |   schedule:
+ 6 | |     # Run daily at midnight UTC
+ 7 | |     - cron: '0 0 * * *'
+   | |_______________________^ workflow is missing concurrency setting
+...
+11 |       name: DockerHub mirror
+   |       ---------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/nightly.yml:71:9
+   |
+71 |         - name: Checkout repository
+   |  _________^
+72 | |         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/nightly.yml:5:3
+  |
+5 |   packages: write
+  |   ^^^^^^^^^^^^^^^ packages: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/nightly.yml:5:3
+  |
+5 |   packages: write
+  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/nightly.yml:7:1
+   |
+ 7 | / on:
+ 8 | |   push:
+ 9 | |     branches:
+10 | |       - master
+...  |
+15 | |   schedule:
+16 | |     - cron: '0 6 * * *'
+   | |_______________________^ workflow is missing concurrency setting
+...
+69 |       name: ${{ matrix.name }}
+   |       ------------------------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+20 findings (2 suppressed): 0 informational, 16 low, 1 medium, 1 high

@@ -1,0 +1,199 @@
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:105:21
+    |
+103 |         run: |
+    |         --- this run block
+104 |           set -eux
+105 |           if [ "${{ matrix.toolchain }}" = "1.65.0" ]; then
+    |                     ^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:120:17
+    |
+103 |         run: |
+    |         --- this run block
+...
+120 |             ${{ matrix.only && format('--only "{0}"', matrix.only) }} \
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:121:17
+    |
+103 |         run: |
+    |         --- this run block
+...
+121 |             ${{ matrix.half && format('--half "{0}"', matrix.half) }}
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:161:21
+    |
+160 |         run: |
+    |         --- this run block
+161 |           echo '${{ toJson(matrix.env) }}' |
+    |                     ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:167:30
+    |
+167 |         run: ./ci/run.sh ${{ matrix.target }}
+    |         --- this run block   ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:170:37
+    |
+170 |         run: ./ci/run-docker.sh ${{ matrix.target }}
+    |         --- this run block          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:276:21
+    |
+275 |         run: |
+    |         --- this run block
+276 |           echo '${{ toJson(matrix.env) }}' |
+    |                     ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:288:30
+    |
+288 |         run: ./ci/run.sh ${{ matrix.target }}
+    |         --- this run block   ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:291:37
+    |
+291 |         run: ./ci/run-docker.sh ${{ matrix.target }}
+    |         --- this run block          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yaml:294:46
+    |
+294 |         run: ./ci/run-apple-simulator.sh ${{ matrix.target }}
+    |         --- this run block                   ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yaml:407:7
+    |
+407 |       security-events: write
+    |       ^^^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yaml:4:1
+    |
+  4 | / on:
+  5 | |   merge_group:
+  6 | |   pull_request:
+  7 | |     types: [opened, synchronize, reopened]
+...   |
+ 11 | |     - cron: "0 8 * * *"
+ 12 | |   workflow_dispatch:
+    | |____________________^ workflow is missing concurrency setting
+...
+ 31 |       name: Style check
+    |       ----------------- job affected by missing workflow concurrency
+...
+ 44 |       name: Clippy on ${{ matrix.os }}
+    |       -------------------------------- job affected by missing workflow concurrency
+...
+ 63 |       name: Verify build
+    |       ------------------ job affected by missing workflow concurrency
+...
+124 |       name: Test tier1
+    |       ---------------- job affected by missing workflow concurrency
+...
+184 |       name: Test tier2
+    |       ---------------- job affected by missing workflow concurrency
+...
+308 |       name: Test tier2 VM
+    |       ------------------- job affected by missing workflow concurrency
+...
+382 |       name: Check ctest MSRV
+    |       ---------------------- job affected by missing workflow concurrency
+...
+404 |       name: Zizmor (Static analysis for GitHub Actions)
+    |       ------------------------------------------------- job affected by missing workflow concurrency
+...
+421 |       name: success
+    |       ------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/release.yaml:6:3
+  |
+6 |   contents: write
+  |   ^^^^^^^^^^^^^^^ contents: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/release.yaml:7:3
+  |
+7 |   id-token: write
+  |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/release.yaml:6:3
+  |
+6 |   contents: write
+  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+7 |   id-token: write
+  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/release.yaml:9:1
+   |
+ 9 | / on:
+10 | |   push:
+11 | |     branches:
+12 | |       - main
+   | |____________^ workflow is missing concurrency setting
+...
+16 |       name: Release-plz
+   |       ----------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+16 findings: 0 informational, 14 low, 0 medium, 2 high

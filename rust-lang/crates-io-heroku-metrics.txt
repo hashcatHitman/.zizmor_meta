@@ -1,0 +1,81 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:13:9
+   |
+13 |         - name: Checkout the source code
+   |  _________^
+14 | |         uses: actions/checkout@v2
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | | on:
+ 3 | |   push: {}
+ 4 | |   pull_request: {}
+...  |
+34 | |           aws_secret_access_key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+35 | |         if: github.ref == 'refs/heads/main'
+   | |____________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:9:3
+   |
+ 9 | /   ci:
+10 | |     name: Build and Deploy
+11 | |     runs-on: ubuntu-latest
+12 | |     steps:
+...  |
+34 | |           aws_secret_access_key: "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+35 | |         if: github.ref == 'refs/heads/main'
+   | |                                            ^
+   | |                                            |
+   | |____________________________________________this job
+   |                                              default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:14:15
+   |
+14 |         uses: actions/checkout@v2
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:26:15
+   |
+26 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@master
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push: {}
+ 4 | |   pull_request: {}
+ 5 | |   schedule:
+ 6 | |     - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
+   | |____________________________________________________^ workflow is missing concurrency setting
+...
+10 |       name: Build and Deploy
+   |       ---------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+8 findings (2 suppressed): 0 informational, 1 low, 3 medium, 2 high

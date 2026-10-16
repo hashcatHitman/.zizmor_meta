@@ -1,0 +1,127 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/deploy.yml:13:7
+   |
+13 |       - uses: actions/checkout@v3
+   |  _______^
+14 | |       with:
+15 | |         fetch-depth: 0
+   | |______________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy.yml:1:1
+   |
+ 1 | / name: Deploy
+ 2 | | on:
+ 3 | |   push:
+ 4 | |     branches: [ master ]
+...  |
+47 | |       - id: deployment
+48 | |         uses: actions/deploy-pages@v4
+   | |______________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy.yml:9:3
+   |
+ 9 | /   build:
+10 | |     # we run this part also in PRs, to ensure that building the book works
+11 | |     runs-on: ubuntu-latest
+12 | |     steps:
+...  |
+28 | |       with:
+29 | |         path: reference/book
+   | |                            ^
+   | |                            |
+   | |____________________________this job
+   |                              default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy.yml:13:13
+   |
+13 |     - uses: actions/checkout@v3
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy.yml:27:13
+   |
+27 |       uses: actions/upload-pages-artifact@v3
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/deploy.yml:48:15
+   |
+48 |         uses: actions/deploy-pages@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/deploy.yml:35:7
+   |
+35 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+36 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+ --> .github/workflows/deploy.yml:9:3
+  |
+9 |   build:
+  |   ^^^^^ this job
+  |
+  = note: audit confidence → High
+  = tip: use 'name: ...' to give this job a name
+  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/deploy.yml:31:3
+   |
+31 |   deploy:
+   |   ^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/deploy.yml:2:1
+   |
+ 2 | / on:
+ 3 | |   push:
+ 4 | |     branches: [ master ]
+ 5 | |   pull_request:
+ 6 | |     branches: [ master ]
+   | |________________________^ workflow is missing concurrency setting
+...
+ 9 |     build:
+   |     ----- job affected by missing workflow concurrency
+...
+31 |     deploy:
+   |     ------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+10 findings: 2 informational, 2 low, 3 medium, 3 high

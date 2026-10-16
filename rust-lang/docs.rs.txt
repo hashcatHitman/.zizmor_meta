@@ -1,0 +1,1430 @@
+warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
+ --> .github/dependabot.yml:3:5
+  |
+3 |   - package-ecosystem: "github-actions"
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |
+  = note: audit confidence → High
+  = note: this finding has an auto-fix
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/audit.yml:23:9
+   |
+23 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/audit.yml:15:3
+   |
+15 |   issues: write
+   |   ^^^^^^^^^^^^^ issues: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/audit.yml:16:3
+   |
+16 |   checks: write
+   |   ^^^^^^^^^^^^^ checks: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/audit.yml:23:15
+   |
+23 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/audit.yml:28:15
+   |
+28 |       - uses: rustsec/audit-check@v2.0.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/audit.yml:15:3
+   |
+15 |   issues: write
+   |   ^^^^^^^^^^^^^ needs an explanatory comment
+16 |   checks: write
+   |   ^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/audit.yml:19:3
+   |
+19 |   security_audit:
+   |   ^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/audit.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |   pull_request:
+ 6 | |     paths:
+...  |
+10 | |   schedule:
+11 | |     - cron: "0 0 * * *"
+   | |_______________________^ workflow is missing concurrency setting
+...
+19 |     security_audit:
+   |     -------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:21:9
+   |
+21 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:46:9
+   |
+46 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:75:9
+   |
+75 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:124:9
+    |
+124 |       - uses: actions/checkout@v7
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:1:1
+    |
+  1 | / name: CI
+  2 | |
+  3 | | on:
+  4 | |   push:
+...   |
+139 | |       - run: just lint
+140 | |       - run: just lint-dependencies-udeps
+    | |__________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:18:3
+   |
+18 | /   sqlx:
+19 | |     runs-on: ubuntu-latest
+20 | |     steps:
+21 | |       - uses: actions/checkout@v7
+...  |
+40 | |         if: ${{ always() }}
+41 | |         run: just compose-down-and-wipe
+   | |                                       ^
+   | |                                       |
+   | |_______________________________________this job
+   |                                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:43:3
+   |
+43 | /   test:
+44 | |     runs-on: ubuntu-latest
+45 | |     steps:
+46 | |       - uses: actions/checkout@v7
+...  |
+69 | |         if: ${{ always() }}
+70 | |         run: just compose-down-and-wipe
+   | |                                       ^
+   | |                                       |
+   | |_______________________________________this job
+   |                                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:72:3
+    |
+ 72 | /   GUI_test:
+ 73 | |     runs-on: ubuntu-latest
+ 74 | |     steps:
+ 75 | |       - uses: actions/checkout@v7
+...   |
+116 | |         if: ${{ always() }}
+117 | |         run: just compose-down-and-wipe
+    | |                                       ^
+    | |                                       |
+    | |_______________________________________this job
+    |                                         default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:119:3
+    |
+119 | /   lint-format:
+120 | |     name: linters & formatters
+121 | |     runs-on: ubuntu-latest
+...   |
+139 | |       - run: just lint
+140 | |       - run: just lint-dependencies-udeps
+    | |                                          ^
+    | |                                          |
+    | |__________________________________________this job
+    |                                            default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:21:15
+   |
+21 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:23:15
+   |
+23 |       - uses: jdx/mise-action@v5
+   |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:29:15
+   |
+29 |         uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:34:15
+   |
+34 |         uses: docker/setup-buildx-action@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:46:15
+   |
+46 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:48:15
+   |
+48 |       - uses: jdx/mise-action@v5
+   |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:54:15
+   |
+54 |         uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:59:15
+   |
+59 |         uses: docker/setup-buildx-action@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:75:15
+   |
+75 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:78:15
+   |
+78 |         uses: jlumbroso/free-disk-space@v2.0.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:94:15
+   |
+94 |         uses: docker/setup-buildx-action@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:97:15
+   |
+97 |         uses: crazy-max/ghaction-github-runtime@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:99:15
+   |
+99 |       - uses: jdx/mise-action@v5
+   |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:124:15
+    |
+124 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:126:15
+    |
+126 |       - uses: jdx/mise-action@v5
+    |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:134:15
+    |
+134 |         uses: Swatinem/rust-cache@v2
+    |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:18:3
+   |
+18 |   sqlx:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:43:3
+   |
+43 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:72:3
+   |
+72 |   GUI_test:
+   |   ^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:3:1
+    |
+  3 | / on:
+  4 | |   push:
+  5 | |     branches:
+  6 | |       - main
+  7 | |   pull_request:
+  8 | |   schedule:
+  9 | |     - cron: "0 0 * * *"
+    | |_______________________^ workflow is missing concurrency setting
+...
+ 18 |     sqlx:
+    |     ---- job affected by missing workflow concurrency
+...
+ 43 |     test:
+    |     ---- job affected by missing workflow concurrency
+...
+ 72 |     GUI_test:
+    |     -------- job affected by missing workflow concurrency
+...
+120 |       name: linters & formatters
+    |       -------------------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/commit-sqlx-changes.yml:31:9
+   |
+31 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/commit-sqlx-changes.yml:21:3
+   |
+21 |   contents: write
+   |   ^^^^^^^^^^^^^^^ contents: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/commit-sqlx-changes.yml:22:3
+   |
+22 |   pull-requests: write
+   |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[dangerous-triggers]: use of fundamentally insecure workflow trigger
+ --> .github/workflows/commit-sqlx-changes.yml:2:3
+  |
+2 |   pull_request_target:
+  |   ^^^^^^^^^^^^^^^^^^^ pull_request_target is almost always used insecurely
+  |
+  = note: audit confidence → Medium
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dangerous-triggers
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/commit-sqlx-changes.yml:31:15
+   |
+31 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/commit-sqlx-changes.yml:39:15
+   |
+39 |         uses: jdx/mise-action@v5
+   |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/commit-sqlx-changes.yml:45:15
+   |
+45 |         uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/commit-sqlx-changes.yml:66:15
+   |
+66 |         uses: peter-evans/create-pull-request@v8
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/commit-sqlx-changes.yml:21:3
+   |
+21 |   contents: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+22 |   pull-requests: write
+   |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/commit-sqlx-changes.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_target:
+ 3 | |     branches:
+ 4 | |       - main
+...  |
+75 | |           body: |
+76 | |             Following #${{ github.event.pull_request.number }} changes, here are the related SQLX files changes.
+   | |_________________________________________________________________________________________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/commit-sqlx-changes.yml:25:3
+   |
+25 |   commit-sqlx-changes:
+   |   ^^^^^^^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/commit-sqlx-changes.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_target:
+ 3 | |     branches:
+ 4 | |       - main
+ 5 | |     types: [closed]
+   | |___________________^ workflow is missing concurrency setting
+...
+25 |     commit-sqlx-changes:
+   |     ------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/commit-sqlx-changes.yml:66:15
+   |
+64 |       - name: Open pull request
+   |         ----------------------- this step
+65 |         if: ${{ steps.sqlx_check.outputs.need_pr == '1' }}
+66 |         uses: peter-evans/create-pull-request@v8
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh pr create` in a script step
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/deploy.yml:3:1
+   |
+ 3 | / name: Deploy
+ 4 | | on:
+ 5 | |   workflow_dispatch: {}
+...  |
+16 | |       aws-iam: "760062276060:role/ci--rust-lang--docs.rs--production"
+17 | |       cluster: docs-rs-prod
+   | |____________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/deploy.yml:11:7
+   |
+11 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/deploy.yml:13:11
+   |
+ 9 |     name: Production
+   |     ---------------- this job
+...
+13 |     uses: ./.github/workflows/docker-pipeline.yml
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/dev-guide.yml:16:9
+   |
+16 |       - uses: actions/checkout@v7
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/dev-guide.yml:1:1
+   |
+ 1 | / name: Dev-Guide mdBook
+ 2 | |
+ 3 | | on:
+ 4 | |   pull_request:
+...  |
+50 | |         uses: actions/deploy-pages@v5
+51 | |         id: deployment
+   | |_______________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/dev-guide.yml:11:3
+   |
+11 | /   test:
+12 | |     name: build and test
+13 | |     if: ${{ github.event_name == 'pull_request' || github.event.pull_request.merged }}
+14 | |     runs-on: ubuntu-latest
+...  |
+36 | |   # Deploy is run as a separate job as it needs elevated permissions
+   | |                                                                    ^
+   | |                                                                    |
+   | |____________________________________________________________________this job
+   |                                                                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[dangerous-triggers]: use of fundamentally insecure workflow trigger
+ --> .github/workflows/dev-guide.yml:5:3
+  |
+5 |   pull_request_target:
+  |   ^^^^^^^^^^^^^^^^^^^ pull_request_target is almost always used insecurely
+  |
+  = note: audit confidence → Medium
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dangerous-triggers
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/dev-guide.yml:16:15
+   |
+16 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/dev-guide.yml:22:15
+   |
+22 |         uses: jdx/mise-action@v5
+   |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/dev-guide.yml:32:15
+   |
+32 |       - uses: actions/upload-pages-artifact@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/dev-guide.yml:50:15
+   |
+50 |         uses: actions/deploy-pages@v5
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/dev-guide.yml:42:7
+   |
+42 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+43 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/dev-guide.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request:
+ 5 | |   pull_request_target:
+ 6 | |     branches:
+ 7 | |       - main
+ 8 | |     types: [closed]
+   | |___________________^ workflow is missing concurrency setting
+...
+12 |       name: build and test
+   |       -------------------- job affected by missing workflow concurrency
+...
+38 |       name: deploy
+   |       ------------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/docker-pipeline.yml:1:1
+    |
+  1 | / name: Docker pipeline
+  2 | |
+  3 | | on:
+  4 | |   workflow_call:
+...   |
+111 | |           aws ecs update-service --service "$SERVICE" --cluster "$CLUSTER" --force-new-deployment
+112 | |           aws ecs wait services-stable --services "$SERVICE" --cluster "$CLUSTER"
+    | |__________________________________________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/docker-pipeline.yml:20:3
+    |
+ 20 | /   docker:
+ 21 | |     name: Build and test Docker images
+ 22 | |     runs-on: ubuntu-latest
+ 23 | |     environment: ${{ inputs.environment }}
+...   |
+111 | |           aws ecs update-service --service "$SERVICE" --cluster "$CLUSTER" --force-new-deployment
+112 | |           aws ecs wait services-stable --services "$SERVICE" --cluster "$CLUSTER"
+    | |                                                                                  ^
+    | |                                                                                  |
+    | |__________________________________________________________________________________this job
+    |                                                                                    default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docker-pipeline.yml:28:15
+   |
+28 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docker-pipeline.yml:33:15
+   |
+33 |         uses: docker/setup-buildx-action@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docker-pipeline.yml:37:15
+   |
+37 |         uses: aws-actions/configure-aws-credentials@v6
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docker-pipeline.yml:45:15
+   |
+45 |         uses: aws-actions/amazon-ecr-login@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docker-pipeline.yml:48:15
+   |
+48 |         uses: docker/bake-action@v7
+   |               ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/docker-pipeline.yml:91:15
+   |
+91 |         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/docker.yml:1:1
+   |
+ 1 | / name: Docker
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+36 | |       aws-iam: "519825364412:role/ci--rust-lang--docs.rs--staging"
+37 | |       cluster: docs-rs-staging
+   | |_______________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/docker.yml:32:7
+   |
+32 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/docker.yml:21:11
+   |
+13 |     name: Test Docker images
+   |     ------------------------ this job
+...
+21 |     uses: ./.github/workflows/docker-pipeline.yml
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/docker.yml:33:11
+   |
+24 |     name: Build docker images & deploy to staging
+   |     --------------------------------------------- this job
+...
+33 |     uses: ./.github/workflows/docker-pipeline.yml
+   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/on-pr-review-approve.yml:7:3
+  |
+7 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/on-pr-review-approve.yml:14:15
+   |
+14 |       - uses: actions-ecosystem/action-remove-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/on-pr-review-approve.yml:7:3
+  |
+7 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/on-pr-review-approve.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_review:
+ 3 | |     types: [submitted]
+...  |
+17 | |             S-waiting-on-author
+18 | |             S-waiting-on-review
+   | |________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/on-pr-review-approve.yml:10:3
+   |
+10 |   update-labels:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/on-pr-review-approve.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_review:
+ 3 | |     types: [submitted]
+   | |______________________^ workflow is missing concurrency setting
+...
+10 |     update-labels:
+   |     ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/on-pr-review-approve.yml:14:15
+   |
+14 |         - uses: actions-ecosystem/action-remove-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --remove-label` or `gh pr edit --remove-label` in a script step
+   |  _________|
+   | |
+15 | |         with:
+16 | |           labels: |
+17 | |             S-waiting-on-author
+18 | |             S-waiting-on-review
+   | |________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/on-pr-review-submit.yml:7:3
+  |
+7 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/on-pr-review-submit.yml:14:15
+   |
+14 |       - uses: actions-ecosystem/action-add-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/on-pr-review-submit.yml:17:15
+   |
+17 |       - uses: actions-ecosystem/action-remove-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/on-pr-review-submit.yml:7:3
+  |
+7 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/on-pr-review-submit.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_review:
+ 3 | |     types: [submitted]
+...  |
+18 | |         with:
+19 | |           labels: S-waiting-on-review
+   | |______________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/on-pr-review-submit.yml:10:3
+   |
+10 |   update-labels:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/on-pr-review-submit.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_review:
+ 3 | |     types: [submitted]
+   | |______________________^ workflow is missing concurrency setting
+...
+10 |     update-labels:
+   |     ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/on-pr-review-submit.yml:14:15
+   |
+14 |         - uses: actions-ecosystem/action-add-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --add-label` or `gh pr edit --add-label` in a script step
+   |  _________|
+   | |
+15 | |         with:
+16 | |           labels: S-waiting-on-author
+   | |_____________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/on-pr-review-submit.yml:17:15
+   |
+17 |         - uses: actions-ecosystem/action-remove-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --remove-label` or `gh pr edit --remove-label` in a script step
+   |  _________|
+   | |
+18 | |         with:
+19 | |           labels: S-waiting-on-review
+   | |______________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/publish.yml:26:9
+   |
+26 |         - uses: actions/checkout@v7
+   |  _________^
+27 | |         if: startsWith(github.ref_name, matrix.tag_prefix)
+   | |__________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       # if you update these tag-patterns, they also have to be updated in
+...  |
+35 | |         env:
+36 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/publish.yml:33:43
+   |
+33 |       - run: cargo publish --package '${{ matrix.package }}'
+   |         --- this run block                ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/publish.yml:26:15
+   |
+26 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/publish.yml:29:15
+   |
+29 |       - uses: rust-lang/crates-io-auth-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       # if you update these tag-patterns, they also have to be updated in
+...  |
+35 | |         env:
+36 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   push:
+ 3 | |     tags:
+ 4 | |       # if you update these tag-patterns, they also have to be updated in
+ 5 | |       # https://github.com/rust-lang/team/blob/main/repos/rust-lang/docs.rs.toml
+ 6 | |       - 'font-awesome-as-a-crate-v*'
+ 7 | |       - 'docs_rs_crates_io-v*'
+   | |______________________________^ workflow is missing concurrency setting
+...
+11 |       name: publish ${{ matrix.package }}
+   |       ----------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/tag-merged-pr.yml:9:3
+  |
+9 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[dangerous-triggers]: use of fundamentally insecure workflow trigger
+ --> .github/workflows/tag-merged-pr.yml:2:3
+  |
+2 |   pull_request_target:
+  |   ^^^^^^^^^^^^^^^^^^^ pull_request_target is almost always used insecurely
+  |
+  = note: audit confidence → Medium
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dangerous-triggers
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/tag-merged-pr.yml:16:15
+   |
+16 |       - uses: actions-ecosystem/action-add-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/tag-merged-pr.yml:19:15
+   |
+19 |       - uses: actions-ecosystem/action-remove-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/tag-merged-pr.yml:9:3
+  |
+9 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/tag-merged-pr.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_target:
+ 3 | |     branches:
+ 4 | |       - main
+...  |
+25 | |             S-waiting-on-decision
+26 | |             S-waiting-on-review
+   | |________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/tag-merged-pr.yml:12:3
+   |
+12 |   update-labels:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/tag-merged-pr.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_target:
+ 3 | |     branches:
+ 4 | |       - main
+ 5 | |     types: [closed]
+   | |___________________^ workflow is missing concurrency setting
+...
+12 |     update-labels:
+   |     ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/tag-merged-pr.yml:16:15
+   |
+16 |         - uses: actions-ecosystem/action-add-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --add-label` or `gh pr edit --add-label` in a script step
+   |  _________|
+   | |
+17 | |         with:
+18 | |           labels: S-waiting-on-deploy
+   | |_____________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/tag-merged-pr.yml:19:15
+   |
+19 |         - uses: actions-ecosystem/action-remove-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --remove-label` or `gh pr edit --remove-label` in a script step
+   |  _________|
+   | |
+20 | |         with:
+21 | |           labels: |
+22 | |             S-waiting-on-async
+...  |
+25 | |             S-waiting-on-decision
+26 | |             S-waiting-on-review
+   | |________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+error[excessive-permissions]: overly broad permissions
+ --> .github/workflows/tag-new-pr.yml:9:3
+  |
+9 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[dangerous-triggers]: use of fundamentally insecure workflow trigger
+ --> .github/workflows/tag-new-pr.yml:2:3
+  |
+2 |   pull_request_target:
+  |   ^^^^^^^^^^^^^^^^^^^ pull_request_target is almost always used insecurely
+  |
+  = note: audit confidence → Medium
+  = help: audit documentation → https://docs.zizmor.sh/audits/#dangerous-triggers
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/tag-new-pr.yml:15:15
+   |
+15 |       - uses: actions-ecosystem/action-add-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/tag-new-pr.yml:18:15
+   |
+18 |       - uses: actions-ecosystem/action-remove-labels@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+ --> .github/workflows/tag-new-pr.yml:9:3
+  |
+9 |   pull-requests: write
+  |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/tag-new-pr.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_target:
+ 3 | |     branches:
+ 4 | |       - main
+...  |
+19 | |         with:
+20 | |           labels: S-waiting-on-author
+   | |______________________________________^ this workflow
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this workflow a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/tag-new-pr.yml:12:3
+   |
+12 |   update-labels:
+   |   ^^^^^^^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/tag-new-pr.yml:1:1
+   |
+ 1 | / on:
+ 2 | |   pull_request_target:
+ 3 | |     branches:
+ 4 | |       - main
+ 5 | |     types: [opened, reopened, review_requested]
+   | |_______________________________________________^ workflow is missing concurrency setting
+...
+12 |     update-labels:
+   |     ------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/tag-new-pr.yml:15:15
+   |
+15 |         - uses: actions-ecosystem/action-add-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --add-label` or `gh pr edit --add-label` in a script step
+   |  _________|
+   | |
+16 | |         with:
+17 | |           labels: S-waiting-on-review
+   | |_____________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/tag-new-pr.yml:18:15
+   |
+18 |         - uses: actions-ecosystem/action-remove-labels@v1
+   |           -     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh issue edit --remove-label` or `gh pr edit --remove-label` in a script step
+   |  _________|
+   | |
+19 | |         with:
+20 | |           labels: S-waiting-on-author
+   | |______________________________________- this step
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+error[unpinned-uses]: unpinned action reference
+  --> github-actions/build/action.yml:84:13
+   |
+84 |       uses: Swatinem/rust-cache@v2
+   |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> github-actions/build/action.yml:93:13
+   |
+93 |       uses: actions/cache/restore@v6
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> github-actions/build/action.yml:154:13
+    |
+154 |       uses: actions/cache/save@v6
+    |             ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+122 findings: 17 informational, 36 low, 14 medium, 55 high

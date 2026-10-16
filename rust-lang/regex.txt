@@ -1,0 +1,591 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:57:7
+   |
+57 |       - name: Checkout repository
+   |  _______^
+58 | |       uses: actions/checkout@v5
+   | |_______________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:109:7
+    |
+109 |       - name: Checkout repository
+    |  _______^
+110 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:144:7
+    |
+144 |       - name: Checkout repository
+    |  _______^
+145 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:164:7
+    |
+164 |       - name: Checkout repository
+    |  _______^
+165 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:183:7
+    |
+183 |       - name: Checkout repository
+    |  _______^
+184 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:196:7
+    |
+196 |       - name: Checkout repository
+    |  _______^
+197 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:209:7
+    |
+209 |       - name: Checkout repository
+    |  _______^
+210 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:222:7
+    |
+222 |       - name: Checkout repository
+    |  _______^
+223 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:237:7
+    |
+237 |       - name: Checkout repository
+    |  _______^
+238 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:254:7
+    |
+254 |       - name: Checkout repository
+    |  _______^
+255 | |       uses: actions/checkout@v5
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:123:53
+    |
+123 |       run: cross build --all --verbose --target ${{ matrix.target }}
+    |       --- this run block                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:125:65
+    |
+125 |       run: cross test --verbose --test integration --target ${{ matrix.target }}
+    |       --- this run block                                        ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:127:68
+    |
+127 |       run: cross test --verbose -p regex-syntax --lib --target ${{ matrix.target }}
+    |       --- this run block                                           ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:129:70
+    |
+129 |       run: cross test --verbose -p regex-automata --lib --target ${{ matrix.target }}
+    |       --- this run block                                             ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/ci.yml:131:66
+    |
+131 |       run: cross test --verbose -p regex-lite --lib --target ${{ matrix.target }}
+    |       --- this run block                                         ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:58:13
+   |
+58 |       uses: actions/checkout@v5
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:60:13
+   |
+60 |       uses: dtolnay/rust-toolchain@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:110:13
+    |
+110 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:145:13
+    |
+145 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:147:13
+    |
+147 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:165:13
+    |
+165 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:167:13
+    |
+167 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:184:13
+    |
+184 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:186:13
+    |
+186 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:197:13
+    |
+197 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:199:13
+    |
+199 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:210:13
+    |
+210 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:212:13
+    |
+212 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:223:13
+    |
+223 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:225:13
+    |
+225 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:238:13
+    |
+238 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:240:13
+    |
+240 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:255:13
+    |
+255 |       uses: actions/checkout@v5
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:257:13
+    |
+257 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:32:3
+   |
+32 |   test:
+   |   ^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:92:3
+   |
+92 |   cross:
+   |   ^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:141:3
+    |
+141 |   msrv:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:159:3
+    |
+159 |   docsrs:
+    |   ^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:180:3
+    |
+180 |   testfull-regex:
+    |   ^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:193:3
+    |
+193 |   testfull-regex-automata:
+    |   ^^^^^^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:206:3
+    |
+206 |   testfull-regex-syntax:
+    |   ^^^^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:219:3
+    |
+219 |   testfull-regex-capi:
+    |   ^^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:234:3
+    |
+234 |   miri-regex-automata:
+    |   ^^^^^^^^^^^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/ci.yml:251:3
+    |
+251 |   rustfmt:
+    |   ^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:2:1
+    |
+  2 | / on:
+  3 | |   pull_request:
+  4 | |   push:
+  5 | |     branches:
+...   |
+ 24 | | # Reference for available permissions that we can enable if needed:
+ 25 | | # https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token
+    | |____________________________________________________________________________________________________________________^ workflow is missing concurrency setting
+...
+ 32 |     test:
+    |     ---- job affected by missing workflow concurrency
+...
+ 92 |     cross:
+    |     ----- job affected by missing workflow concurrency
+...
+141 |     msrv:
+    |     ---- job affected by missing workflow concurrency
+...
+159 |     docsrs:
+    |     ------ job affected by missing workflow concurrency
+...
+180 |     testfull-regex:
+    |     -------------- job affected by missing workflow concurrency
+...
+193 |     testfull-regex-automata:
+    |     ----------------------- job affected by missing workflow concurrency
+...
+206 |     testfull-regex-syntax:
+    |     --------------------- job affected by missing workflow concurrency
+...
+219 |     testfull-regex-capi:
+    |     ------------------- job affected by missing workflow concurrency
+...
+234 |     miri-regex-automata:
+    |     ------------------- job affected by missing workflow concurrency
+...
+251 |     rustfmt:
+    |     ------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/ci.yml:60:13
+   |
+59 |     - name: Install Rust
+   |       ------------------ this step
+60 |       uses: dtolnay/rust-toolchain@master
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:147:13
+    |
+146 |     - name: Install Rust
+    |       ------------------ this step
+147 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:167:13
+    |
+166 |     - name: Install Rust
+    |       ------------------ this step
+167 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:186:13
+    |
+185 |     - name: Install Rust
+    |       ------------------ this step
+186 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:199:13
+    |
+198 |     - name: Install Rust
+    |       ------------------ this step
+199 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:212:13
+    |
+211 |     - name: Install Rust
+    |       ------------------ this step
+212 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:225:13
+    |
+224 |     - name: Install Rust
+    |       ------------------ this step
+225 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:240:13
+    |
+239 |     - name: Install Rust
+    |       ------------------ this step
+240 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+info[superfluous-actions]: action functionality is already included by the runner
+   --> .github/workflows/ci.yml:257:13
+    |
+256 |     - name: Install Rust
+    |       ------------------ this step
+257 |       uses: dtolnay/rust-toolchain@master
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+54 findings: 19 informational, 6 low, 10 medium, 19 high

@@ -1,0 +1,269 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yaml:13:9
+   |
+13 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yaml:26:9
+   |
+26 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yaml:39:9
+   |
+39 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/main.yaml:52:9
+   |
+52 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yaml:1:1
+   |
+ 1 | / name: CI
+ 2 | | on: [push, pull_request]
+ 3 | |
+ 4 | | env:
+...  |
+74 | |       - name: check if any dependency failed
+75 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   | |_____________________________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yaml:9:3
+   |
+ 9 | /   clippy:
+10 | |     name: clippy
+11 | |     runs-on: ubuntu-latest
+12 | |     steps:
+...  |
+19 | |           sudo apt-get install llvm-14-tools
+20 | |       - run: cargo clippy --manifest-path crates/Cargo.toml --all-features --all-targets -- -D warnings
+   | |                                                                                                       ^
+   | |                                                                                                       |
+   | |_______________________________________________________________________________________________________this job
+   |                                                                                                         default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yaml:22:3
+   |
+22 | /   test:
+23 | |     name: test
+24 | |     runs-on: ubuntu-latest
+25 | |     steps:
+...  |
+32 | |           sudo apt-get install llvm-14-tools
+33 | |       - run: ./y test
+   | |                     ^
+   | |                     |
+   | |_____________________this job
+   |                       default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yaml:35:3
+   |
+35 | /   rustfmt:
+36 | |     name: rustfmt
+37 | |     runs-on: ubuntu-latest
+38 | |     steps:
+...  |
+45 | |           sudo apt-get install llvm-14-tools
+46 | |       - run: ./y fmt --check
+   | |                            ^
+   | |                            |
+   | |____________________________this job
+   |                              default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yaml:48:3
+   |
+48 | /   doc:
+49 | |     name: docs
+50 | |     runs-on: ubuntu-latest
+51 | |     steps:
+...  |
+58 | |           sudo apt-get install llvm-14-tools
+59 | |       - run: cargo doc --manifest-path crates/Cargo.toml
+   | |                                                        ^
+   | |                                                        |
+   | |________________________________________________________this job
+   |                                                          default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/main.yaml:61:3
+   |
+61 | /   success:
+62 | |     needs:
+63 | |       - clippy
+64 | |       - test
+...  |
+74 | |       - name: check if any dependency failed
+75 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   | |                                                                                     ^
+   | |                                                                                     |
+   | |_____________________________________________________________________________________this job
+   |                                                                                       default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+info[template-injection]: code injection via template expansion
+  --> .github/workflows/main.yaml:75:75
+   |
+75 |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+   |         --- this run block                                                ^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:13:15
+   |
+13 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:16:15
+   |
+16 |       - uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:26:15
+   |
+26 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:29:15
+   |
+29 |       - uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:39:15
+   |
+39 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:42:15
+   |
+42 |       - uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:52:15
+   |
+52 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/main.yaml:55:15
+   |
+55 |       - uses: Swatinem/rust-cache@v2
+   |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/main.yaml:61:3
+   |
+61 |   success:
+   |   ^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/main.yaml:2:1
+   |
+ 2 | on: [push, pull_request]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
+...
+10 |     name: clippy
+   |     ------------ job affected by missing workflow concurrency
+...
+23 |     name: test
+   |     ---------- job affected by missing workflow concurrency
+...
+36 |     name: rustfmt
+   |     ------------- job affected by missing workflow concurrency
+...
+49 |     name: docs
+   |     ---------- job affected by missing workflow concurrency
+...
+61 |   success:
+   |   ------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+21 findings: 2 informational, 1 low, 10 medium, 8 high

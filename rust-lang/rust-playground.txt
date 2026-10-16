@@ -1,0 +1,660 @@
+error[unpinned-uses]: unpinned action reference
+  --> .github/actions/build-and-push-image/action.yml:27:13
+   |
+27 |     - uses: docker/build-push-action@v7
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:29:7
+   |
+29 |       - name: Checkout code
+   |  _______^
+30 | |       uses: actions/checkout@v7
+   | |_______________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:42:7
+   |
+42 |       - name: Checkout code
+   |  _______^
+43 | |       uses: actions/checkout@v7
+   | |_______________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:76:7
+   |
+76 |       - name: Checkout code
+   |  _______^
+77 | |       uses: actions/checkout@v7
+   | |_______________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:128:7
+    |
+128 |       - name: Checkout code
+    |  _______^
+129 | |       uses: actions/checkout@v7
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:261:7
+    |
+261 |       - name: Checkout code
+    |  _______^
+262 | |       uses: actions/checkout@v7
+    | |_______________________________^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:3:1
+    |
+  3 | / name: Validate everything
+  4 | | 'on':
+  5 | |   push:
+  6 | |     branches:
+...   |
+282 | |           ${{ env.GHCR_IMAGE_NAME }}
+283 | |           ${{ env.DOCKER_HUB_IMAGE_NAME }}
+    | |___________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:16:3
+   |
+16 | /   build_compiler_images:
+17 | |     name: Build provisional ${{ matrix.channel }} image
+18 | |     runs-on: ubuntu-latest
+19 | |     strategy:
+...  |
+36 | |         channel: "${{ matrix.channel }}"
+37 | |         tags: "${{ env.GHCR_IMAGE_NAME }}:${{ github.run_id }}"
+   | |                                                               ^
+   | |                                                               |
+   | |_______________________________________________________________this job
+   |                                                                 default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:38:3
+   |
+38 | /   build_backend:
+39 | |     name: Build backend
+40 | |     runs-on: ubuntu-latest
+41 | |     steps:
+...  |
+70 | |           docker-output/unit_tests_ui
+71 | |           docker-output/unit_tests_orchestrator
+   | |                                               ^
+   | |                                               |
+   | |_______________________________________________this job
+   |                                                 default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:72:3
+    |
+ 72 | /   build_frontend:
+ 73 | |     name: Build frontend
+ 74 | |     runs-on: ubuntu-latest
+ 75 | |     steps:
+...   |
+115 | |         name: frontend
+116 | |         path: ui/frontend/build
+    | |                               ^
+    | |                               |
+    | |_______________________________this job
+    |                                 default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:117:3
+    |
+117 | /   run_integration_tests:
+118 | |     name: Running integration tests
+119 | |     runs-on: ubuntu-latest
+120 | |     needs:
+...   |
+203 | |         name: test-failures
+204 | |         path: tests/test-failures
+    | |                                 ^
+    | |                                 |
+    | |_________________________________this job
+    |                                   default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:245:3
+    |
+245 | /   release_docker_artifacts:
+246 | |     name: Release ${{ matrix.channel }} image
+247 | |     runs-on: ubuntu-latest
+248 | |     strategy:
+...   |
+282 | |           ${{ env.GHCR_IMAGE_NAME }}
+283 | |           ${{ env.DOCKER_HUB_IMAGE_NAME }}
+    | |                                           ^
+    | |                                           |
+    | |___________________________________________this job
+    |                                             default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:30:13
+   |
+30 |       uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:32:13
+   |
+32 |       uses: docker/setup-buildx-action@v4
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:43:13
+   |
+43 |       uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:45:13
+   |
+45 |       uses: dtolnay/rust-toolchain@stable
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:55:13
+   |
+55 |       uses: actions/cache@v5
+   |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:65:13
+   |
+65 |       uses: actions/upload-artifact@v6
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:77:13
+   |
+77 |       uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:79:13
+   |
+79 |       uses: actions/setup-node@v6
+   |             ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:88:13
+   |
+88 |       uses: pnpm/action-setup@v6
+   |             ^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:97:13
+   |
+97 |       uses: actions/cache@v5
+   |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:113:13
+    |
+113 |       uses: actions/upload-artifact@v6
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:129:13
+    |
+129 |       uses: actions/checkout@v7
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:131:13
+    |
+131 |       uses: docker/setup-buildx-action@v4
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:135:13
+    |
+135 |       uses: ruby/setup-ruby@v1
+    |             ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:140:13
+    |
+140 |       uses: actions/cache@v5
+    |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:168:13
+    |
+168 |       uses: actions/download-artifact@v7
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:173:13
+    |
+173 |       uses: actions/download-artifact@v7
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:201:13
+    |
+201 |       uses: actions/upload-artifact@v6
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:216:13
+    |
+216 |       uses: actions/download-artifact@v7
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:221:13
+    |
+221 |       uses: actions/download-artifact@v7
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:226:13
+    |
+226 |       uses: aws-actions/configure-aws-credentials@v6
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:236:13
+    |
+236 |       uses: aws-actions/configure-aws-credentials@v6
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:262:13
+    |
+262 |       uses: actions/checkout@v7
+    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:264:13
+    |
+264 |       uses: docker/setup-buildx-action@v4
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:266:13
+    |
+266 |       uses: docker/login-action@v3
+    |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:272:13
+    |
+272 |       uses: docker/login-action@v3
+    |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/ci.yml:213:7
+    |
+213 |       id-token: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+   --> .github/workflows/ci.yml:4:1
+    |
+  4 | / 'on':
+  5 | |   push:
+  6 | |     branches:
+  7 | |     - main
+  8 | |   pull_request:
+  9 | |     branches:
+ 10 | |     - main
+    | |__________^ workflow is missing concurrency setting
+...
+ 17 |       name: Build provisional ${{ matrix.channel }} image
+    |       --------------------------------------------------- job affected by missing workflow concurrency
+...
+ 39 |       name: Build backend
+    |       ------------------- job affected by missing workflow concurrency
+...
+ 73 |       name: Build frontend
+    |       -------------------- job affected by missing workflow concurrency
+...
+118 |       name: Running integration tests
+    |       ------------------------------- job affected by missing workflow concurrency
+...
+206 |       name: Release artifacts
+    |       ----------------------- job affected by missing workflow concurrency
+...
+246 |       name: Release ${{ matrix.channel }} image
+    |       ----------------------------------------- job affected by missing workflow concurrency
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/ci.yml:45:13
+   |
+44 |     - name: Install Rust
+   |       ------------------ this step
+45 |       uses: dtolnay/rust-toolchain@stable
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `rustup` and/or `cargo` in a script step
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/ci.yml:34:14
+   |
+33 |     - name: Build provisional ${{ matrix.channel }} image
+   |       --------------------------------------------------- this step
+34 |       uses: "./.github/actions/build-and-push-image"
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/ci.yml:150:14
+    |
+149 |     - name: Build provisional stable image
+    |       ------------------------------------ this step
+150 |       uses: "./.github/actions/build-and-push-image"
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/ci.yml:156:14
+    |
+155 |     - name: Build provisional beta image
+    |       ---------------------------------- this step
+156 |       uses: "./.github/actions/build-and-push-image"
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/ci.yml:162:14
+    |
+161 |     - name: Build provisional nightly image
+    |       ------------------------------------- this step
+162 |       uses: "./.github/actions/build-and-push-image"
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/ci.yml:277:14
+    |
+276 |     - name: Release ${{ matrix.channel }} image
+    |       ----------------------------------------- this step
+277 |       uses: "./.github/actions/build-and-push-image"
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/cron.yml:27:7
+   |
+27 |       - name: Checkout code
+   |  _______^
+28 | |       uses: actions/checkout@v7
+   | |_______________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/cron.yml:3:1
+   |
+ 3 | / name: Scheduled rebuild
+ 4 | | 'on':
+ 5 | |   workflow_dispatch:
+ 6 | |   schedule:
+...  |
+48 | |           ${{ env.GHCR_IMAGE_NAME }}
+49 | |           ${{ env.DOCKER_HUB_IMAGE_NAME }}
+   | |___________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/cron.yml:13:3
+   |
+13 | /   build_compiler_images:
+14 | |     name: Release ${{ matrix.channel }} image
+15 | |     runs-on: ubuntu-latest
+16 | |     strategy:
+...  |
+48 | |           ${{ env.GHCR_IMAGE_NAME }}
+49 | |           ${{ env.DOCKER_HUB_IMAGE_NAME }}
+   | |                                           ^
+   | |                                           |
+   | |___________________________________________this job
+   |                                             default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/cron.yml:28:13
+   |
+28 |       uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/cron.yml:30:13
+   |
+30 |       uses: docker/setup-buildx-action@v4
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/cron.yml:32:13
+   |
+32 |       uses: docker/login-action@v3
+   |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/cron.yml:38:13
+   |
+38 |       uses: docker/login-action@v3
+   |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/cron.yml:4:1
+   |
+ 4 | / 'on':
+ 5 | |   workflow_dispatch:
+ 6 | |   schedule:
+ 7 | |   - cron: 7 2 * * *
+   | |___________________^ workflow is missing concurrency setting
+...
+14 |       name: Release ${{ matrix.channel }} image
+   |       ----------------------------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+  --> .github/workflows/cron.yml:43:14
+   |
+42 |     - name: Release ${{ matrix.channel }} image
+   |       ----------------------------------------- this step
+43 |       uses: "./.github/actions/build-and-push-image"
+   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+61 findings (6 suppressed): 1 informational, 15 low, 8 medium, 31 high

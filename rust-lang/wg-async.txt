@@ -1,0 +1,103 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:14:9
+   |
+14 |       - uses: actions/checkout@v4
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:1:1
+   |
+ 1 | / name: CI
+ 2 | |
+ 3 | | on:
+ 4 | |   pull_request:
+...  |
+47 | |         uses: actions/deploy-pages@v4
+48 | |         id: deployment
+   | |_______________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:10:3
+   |
+10 | /   test:
+11 | |     name: build and test
+12 | |     runs-on: ubuntu-latest
+13 | |     steps:
+...  |
+33 | |   # Deploy is run as a separate job as it needs elevated permissions
+   | |                                                                    ^
+   | |                                                                    |
+   | |____________________________________________________________________this job
+   |                                                                      default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:14:15
+   |
+14 |       - uses: actions/checkout@v4
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:28:15
+   |
+28 |         uses: actions/upload-pages-artifact@v3
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:47:15
+   |
+47 |         uses: actions/deploy-pages@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/ci.yml:40:7
+   |
+40 |       pages: write
+   |       ^^^^^^^^^^^^ needs an explanatory comment
+41 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   pull_request:
+ 5 | |   push:
+ 6 | |     branches:
+ 7 | |       - master
+   | |______________^ workflow is missing concurrency setting
+...
+11 |       name: build and test
+   |       -------------------- job affected by missing workflow concurrency
+...
+35 |       name: deploy
+   |       ------------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+8 findings: 0 informational, 2 low, 3 medium, 3 high

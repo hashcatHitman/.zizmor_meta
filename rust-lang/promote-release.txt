@@ -1,0 +1,246 @@
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:14:9
+   |
+14 |         - name: Clone the source code
+   |  _________^
+15 | |         uses: actions/checkout@v3
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:41:9
+   |
+41 |         - name: Clone the source code
+   |  _________^
+42 | |         uses: actions/checkout@v3
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/ci.yml:69:9
+   |
+69 |         - name: Clone the source code
+   |  _________^
+70 | |         uses: actions/checkout@v3
+   | |_________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+   --> .github/workflows/ci.yml:2:1
+    |
+  2 | / name: CI
+  3 | | on:
+  4 | |   push:
+  5 | |     branches:
+...   |
+123 | |           docker tag promote-release $REGISTRY/$REPOSITORY:latest
+124 | |           docker push $REGISTRY/$REPOSITORY:latest
+    | |___________________________________________________^ default permissions used due to no permissions: block
+    |
+    = note: audit confidence → Medium
+    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:10:3
+   |
+10 | /   test:
+11 | |     name: Test
+12 | |     runs-on: ubuntu-latest
+13 | |     steps:
+...  |
+28 | |         env:
+29 | |           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   | |                                                   ^
+   | |                                                   |
+   | |___________________________________________________this job
+   |                                                     default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:31:3
+   |
+31 | /   local:
+32 | |     name: Local release
+33 | |     runs-on: ubuntu-latest
+...  |
+61 | |         env:
+62 | |           RUSTUP_DIST_SERVER: http://localhost:9000/static
+   | |                                                          ^
+   | |                                                          |
+   | |__________________________________________________________this job
+   |                                                            default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:64:3
+   |
+64 | /   docker:
+65 | |     name: Build Docker image
+66 | |     runs-on: ubuntu-latest
+...  |
+84 | |           retention-days: 1
+85 | |         if: github.event_name == 'push' && github.repository == 'rust-lang/promote-release' && github.ref == 'refs/heads/master'
+   | |                                                                                                                                ^
+   | |                                                                                                                                |
+   | |________________________________________________________________________________________________________________________________this job
+   |                                                                                                                                  default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:51:27
+   |
+51 |         run: ./run.sh ${{ matrix.channel }}
+   |         ---               ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |         |
+   |         this run block
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:54:77
+   |
+54 |         run: docker compose exec -T local /src/local/check-signature.sh ${{ matrix.channel }}
+   |         --- this run block                                                  ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:57:42
+   |
+57 |         run: rustup toolchain remove ${{ matrix.channel }}
+   |         --- this run block               ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/ci.yml:60:43
+   |
+60 |         run: rustup toolchain install ${{ matrix.channel }} --profile=minimal
+   |         --- this run block                ^^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:15:15
+   |
+15 |         uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:42:15
+   |
+42 |         uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:70:15
+   |
+70 |         uses: actions/checkout@v3
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:80:15
+   |
+80 |         uses: actions/upload-artifact@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:98:15
+   |
+98 |         uses: actions/download-artifact@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:107:15
+    |
+107 |         uses: aws-actions/configure-aws-credentials@v2
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:115:15
+    |
+115 |         uses: aws-actions/amazon-ecr-login@v1
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/ci.yml:91:7
+   |
+91 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/ci.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   push:
+ 5 | |     branches:
+ 6 | |       - master
+ 7 | |   pull_request: {}
+   | |__________________^ workflow is missing concurrency setting
+...
+11 |       name: Test
+   |       ---------- job affected by missing workflow concurrency
+...
+32 |       name: Local release
+   |       ------------------- job affected by missing workflow concurrency
+...
+65 |       name: Build Docker image
+   |       ------------------------ job affected by missing workflow concurrency
+...
+88 |       name: Deploy
+   |       ------------ job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+20 findings: 0 informational, 6 low, 7 medium, 7 high
