@@ -4,89 +4,89 @@
 
 rules:
   adhoc-packages:
-    disable: true
+    disable: false
   anonymous-definition:
-    disable: true
+    disable: false
   archived-uses:
-    disable: true
+    disable: false
   artipacked:
-    disable: true
+    disable: false
   bot-conditions:
-    disable: true
+    disable: false
   cache-poisoning:
-    disable: true
+    disable: false
   concurrency-limits:
-    disable: true
+    disable: false
   dangerous-triggers:
-    disable: true
+    disable: false
   dependabot-cooldown:
-    disable: true
+    disable: false
     config:
       days: 14
   dependabot-execution:
-    disable: true
+    disable: false
   excessive-permissions:
-    disable: true
+    disable: false
   forbidden-uses:
-    disable: true
+    disable: false
   github-app:
-    disable: true
+    disable: false
   github-env:
-    disable: true
+    disable: false
   hardcoded-container-credentials:
-    disable: true
+    disable: false
   impostor-commit:
-    disable: true
+    disable: false
   insecure-commands:
-    disable: true
+    disable: false
   insecure-url-scheme:
-    disable: true
+    disable: false
   known-vulnerable-actions:
-    disable: true
+    disable: false
   misfeature:
-    disable: true
+    disable: false
   obfuscation:
-    disable: true
+    disable: false
   overprovisioned-secrets:
-    disable: true
+    disable: false
   ref-confusion:
-    disable: true
+    disable: false
   ref-version-mismatch:
     disable: false
   secrets-inherit:
-    disable: true
+    disable: false
   secrets-outside-env:
-    disable: true
+    disable: false
   self-hosted-runner:
-    disable: true
+    disable: false
   self-repository:
-    disable: true
+    disable: false
   stale-action-refs:
-    disable: true
+    disable: false
   superfluous-actions:
-    disable: true
+    disable: false
   template-injection:
-    disable: true
+    disable: false
   typosquat-uses:
-    disable: true
+    disable: false
   undocumented-permissions:
-    disable: true
+    disable: false
   unpinned-images:
-    disable: true
+    disable: false
   unpinned-tools:
-    disable: true
+    disable: false
   unpinned-uses:
     disable: false
     config:
       policies:
         "*": hash-pin
   unredacted-secrets:
-    disable: true
+    disable: false
   unsound-condition:
-    disable: true
+    disable: false
   unsound-contains:
-    disable: true
+    disable: false
   unsound-ternary:
-    disable: true
+    disable: false
   use-trusted-publishing:
-    disable: true
+    disable: false
