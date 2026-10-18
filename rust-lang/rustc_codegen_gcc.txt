@@ -1,17 +1,17 @@
 error[unpinned-uses]: unpinned action reference
   --> .github/actions/rustup-cg-gcc/action.yml:33:13
    |
-33 |     - uses: actions/checkout@v4
+33 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/ci.yml:59:7
    |
-59 |       - uses: actions/checkout@v4
+59 |       - uses: actions/checkout@v7
    |  _______^
 60 | |
 61 | |     # `rustup show` installs from rust-toolchain.toml
@@ -21,20 +21,20 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:191:9
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:185:9
     |
-191 |       - uses: actions/checkout@v4
+185 |       - uses: actions/checkout@v7
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:197:9
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/ci.yml:191:9
     |
-197 |       - uses: actions/checkout@v4
+191 |       - uses: actions/checkout@v7
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -42,87 +42,87 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/ci.yml:92:83
+  --> .github/workflows/ci.yml:84:83
    |
-92 |       run: curl -LO https://github.com/rust-lang/gcc/releases/latest/download/${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset...
+84 |       run: curl -LO https://github.com/rust-lang/gcc/releases/latest/download/${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset...
    |       --- this run block                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/ci.yml:92:118
+  --> .github/workflows/ci.yml:84:118
    |
-92 |       run: curl -LO https://github.com/rust-lang/gcc/releases/latest/download/${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset_name_suffix }}...
+84 |       run: curl -LO https://github.com/rust-lang/gcc/releases/latest/download/${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset_name_suffix }}...
    |       --- this run block                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/ci.yml:96:46
+  --> .github/workflows/ci.yml:88:46
    |
-95 |       run: |
+87 |       run: |
    |       --- this run block
-96 |           sudo dpkg --force-overwrite -i ${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset_name_suffix }}.deb
+88 |           sudo dpkg --force-overwrite -i ${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset_name_suffix }}.deb
    |                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/ci.yml:96:81
+  --> .github/workflows/ci.yml:88:81
    |
-95 |       run: |
+87 |       run: |
    |       --- this run block
-96 |           sudo dpkg --force-overwrite -i ${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset_name_suffix }}.deb
+88 |           sudo dpkg --force-overwrite -i ${{ matrix.libgccjit_version.gcc }}${{ matrix.os.asset_name_suffix }}.deb
    |                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:160:19
+   --> .github/workflows/ci.yml:154:19
     |
-155 |       run: |
+149 |       run: |
     |       --- this run block
 ...
-160 |         if [ "${{ matrix.libgccjit_version.gcc }}" != "gcc-15-without-int128" ]; then
+154 |         if [ "${{ matrix.libgccjit_version.gcc }}" != "gcc-15-without-int128" ]; then
     |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:186:79
+   --> .github/workflows/ci.yml:180:79
     |
-185 |       run: |
+179 |       run: |
     |       --- this run block
-186 |         ./y.sh test --release --clean --build-sysroot --no-builtins-tests ${{ matrix.commands }}
+180 |         ./y.sh test --release --clean --build-sysroot --no-builtins-tests ${{ matrix.commands }}
     |                                                                               ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:218:33
+   --> .github/workflows/ci.yml:212:33
     |
-216 |         run: |
+210 |         run: |
     |         --- this run block
-217 |           # Print the dependent jobs to see them in the CI log
-218 |           jq -C <<< '${{ toJson(needs) }}'
+211 |           # Print the dependent jobs to see them in the CI log
+212 |           jq -C <<< '${{ toJson(needs) }}'
     |                                 ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:220:72
+   --> .github/workflows/ci.yml:214:72
     |
-216 |         run: |
+210 |         run: |
     |         --- this run block
 ...
-220 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+214 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |                                                                        ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -131,7 +131,7 @@ info[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/ci.yml:59:13
    |
-59 |     - uses: actions/checkout@v4
+59 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -149,9 +149,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:191:15
+   --> .github/workflows/ci.yml:185:15
     |
-191 |       - uses: actions/checkout@v4
+185 |       - uses: actions/checkout@v7
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -159,9 +159,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:197:15
+   --> .github/workflows/ci.yml:191:15
     |
-197 |       - uses: actions/checkout@v4
+191 |       - uses: actions/checkout@v7
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -179,9 +179,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:188:3
+   --> .github/workflows/ci.yml:182:3
     |
-188 |   duplicates:
+182 |   duplicates:
     |   ^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -189,9 +189,9 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:194:3
+   --> .github/workflows/ci.yml:188:3
     |
-194 |   build_system:
+188 |   build_system:
     |   ^^^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -199,9 +199,9 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:205:3
+   --> .github/workflows/ci.yml:199:3
     |
-205 |   success:
+199 |   success:
     |   ^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -221,13 +221,13 @@ help[concurrency-limits]: insufficient job-level concurrency limits
  19 |     build:
     |     ----- job affected by missing workflow concurrency
 ...
-188 |     duplicates:
+182 |     duplicates:
     |     ---------- job affected by missing workflow concurrency
 ...
-194 |     build_system:
+188 |     build_system:
     |     ------------ job affected by missing workflow concurrency
 ...
-205 |     success:
+199 |     success:
     |     ------- job affected by missing workflow concurrency
     |
     = note: audit confidence → High
@@ -245,23 +245,10 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-help[self-repository]: use GitHub's dedicated self-repository syntax
-  --> .github/workflows/ci.yml:84:13
-   |
-80 |     - name: Install more recent binutils
-   |       ---------------------------------- this step
-...
-84 |       uses: ./.github/actions/recent-binutils
-   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/failures.yml:39:7
    |
-39 |       - uses: actions/checkout@v4
+39 |       - uses: actions/checkout@v7
    |  _______^
 40 | |
 41 | |     # `rustup show` installs from rust-toolchain.toml
@@ -346,7 +333,7 @@ info[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/failures.yml:39:13
    |
-39 |     - uses: actions/checkout@v4
+39 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -414,10 +401,10 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/gcc12.yml:40:7
    |
-40 |       - uses: actions/checkout@v4
+40 |       - uses: actions/checkout@v7
    |  _______^
 41 | |
 42 | |     # `rustup show` installs from rust-toolchain.toml
@@ -454,7 +441,7 @@ info[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/gcc12.yml:40:13
    |
-40 |     - uses: actions/checkout@v4
+40 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -522,10 +509,10 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/m68k.yml:37:7
    |
-37 |       - uses: actions/checkout@v4
+37 |       - uses: actions/checkout@v7
    |  _______^
 38 | |
 39 | |     # `rustup show` installs from rust-toolchain.toml
@@ -597,7 +584,7 @@ info[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/m68k.yml:37:13
    |
-37 |     - uses: actions/checkout@v4
+37 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -665,10 +652,10 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/release.yml:33:7
    |
-33 |       - uses: actions/checkout@v4
+33 |       - uses: actions/checkout@v7
    |  _______^
 34 | |
 35 | |     # `rustup show` installs from rust-toolchain.toml
@@ -679,36 +666,36 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/release.yml:87:129
+  --> .github/workflows/release.yml:89:129
    |
-85 |       run: |
+87 |       run: |
    |       --- this run block
-86 |         # FIXME(antoyo): we cannot enable LTO for stdarch tests currently because of some failing LTO tests using proc-macros.
-87 |         CG_RUSTFLAGS="-Cembed-bitcode=yes" ./y.sh test --release --clean --release-sysroot --build-sysroot --keep-lto-tests ${{ matrix.commands }}
+88 |         # FIXME(antoyo): we cannot enable LTO for stdarch tests currently because of some failing LTO tests using proc-macros.
+89 |         CG_RUSTFLAGS="-Cembed-bitcode=yes" ./y.sh test --release --clean --release-sysroot --build-sysroot --keep-lto-tests ${{ matrix.commands }}
    |                                                                                                                                 ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yml:129:33
+   --> .github/workflows/release.yml:131:33
     |
-127 |         run: |
+129 |         run: |
     |         --- this run block
-128 |           # Print the dependent jobs to see them in the CI log
-129 |           jq -C <<< '${{ toJson(needs) }}'
+130 |           # Print the dependent jobs to see them in the CI log
+131 |           jq -C <<< '${{ toJson(needs) }}'
     |                                 ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yml:131:72
+   --> .github/workflows/release.yml:133:72
     |
-127 |         run: |
+129 |         run: |
     |         --- this run block
 ...
-131 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+133 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |                                                                        ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -717,7 +704,7 @@ info[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/release.yml:33:13
    |
-33 |     - uses: actions/checkout@v4
+33 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -745,9 +732,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/release.yml:116:3
+   --> .github/workflows/release.yml:118:3
     |
-116 |   success_release:
+118 |   success_release:
     |   ^^^^^^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -767,7 +754,7 @@ help[concurrency-limits]: insufficient job-level concurrency limits
  19 |     build:
     |     ----- job affected by missing workflow concurrency
 ...
-116 |     success_release:
+118 |     success_release:
     |     --------------- job affected by missing workflow concurrency
     |
     = note: audit confidence → High
@@ -785,10 +772,10 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/rustup.yml:52:7
    |
-52 |       - uses: actions/checkout@v4
+52 |       - uses: actions/checkout@v7
    |  _______^
 53 | |       with:
 54 | |         sparse-checkout: .github
@@ -799,28 +786,28 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/rustup.yml:142:7
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/rustup.yml:137:7
     |
-142 |       - uses: actions/checkout@v4
+137 |       - uses: actions/checkout@v7
     |  _______^
-143 | |       with:
-144 | |         sparse-checkout: .github
-145 | |         sparse-checkout-cone-mode: false
+138 | |       with:
+139 | |         sparse-checkout: .github
+140 | |         sparse-checkout-cone-mode: false
     | |________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/rustup.yml:233:7
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/rustup.yml:223:7
     |
-233 |       - uses: actions/checkout@v4
+223 |       - uses: actions/checkout@v7
     |  _______^
-234 | |       with:
-235 | |         sparse-checkout: .github
-236 | |         sparse-checkout-cone-mode: false
+224 | |       with:
+225 | |         sparse-checkout: .github
+226 | |         sparse-checkout-cone-mode: false
     | |________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -828,23 +815,23 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/rustup.yml:123:79
+   --> .github/workflows/rustup.yml:118:79
     |
-122 |       run: |
+117 |       run: |
     |       --- this run block
-123 |         ./y.sh test --release --clean --build-sysroot --no-builtins-tests ${{ matrix.commands }}
+118 |         ./y.sh test --release --clean --build-sysroot --no-builtins-tests ${{ matrix.commands }}
     |                                                                               ^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/rustup.yml:225:164
+   --> .github/workflows/rustup.yml:215:164
     |
-221 |       run: |
+211 |       run: |
     |       --- this run block
 ...
-225 |         STDARCH_TEST_SKIP_FUNCTION="xsave,xsaveopt,xsave64,xsaveopt64" STDARCH_TEST_EVERYTHING=1 CHANNEL=release CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER="${{ matrix.cargo_runner }}...
+215 |         STDARCH_TEST_SKIP_FUNCTION="xsave,xsaveopt,xsave64,xsaveopt64" STDARCH_TEST_EVERYTHING=1 CHANNEL=release CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER="${{ matrix.cargo_runner }}...
     |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
@@ -853,7 +840,7 @@ help[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/rustup.yml:52:13
    |
-52 |     - uses: actions/checkout@v4
+52 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -861,9 +848,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/rustup.yml:142:13
+   --> .github/workflows/rustup.yml:137:13
     |
-142 |     - uses: actions/checkout@v4
+137 |     - uses: actions/checkout@v7
     |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -871,9 +858,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/rustup.yml:233:13
+   --> .github/workflows/rustup.yml:223:13
     |
-233 |     - uses: actions/checkout@v4
+223 |     - uses: actions/checkout@v7
     |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -891,9 +878,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/rustup.yml:128:3
+   --> .github/workflows/rustup.yml:123:3
     |
-128 |   stdarch:
+123 |   stdarch:
     |   ^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -901,9 +888,9 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/rustup.yml:227:3
+   --> .github/workflows/rustup.yml:217:3
     |
-227 |   failures:
+217 |   failures:
     |   ^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -922,10 +909,10 @@ help[concurrency-limits]: insufficient job-level concurrency limits
  25 |     build:
     |     ----- job affected by missing workflow concurrency
 ...
-128 |     stdarch:
+123 |     stdarch:
     |     ------- job affected by missing workflow concurrency
 ...
-227 |     failures:
+217 |     failures:
     |     -------- job affected by missing workflow concurrency
     |
     = note: audit confidence → High
@@ -956,24 +943,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-  --> .github/workflows/rustup.yml:77:13
-   |
-74 |     - name: Install more recent binutils
-   |       ---------------------------------- this step
-...
-77 |       uses: ./.github/actions/recent-binutils
-   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
-
-help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:111:13
+   --> .github/workflows/rustup.yml:106:13
     |
-110 |     - name: Remove rustc-dev
+105 |     - name: Remove rustc-dev
     |       ---------------------- this step
-111 |       uses: ./.github/actions/remove-rustc-dev
+106 |       uses: ./.github/actions/remove-rustc-dev
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -981,11 +955,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:148:13
+   --> .github/workflows/rustup.yml:143:13
     |
-147 |     - name: Use the cg_gcc distributed by rustup
+142 |     - name: Use the cg_gcc distributed by rustup
     |       ------------------------------------------ this step
-148 |       uses: ./.github/actions/rustup-cg-gcc
+143 |       uses: ./.github/actions/rustup-cg-gcc
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -993,11 +967,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:157:13
+   --> .github/workflows/rustup.yml:152:13
     |
-156 |     - name: Add apt mirrors
+151 |     - name: Add apt mirrors
     |       --------------------- this step
-157 |       uses: ./.github/actions/apt-mirrors
+152 |       uses: ./.github/actions/apt-mirrors
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -1005,24 +979,35 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:168:13
+   --> .github/workflows/rustup.yml:198:13
     |
-165 |     - name: Install more recent binutils
-    |       ---------------------------------- this step
-...
-168 |       uses: ./.github/actions/recent-binutils
-    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+197 |     - name: Remove rustc-dev
+    |       ---------------------- this step
+198 |       uses: ./.github/actions/remove-rustc-dev
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:208:13
+   --> .github/workflows/rustup.yml:229:13
     |
-207 |     - name: Remove rustc-dev
+228 |     - name: Use the cg_gcc distributed by rustup
+    |       ------------------------------------------ this step
+229 |       uses: ./.github/actions/rustup-cg-gcc
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/rustup.yml:234:13
+    |
+233 |     - name: Remove rustc-dev
     |       ---------------------- this step
-208 |       uses: ./.github/actions/remove-rustc-dev
+234 |       uses: ./.github/actions/remove-rustc-dev
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -1032,56 +1017,19 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
 help[self-repository]: use GitHub's dedicated self-repository syntax
    --> .github/workflows/rustup.yml:239:13
     |
-238 |     - name: Use the cg_gcc distributed by rustup
-    |       ------------------------------------------ this step
-239 |       uses: ./.github/actions/rustup-cg-gcc
-    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
-
-help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:244:13
-    |
-243 |     - name: Remove rustc-dev
-    |       ---------------------- this step
-244 |       uses: ./.github/actions/remove-rustc-dev
-    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
-
-help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:249:13
-    |
-248 |     - name: Add apt mirrors
+238 |     - name: Add apt mirrors
     |       --------------------- this step
-249 |       uses: ./.github/actions/apt-mirrors
+239 |       uses: ./.github/actions/apt-mirrors
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/rustup.yml:260:13
-    |
-257 |     - name: Install more recent binutils
-    |       ---------------------------------- this step
-...
-260 |       uses: ./.github/actions/recent-binutils
-    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/stdarch.yml:31:7
    |
-31 |       - uses: actions/checkout@v4
+31 |       - uses: actions/checkout@v7
    |  _______^
 32 | |
 33 | |     # `rustup show` installs from rust-toolchain.toml
@@ -1092,36 +1040,36 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/stdarch.yml:120:164
+   --> .github/workflows/stdarch.yml:107:164
     |
-116 |       run: |
+103 |       run: |
     |       --- this run block
 ...
-120 |         STDARCH_TEST_SKIP_FUNCTION="xsave,xsaveopt,xsave64,xsaveopt64" STDARCH_TEST_EVERYTHING=1 CHANNEL=release CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER="${{ matrix.cargo_runner }}...
+107 |         STDARCH_TEST_SKIP_FUNCTION="xsave,xsaveopt,xsave64,xsaveopt64" STDARCH_TEST_EVERYTHING=1 CHANNEL=release CARGO_TARGET_X86_64_UNKNOWN_LINUX_GNU_RUNNER="${{ matrix.cargo_runner }}...
     |                                                                                                                                                                    ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/stdarch.yml:137:33
+   --> .github/workflows/stdarch.yml:124:33
     |
-135 |         run: |
+122 |         run: |
     |         --- this run block
-136 |           # Print the dependent jobs to see them in the CI log
-137 |           jq -C <<< '${{ toJson(needs) }}'
+123 |           # Print the dependent jobs to see them in the CI log
+124 |           jq -C <<< '${{ toJson(needs) }}'
     |                                 ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/stdarch.yml:139:72
+   --> .github/workflows/stdarch.yml:126:72
     |
-135 |         run: |
+122 |         run: |
     |         --- this run block
 ...
-139 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+126 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |                                                                        ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -1130,7 +1078,7 @@ info[template-injection]: code injection via template expansion
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/stdarch.yml:31:13
    |
-31 |     - uses: actions/checkout@v4
+31 |     - uses: actions/checkout@v7
    |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -1158,9 +1106,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/stdarch.yml:124:3
+   --> .github/workflows/stdarch.yml:111:3
     |
-124 |   success_stdarch:
+111 |   success_stdarch:
     |   ^^^^^^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -1180,7 +1128,7 @@ help[concurrency-limits]: insufficient job-level concurrency limits
  17 |     build:
     |     ----- job affected by missing workflow concurrency
 ...
-124 |     success_stdarch:
+111 |     success_stdarch:
     |     --------------- job affected by missing workflow concurrency
     |
     = note: audit confidence → High
@@ -1198,4 +1146,4 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-101 findings: 29 informational, 43 low, 11 medium, 18 high
+97 findings: 29 informational, 50 low, 0 medium, 18 high

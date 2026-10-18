@@ -1,184 +1,31 @@
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/ci.yml:14:9
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/ci.yml:12:3
    |
-14 |       - uses: actions/checkout@v3
-   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/ci.yml:31:9
-   |
-31 |       - uses: actions/checkout@v3
-   |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[excessive-permissions]: overly broad permissions
-  --> .github/workflows/ci.yml:1:1
-   |
- 1 | / on: [push, pull_request]
- 2 | |
- 3 | | name: CI
-...  |
-37 | |           cargo fmt --check
-38 | |
-   | |_^ default permissions used due to no permissions: block
-   |
-   = note: audit confidence → Medium
-   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-  --> .github/workflows/ci.yml:6:3
-   |
- 6 | /   test:
- 7 | |     name: test
- 8 | |     runs-on: ubuntu-latest
- 9 | |     timeout-minutes: 10
-...  |
-23 | |           rustup target add powerpc64-unknown-linux-gnu
-24 | |           cargo check --target powerpc64-unknown-linux-gnu
-   | |                                                          ^
-   | |                                                          |
-   | |__________________________________________________________this job
-   |                                                            default permissions used due to no permissions: block
-   |
-   = note: audit confidence → Medium
-   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-  --> .github/workflows/ci.yml:26:3
-   |
-26 | /   fmt:
-27 | |     name: rustfmt
-28 | |     runs-on: ubuntu-latest
-29 | |     timeout-minutes: 10
-...  |
-37 | |           cargo fmt --check
-38 | |
-   | | ^
-   | | |
-   | |_this job
-   |   default permissions used due to no permissions: block
-   |
-   = note: audit confidence → Medium
-   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:14:15
-   |
-14 |       - uses: actions/checkout@v3
-   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+12 |   test:
+   |   ^^^^ this job
    |
    = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:31:15
-   |
-31 |       - uses: actions/checkout@v3
-   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/ci.yml:1:1
-   |
- 1 | on: [push, pull_request]
-   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-...
- 7 |     name: test
-   |     ---------- job affected by missing workflow concurrency
-...
-27 |     name: rustfmt
-   |     ------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/publish.yml:16:7
-   |
-16 |     - uses: actions/checkout@v4
-   |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[excessive-permissions]: overly broad permissions
-  --> .github/workflows/publish.yml:1:1
-   |
- 1 | / name: Publish to crates.io
- 2 | |
- 3 | | on:
- 4 | |   push:
-...  |
-20 | |       env:
-21 | |         CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
-   | |______________________________________________________________^ default permissions used due to no permissions: block
-   |
-   = note: audit confidence → Medium
-   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/publish.yml:16:13
-   |
-16 |     - uses: actions/checkout@v4
-   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/publish.yml:17:13
-   |
-17 |     - uses: rust-lang/crates-io-auth-action@v1
-   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[undocumented-permissions]: permissions without explanatory comments
-  --> .github/workflows/publish.yml:13:7
-   |
-13 |       id-token: write
-   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
- --> .github/workflows/publish.yml:8:3
-  |
-8 |   publish:
-  |   ^^^^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+  --> .github/workflows/ci.yml:33:3
+   |
+33 |   rustfmt:
+   |   ^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/publish.yml:3:1
-  |
-3 | / on:
-4 | |   push:
-5 | |     tags: ['v*']
-  | |________________^ workflow is missing concurrency setting
-...
-8 |     publish:
-  |     ------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+info[anonymous-definition]: workflow or action definition without a name
+  --> .github/workflows/publish.yml:14:3
+   |
+14 |   publish:
+   |   ^^^^^^^ this job
+   |
+   = note: audit confidence → High
+   = tip: use 'name: ...' to give this job a name
+   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
-15 findings: 1 informational, 3 low, 7 medium, 4 high
+3 findings: 3 informational, 0 low, 0 medium, 0 high
