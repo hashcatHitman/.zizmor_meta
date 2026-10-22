@@ -67,9 +67,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:60:7
+  --> .github/workflows/main.yml:61:7
    |
-60 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+61 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -77,9 +77,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:81:9
+  --> .github/workflows/main.yml:82:9
    |
-81 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+82 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -87,9 +87,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:89:9
+  --> .github/workflows/main.yml:90:9
    |
-89 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+90 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -97,9 +97,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:96:9
+  --> .github/workflows/main.yml:97:9
    |
-96 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+97 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -107,9 +107,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:104:9
+   --> .github/workflows/main.yml:105:9
     |
-104 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+105 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -117,12 +117,12 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:115:9
+   --> .github/workflows/main.yml:116:9
     |
-115 |         - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+116 |         - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |  _________^
-116 | |         with:
-117 | |           fetch-depth: 0
+117 | |         with:
+118 | |           fetch-depth: 0
     | |________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -130,9 +130,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:195:7
+   --> .github/workflows/main.yml:196:7
     |
-195 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+196 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -140,9 +140,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:276:7
+   --> .github/workflows/main.yml:277:7
     |
-276 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+277 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -150,9 +150,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:283:7
+   --> .github/workflows/main.yml:286:7
     |
-283 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+286 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -160,9 +160,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:290:7
+   --> .github/workflows/main.yml:294:7
     |
-290 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+294 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -170,9 +170,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:300:7
+   --> .github/workflows/main.yml:301:7
     |
-300 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+301 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -180,9 +180,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:328:7
+   --> .github/workflows/main.yml:311:7
     |
-328 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+311 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -190,11 +190,21 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:338:7
+   --> .github/workflows/main.yml:339:7
     |
-338 |       - name: Checkout Actions Repository
+339 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
+    |
+    = note: audit confidence → Low
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+   --> .github/workflows/main.yml:349:7
+    |
+349 |       - name: Checkout Actions Repository
     |  _______^
-339 | |       uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+350 | |       uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     | |_______________________________________________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -202,9 +212,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:347:7
+   --> .github/workflows/main.yml:358:7
     |
-347 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+358 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -212,60 +222,60 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 info[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:52:33
+  --> .github/workflows/main.yml:53:33
    |
-50 |         run: |
+51 |         run: |
    |         --- this run block
-51 |           # Print the dependent jobs to see them in the CI log
-52 |           jq -C <<< '${{ toJson(needs) }}'
+52 |           # Print the dependent jobs to see them in the CI log
+53 |           jq -C <<< '${{ toJson(needs) }}'
    |                                 ^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → Low
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:54:72
+  --> .github/workflows/main.yml:55:72
    |
-50 |         run: |
+51 |         run: |
    |         --- this run block
 ...
-54 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+55 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
    |                                                                        ^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → Low
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:202:47
+   --> .github/workflows/main.yml:203:47
     |
-202 |     - run: rustup update --no-self-update ${{ matrix.rust }} && rustup default ${{ matrix.rust }}
+203 |     - run: rustup update --no-self-update ${{ matrix.rust }} && rustup default ${{ matrix.rust }}
     |       --- this run block                      ^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:202:84
+   --> .github/workflows/main.yml:203:84
     |
-202 |     - run: rustup update --no-self-update ${{ matrix.rust }} && rustup default ${{ matrix.rust }}
+203 |     - run: rustup update --no-self-update ${{ matrix.rust }} && rustup default ${{ matrix.rust }}
     |       --- this run block                                                           ^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:203:34
+   --> .github/workflows/main.yml:204:34
     |
-203 |     - run: rustup target add ${{ matrix.other }}
+204 |     - run: rustup target add ${{ matrix.other }}
     |       --- this run block         ^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[undocumented-permissions]: permissions without explanatory comments
-  --> .github/workflows/main.yml:38:7
+  --> .github/workflows/main.yml:39:7
    |
-38 |       contents: none
+39 |       contents: none
    |       ^^^^^^^^^^^^^^ needs an explanatory comment
    |
    = note: audit confidence → High
@@ -282,9 +292,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/main.yml:57:3
+  --> .github/workflows/main.yml:58:3
    |
-57 |   rustfmt:
+58 |   rustfmt:
    |   ^^^^^^^ this job
    |
    = note: audit confidence → High
@@ -292,9 +302,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/main.yml:86:3
+  --> .github/workflows/main.yml:87:3
    |
-86 |   stale-label:
+87 |   stale-label:
    |   ^^^^^^^^^^^ this job
    |
    = note: audit confidence → High
@@ -302,9 +312,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/main.yml:93:3
+  --> .github/workflows/main.yml:94:3
    |
-93 |   lint-docs:
+94 |   lint-docs:
    |   ^^^^^^^^^ this job
    |
    = note: audit confidence → High
@@ -312,9 +322,9 @@ info[anonymous-definition]: workflow or action definition without a name
    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:101:3
+   --> .github/workflows/main.yml:102:3
     |
-101 |   lockfile:
+102 |   lockfile:
     |   ^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -322,9 +332,9 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:108:3
+   --> .github/workflows/main.yml:109:3
     |
-108 |   check-version-bump:
+109 |   check-version-bump:
     |   ^^^^^^^^^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -332,9 +342,9 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:273:3
+   --> .github/workflows/main.yml:274:3
     |
-273 |   schema:
+274 |   schema:
     |   ^^^^^^ this job
     |
     = note: audit confidence → High
@@ -342,29 +352,9 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:280:3
+   --> .github/workflows/main.yml:283:3
     |
-280 |   resolver:
-    |   ^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:287:3
-    |
-287 |   build_std:
-    |   ^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:297:3
-    |
-297 |   docs:
+283 |   wasm:
     |   ^^^^ this job
     |
     = note: audit confidence → High
@@ -372,9 +362,39 @@ info[anonymous-definition]: workflow or action definition without a name
     = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:325:3
+   --> .github/workflows/main.yml:291:3
     |
-325 |   msrv:
+291 |   resolver:
+    |   ^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:298:3
+    |
+298 |   build_std:
+    |   ^^^^^^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:308:3
+    |
+308 |   docs:
+    |   ^^^^ this job
+    |
+    = note: audit confidence → High
+    = tip: use 'name: ...' to give this job a name
+    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:336:3
+    |
+336 |   msrv:
     |   ^^^^ this job
     |
     = note: audit confidence → High
@@ -408,4 +428,4 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-39 findings: 16 informational, 22 low, 1 medium, 0 high
+41 findings: 17 informational, 23 low, 1 medium, 0 high

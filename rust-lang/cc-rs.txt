@@ -240,10 +240,30 @@ help[template-injection]: code injection via template expansion
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:577:3
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:539:55
     |
-577 |   semver-checks:
+539 |         run: cargo run -p sanitizer-test --target ${{ matrix.target }}
+    |         --- this run block                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:543:55
+    |
+542 |         run: |
+    |         --- this run block
+543 |           if cargo run -p sanitizer-test --target ${{ matrix.target }} -- overflow 2> "$RUNNER_TEMP/stderr.txt"; then
+    |                                                       ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+info[anonymous-definition]: workflow or action definition without a name
+   --> .github/workflows/main.yml:645:3
+    |
+645 |   semver-checks:
     |   ^^^^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -335,11 +355,23 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:506:15
+   --> .github/workflows/main.yml:552:15
     |
-505 |       - name: Get msrv
+551 |       - name: check clean Git workting tree
+    |         ----------------------------------- this step
+552 |         uses: ./.github/actions/check-clean-git-working-tree
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
+
+help[self-repository]: use GitHub's dedicated self-repository syntax
+   --> .github/workflows/main.yml:574:15
+    |
+573 |       - name: Get msrv
     |         -------------- this step
-506 |         uses: ./.github/actions/get-msrv
+574 |         uses: ./.github/actions/get-msrv
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -347,11 +379,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:555:15
+   --> .github/workflows/main.yml:623:15
     |
-554 |       - name: check clean Git workting tree
+622 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-555 |         uses: ./.github/actions/check-clean-git-working-tree
+623 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -537,4 +569,4 @@ help[concurrency-limits]: insufficient job-level concurrency limits
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
-51 findings (4 suppressed): 5 informational, 39 low, 2 medium, 1 high
+54 findings (4 suppressed): 5 informational, 42 low, 2 medium, 1 high

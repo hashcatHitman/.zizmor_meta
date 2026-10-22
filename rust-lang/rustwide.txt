@@ -35,11 +35,11 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:82:9
+  --> .github/workflows/main.yml:83:9
    |
-82 |         - name: Checkout the source code
+83 |         - name: Checkout the source code
    |  _________^
-83 | |         uses: actions/checkout@v7
+84 | |         uses: actions/checkout@v7
    | |_________________________________^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -54,8 +54,8 @@ warning[excessive-permissions]: overly broad permissions
   3 | | on:
   4 | |   push:
 ...   |
-114 | |         env:
-115 | |           RUSTWIDE_DOCKER_RUNTIME: ${{ matrix.docker_runtime }}
+115 | |         env:
+116 | |           RUSTWIDE_DOCKER_RUNTIME: ${{ matrix.docker_runtime }}
     | |________________________________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -105,8 +105,8 @@ warning[excessive-permissions]: overly broad permissions
  61 | |     runs-on: ${{ matrix.os }}
  62 | |     strategy:
 ...   |
-114 | |         env:
-115 | |           RUSTWIDE_DOCKER_RUNTIME: ${{ matrix.docker_runtime }}
+115 | |         env:
+116 | |           RUSTWIDE_DOCKER_RUNTIME: ${{ matrix.docker_runtime }}
     | |                                                                ^
     | |                                                                |
     | |________________________________________________________________this job
@@ -116,27 +116,27 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:91:36
+  --> .github/workflows/main.yml:92:36
    |
-91 |         run: cargo build --all ${{ matrix.cargo_flags }}
+92 |         run: cargo build --all ${{ matrix.cargo_flags }}
    |         --- this run block         ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:113:35
+   --> .github/workflows/main.yml:114:35
     |
-113 |         run: cargo test --all ${{ matrix.cargo_flags }} -- ${{ matrix.test_flags }}
+114 |         run: cargo test --all ${{ matrix.cargo_flags }} -- ${{ matrix.test_flags }}
     |         --- this run block        ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:113:64
+   --> .github/workflows/main.yml:114:64
     |
-113 |         run: cargo test --all ${{ matrix.cargo_flags }} -- ${{ matrix.test_flags }}
+114 |         run: cargo test --all ${{ matrix.cargo_flags }} -- ${{ matrix.test_flags }}
     |         --- this run block                                     ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
@@ -182,9 +182,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/main.yml:83:15
+  --> .github/workflows/main.yml:84:15
    |
-83 |         uses: actions/checkout@v7
+84 |         uses: actions/checkout@v7
    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High

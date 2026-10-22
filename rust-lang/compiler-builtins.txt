@@ -109,7 +109,7 @@ warning[ref-version-mismatch]: action's hash pin has mismatched or missing versi
   --> .github/workflows/rustc-pull.yml:17:107
    |
 17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
-   |                                                                                                           ^^^^ branch points to commit 07615d45a0f2
+   |                                                                                                           ^^^^ branch points to commit d01854a4c8b2
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch

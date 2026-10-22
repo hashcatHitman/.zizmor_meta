@@ -1111,6 +1111,54 @@ help[concurrency-limits]: insufficient job-level concurrency limits
    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:2:1
+   |
+ 2 | / name: Publish crates.io crates
+ 3 | |
+ 4 | | on:
+ 5 | |   workflow_dispatch:
+...  |
+27 | |         env:
+28 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/publish.yml:16:15
+   |
+16 |         uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/publish.yml:22:15
+   |
+22 |       - uses: rust-lang/crates-io-auth-action@v1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+ --> .github/workflows/publish.yml:4:1
+  |
+4 | / on:
+5 | |   workflow_dispatch:
+  | |____________________^ workflow is missing concurrency setting
+...
+9 |       name: Publish
+  |       ------------- job affected by missing workflow concurrency
+  |
+  = note: audit confidence → High
+  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/remark.yml:1:1
    |
  1 | / name: Remark
@@ -1253,4 +1301,4 @@ help[adhoc-packages]: ad-hoc installation of packages
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#adhoc-packages
 
-101 findings (1 suppressed): 30 informational, 11 low, 26 medium, 33 high
+105 findings (1 suppressed): 30 informational, 12 low, 27 medium, 35 high
