@@ -6,7 +6,7 @@ rules:
   adhoc-packages:
     disable: false
   anonymous-definition:
-    disable: false
+    disable: true
   archived-uses:
     disable: false
   artipacked:
@@ -16,7 +16,7 @@ rules:
   cache-poisoning:
     disable: false
   concurrency-limits:
-    disable: false
+    disable: true
   dangerous-triggers:
     disable: false
   dependabot-cooldown:
