@@ -41,9 +41,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:195:9
+   --> .github/workflows/ci.yml:197:9
     |
-195 |       - uses: actions/checkout@v6
+197 |       - uses: actions/checkout@v6
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -51,9 +51,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:215:9
+   --> .github/workflows/ci.yml:208:9
     |
-215 |       - uses: actions/checkout@v6
+208 |       - uses: actions/checkout@v6
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -61,12 +61,12 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:250:9
+   --> .github/workflows/ci.yml:243:9
     |
-250 |         - uses: actions/checkout@v6
+243 |         - uses: actions/checkout@v6
     |  _________^
-251 | |         with:
-252 | |           fetch-depth: 256 # get a bit more of the history
+244 | |         with:
+245 | |           fetch-depth: 256 # get a bit more of the history
     | |__________________________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -169,24 +169,24 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:236:35
+   --> .github/workflows/ci.yml:229:35
     |
-234 |         run: |
+227 |         run: |
     |         --- this run block
-235 |             # Print the dependent jobs to see them in the CI log
-236 |             jq -C <<< '${{ toJson(needs) }}'
+228 |             # Print the dependent jobs to see them in the CI log
+229 |             jq -C <<< '${{ toJson(needs) }}'
     |                                   ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:238:74
+   --> .github/workflows/ci.yml:231:74
     |
-234 |         run: |
+227 |         run: |
     |         --- this run block
 ...
-238 |             jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+231 |             jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |                                                                          ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -253,9 +253,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:195:15
+   --> .github/workflows/ci.yml:197:15
     |
-195 |       - uses: actions/checkout@v6
+197 |       - uses: actions/checkout@v6
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -263,9 +263,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:215:15
+   --> .github/workflows/ci.yml:208:15
     |
-215 |       - uses: actions/checkout@v6
+208 |       - uses: actions/checkout@v6
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -273,9 +273,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:250:15
+   --> .github/workflows/ci.yml:243:15
     |
-250 |       - uses: actions/checkout@v6
+243 |       - uses: actions/checkout@v6
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -283,9 +283,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:264:15
+   --> .github/workflows/ci.yml:257:15
     |
-264 |       - uses: actions/create-github-app-token@v3
+257 |       - uses: actions/create-github-app-token@v3
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -293,21 +293,21 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 help[undocumented-permissions]: permissions without explanatory comments
-   --> .github/workflows/ci.yml:245:9
+   --> .github/workflows/ci.yml:238:9
     |
-245 |         contents: write
+238 |         contents: write
     |         ^^^^^^^^^^^^^^^ needs an explanatory comment
-246 |         # ... and create a PR.
-247 |         pull-requests: write
+239 |         # ... and create a PR.
+240 |         pull-requests: write
     |         ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
 info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:223:3
+   --> .github/workflows/ci.yml:216:3
     |
-223 |   conclusion:
+216 |   conclusion:
     |   ^^^^^^^^^^ this job
     |
     = note: audit confidence → High
@@ -338,28 +338,28 @@ help[concurrency-limits]: insufficient job-level concurrency limits
 154 |       name: bootstrap build
     |       --------------------- job affected by missing workflow concurrency
 ...
-192 |       name: Priroda
+194 |       name: priroda
     |       ------------- job affected by missing workflow concurrency
 ...
-212 |       name: coverage report
+205 |       name: coverage report
     |       --------------------- job affected by missing workflow concurrency
 ...
-223 |     conclusion:
+216 |     conclusion:
     |     ---------- job affected by missing workflow concurrency
 ...
-241 |       name: automatic pull from rustc
+234 |       name: automatic pull from rustc
     |       ------------------------------- job affected by missing workflow concurrency
 ...
-306 |       name: cronjob failure notification
+299 |       name: cronjob failure notification
     |       ---------------------------------- job affected by missing workflow concurrency
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 error[github-app]: dangerous use of GitHub App tokens
-   --> .github/workflows/ci.yml:264:15
+   --> .github/workflows/ci.yml:257:15
     |
-264 |       - uses: actions/create-github-app-token@v3
+257 |       - uses: actions/create-github-app-token@v3
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
     |
     = note: audit confidence → High
@@ -397,9 +397,9 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/ci.yml:196:15
+   --> .github/workflows/ci.yml:198:15
     |
-196 |       - uses: ./.github/workflows/setup
+198 |       - uses: ./.github/workflows/setup
     |         ------^^^^^^^^^^^^^^^^^^^^^^^^^
     |         |     |
     |         |     use '$/...' instead of './...'
@@ -410,9 +410,9 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/ci.yml:216:15
+   --> .github/workflows/ci.yml:209:15
     |
-216 |       - uses: ./.github/workflows/setup
+209 |       - uses: ./.github/workflows/setup
     |         ------^^^^^^^^^^^^^^^^^^^^^^^^^
     |         |     |
     |         |     use '$/...' instead of './...'

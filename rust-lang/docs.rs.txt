@@ -746,35 +746,35 @@ warning[excessive-permissions]: overly broad permissions
   3 | | on:
   4 | |   workflow_call:
 ...   |
-111 | |           aws ecs update-service --service "$SERVICE" --cluster "$CLUSTER" --force-new-deployment
-112 | |           aws ecs wait services-stable --services "$SERVICE" --cluster "$CLUSTER"
-    | |__________________________________________________________________________________^ default permissions used due to no permissions: block
+128 | |             --auto-scaling-group-name "$BUILDER_ASG" \
+129 | |             --preferences '{"MinHealthyPercentage":0,"MaxHealthyPercentage":100,"InstanceWarmup":120,"SkipMatching":false}'
+    | |____________________________________________________________________________________________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/docker-pipeline.yml:20:3
+   --> .github/workflows/docker-pipeline.yml:25:3
     |
- 20 | /   docker:
- 21 | |     name: Build and test Docker images
- 22 | |     runs-on: ubuntu-latest
- 23 | |     environment: ${{ inputs.environment }}
+ 25 | /   docker:
+ 26 | |     name: Build and test Docker images
+ 27 | |     runs-on: ubuntu-latest
+ 28 | |     environment: ${{ inputs.environment }}
 ...   |
-111 | |           aws ecs update-service --service "$SERVICE" --cluster "$CLUSTER" --force-new-deployment
-112 | |           aws ecs wait services-stable --services "$SERVICE" --cluster "$CLUSTER"
-    | |                                                                                  ^
-    | |                                                                                  |
-    | |__________________________________________________________________________________this job
-    |                                                                                    default permissions used due to no permissions: block
+128 | |             --auto-scaling-group-name "$BUILDER_ASG" \
+129 | |             --preferences '{"MinHealthyPercentage":0,"MaxHealthyPercentage":100,"InstanceWarmup":120,"SkipMatching":false}'
+    | |                                                                                                                            ^
+    | |                                                                                                                            |
+    | |____________________________________________________________________________________________________________________________this job
+    |                                                                                                                              default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/docker-pipeline.yml:28:15
+  --> .github/workflows/docker-pipeline.yml:33:15
    |
-28 |       - uses: actions/checkout@v7
+33 |       - uses: actions/checkout@v7
    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -782,9 +782,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/docker-pipeline.yml:33:15
+  --> .github/workflows/docker-pipeline.yml:38:15
    |
-33 |         uses: docker/setup-buildx-action@v4
+38 |         uses: docker/setup-buildx-action@v4
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -792,9 +792,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/docker-pipeline.yml:37:15
+  --> .github/workflows/docker-pipeline.yml:42:15
    |
-37 |         uses: aws-actions/configure-aws-credentials@v6
+42 |         uses: aws-actions/configure-aws-credentials@v6
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -802,9 +802,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/docker-pipeline.yml:45:15
+  --> .github/workflows/docker-pipeline.yml:50:15
    |
-45 |         uses: aws-actions/amazon-ecr-login@v2
+50 |         uses: aws-actions/amazon-ecr-login@v2
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -812,9 +812,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/docker-pipeline.yml:48:15
+  --> .github/workflows/docker-pipeline.yml:53:15
    |
-48 |         uses: docker/bake-action@v7
+53 |         uses: docker/bake-action@v7
    |               ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -822,9 +822,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/docker-pipeline.yml:91:15
+  --> .github/workflows/docker-pipeline.yml:96:15
    |
-91 |         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+96 |         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -839,9 +839,9 @@ warning[excessive-permissions]: overly broad permissions
  3 | | on:
  4 | |   push:
 ...  |
-36 | |       aws-iam: "519825364412:role/ci--rust-lang--docs.rs--staging"
 37 | |       cluster: docs-rs-staging
-   | |_______________________________^ default permissions used due to no permissions: block
+38 | |       builder-asg: docs-rs-builders
+   | |____________________________________^ default permissions used due to no permissions: block
    |
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions

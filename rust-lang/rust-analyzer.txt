@@ -700,78 +700,6 @@ help[concurrency-limits]: insufficient job-level concurrency limits
    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/gen-lints.yml:20:9
-   |
-20 |         - name: Checkout repository
-   |  _________^
-21 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-   | |________________________________________________________________________________^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[excessive-permissions]: overly broad permissions
-  --> .github/workflows/gen-lints.yml:1:1
-   |
- 1 | / name: Generate lints and feature flags
- 2 | |
- 3 | | on:
- 4 | |   workflow_dispatch:
-...  |
-44 | |           body: "Weekly lint updates for `crates/ide-db/src/generated/lints.rs`."
-45 | |           labels: "A-infra"
-   | |____________________________^ default permissions used due to no permissions: block
-   |
-   = note: audit confidence → Medium
-   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-help[undocumented-permissions]: permissions without explanatory comments
-  --> .github/workflows/gen-lints.yml:18:7
-   |
-18 |       pull-requests: write
-   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/gen-lints.yml:3:1
-   |
- 3 | / on:
- 4 | |   workflow_dispatch:
- 5 | |   schedule:
- 6 | |     - cron: '50 23 * * 6'
-   | |_________________________^ workflow is missing concurrency setting
-...
-15 |       name: Generate lints
-   |       -------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-info[superfluous-actions]: action functionality is already included by the runner
-  --> .github/workflows/gen-lints.yml:36:15
-   |
-35 |       - name: Submit PR
-   |         --------------- this step
-36 |         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh pr create` in a script step
-   |
-   = note: audit confidence → Low
-   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
-
-error[github-app]: dangerous use of GitHub App tokens
-  --> .github/workflows/gen-lints.yml:29:15
-   |
-29 |       - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
-   |
-   = note: audit confidence → High
-   = tip: specify at least one `permission-<name>` input to limit the token's permissions
-   = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
-
-help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/metrics.yaml:25:9
    |
 25 |         - name: Checkout repository
@@ -1523,5 +1451,77 @@ help[concurrency-limits]: insufficient job-level concurrency limits
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/update-generated.yml:20:9
+   |
+20 |         - name: Checkout repository
+   |  _________^
+21 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/update-generated.yml:1:1
+   |
+ 1 | / name: Update generated code
+ 2 | |
+ 3 | | on:
+ 4 | |   workflow_dispatch:
+...  |
+47 | |           body: "Weekly lint updates for `crates/ide-db/src/generated/lints.rs` and `crates/hir-ty/src/generated/target_features.r...
+48 | |           labels: "A-infra"
+   | |____________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/update-generated.yml:18:7
+   |
+18 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[concurrency-limits]: insufficient job-level concurrency limits
+  --> .github/workflows/update-generated.yml:3:1
+   |
+ 3 | / on:
+ 4 | |   workflow_dispatch:
+ 5 | |   schedule:
+ 6 | |     - cron: '50 23 * * 6'
+   | |_________________________^ workflow is missing concurrency setting
+...
+15 |       name: Generate lints
+   |       -------------------- job affected by missing workflow concurrency
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> .github/workflows/update-generated.yml:39:15
+   |
+38 |       - name: Submit PR
+   |         --------------- this step
+39 |         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh pr create` in a script step
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+error[github-app]: dangerous use of GitHub App tokens
+  --> .github/workflows/update-generated.yml:32:15
+   |
+32 |       - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
+   |
+   = note: audit confidence → High
+   = tip: specify at least one `permission-<name>` input to limit the token's permissions
+   = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
 
 120 findings (1 ignored, 5 suppressed): 17 informational, 57 low, 32 medium, 8 high
