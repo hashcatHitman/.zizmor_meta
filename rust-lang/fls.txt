@@ -59,26 +59,4 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/ci.yml:7:1
-   |
- 7 | / on:
- 8 | |   pull_request:
- 9 | |   merge_group:
-10 | |
-11 | | # Defined at the job level.
-   | |___________________________^ workflow is missing concurrency setting
-...
-16 |       name: Build the documentation
-   |       ----------------------------- job affected by missing workflow concurrency
-...
-44 |       name: Deploy to GitHub Pages
-   |       ---------------------------- job affected by missing workflow concurrency
-...
-60 |       name: CI finished
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-7 findings: 0 informational, 2 low, 1 medium, 4 high
+6 findings: 0 informational, 1 low, 1 medium, 4 high

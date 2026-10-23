@@ -60,23 +60,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/ci.yml:3:1
-   |
- 3 | / on:
- 4 | |   workflow_dispatch:
- 5 | |   push:
- 6 | |     branches: [ master ]
- 7 | |   pull_request:
- 8 | |     branches: [ master ]
-   | |________________________^ workflow is missing concurrency setting
-...
-15 |       name: ${{ matrix.rust }}
-   |       ------------------------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/ci.yml:27:13
    |
@@ -91,4 +74,4 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-7 findings: 1 informational, 1 low, 3 medium, 2 high
+6 findings: 1 informational, 0 low, 3 medium, 2 high

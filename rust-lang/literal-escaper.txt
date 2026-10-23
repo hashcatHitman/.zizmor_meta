@@ -56,43 +56,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/CI.yml:14:3
-   |
-14 |   stable-checks:
-   |   ^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/CI.yml:29:3
-   |
-29 |   nightly-checks:
-   |   ^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/CI.yml:1:1
-   |
- 1 | / on:
- 2 | |   pull_request:
- 3 | |   push:
-   | |_______^ workflow is missing concurrency setting
-...
-14 |     stable-checks:
-   |     ------------- job affected by missing workflow concurrency
-...
-29 |     nightly-checks:
-   |     -------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/CI.yml:18:15
    |
@@ -123,4 +86,4 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-11 findings: 4 informational, 1 low, 2 medium, 4 high
+8 findings: 2 informational, 0 low, 2 medium, 4 high

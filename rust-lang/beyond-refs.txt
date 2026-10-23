@@ -119,26 +119,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/field-projections-ci.yml:19:3
-   |
-19 |   fmt:
-   |   ^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/field-projections-ci.yml:31:3
-   |
-31 |   test:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 warning[unpinned-tools]: action installs an unpinned external tool
   --> .github/workflows/field-projections-ci.yml:35:15
    |
@@ -277,26 +257,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/mdbook.yml:32:3
-   |
-32 |   build:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/mdbook.yml:78:3
-   |
-78 |   deploy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 warning[unpinned-tools]: action installs an unpinned external tool
   --> .github/workflows/mdbook.yml:58:15
    |
@@ -306,4 +266,4 @@ warning[unpinned-tools]: action installs an unpinned external tool
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-tools
 
-29 findings: 4 informational, 1 low, 8 medium, 16 high
+25 findings: 0 informational, 1 low, 8 medium, 16 high

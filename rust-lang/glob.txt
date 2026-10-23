@@ -82,21 +82,6 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yml:8:1
-   |
- 8 | / on:
- 9 | |   push:
-10 | |     branches:
-11 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-15 |       name: Release-plz
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/rust.yml:34:7
    |
@@ -266,42 +251,4 @@ info[template-injection]: code injection via template expansion
    = note: audit confidence → Low
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:85:3
-   |
-85 |   success:
-   |   ^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/rust.yml:8:1
-   |
- 8 | / on:
- 9 | |   pull_request:
-10 | |   push:
-11 | |     branches:
-12 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-16 |       name: Tests
-   |       ----------- job affected by missing workflow concurrency
-...
-40 |       name: Clippy
-   |       ------------ job affected by missing workflow concurrency
-...
-55 |       name: Check building with the MSRV
-   |       ---------------------------------- job affected by missing workflow concurrency
-...
-74 |       name: Rustfmt
-   |       ------------- job affected by missing workflow concurrency
-...
-85 |     success:
-   |     ------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-23 findings: 2 informational, 9 low, 8 medium, 4 high
+20 findings: 1 informational, 7 low, 8 medium, 4 high

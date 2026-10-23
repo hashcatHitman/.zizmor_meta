@@ -81,42 +81,4 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/deploy.yml:12:3
-   |
-12 |   build:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/deploy.yml:31:3
-   |
-31 |   deploy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/deploy.yml:2:1
-   |
- 2 | / on:
- 3 | |   push:
- 4 | |     branches:
- 5 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-12 |     build:
-   |     ----- job affected by missing workflow concurrency
-...
-31 |     deploy:
-   |     ------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-9 findings: 2 informational, 5 low, 2 medium, 0 high
+6 findings: 0 informational, 4 low, 2 medium, 0 high

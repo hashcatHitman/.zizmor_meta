@@ -457,49 +457,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:159:3
-    |
-159 |   success:
-    |   ^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/main.yml:2:1
-    |
-  2 | on: [push, pull_request]
-    | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-...
- 10 |     name: clippy
-    |     ------------ job affected by missing workflow concurrency
-...
- 23 |     name: Test
-    |     ---------- job affected by missing workflow concurrency
-...
- 41 |     name: Test Cross Compile - ${{ matrix.platform.target }}
-    |     -------------------------------------------------------- job affected by missing workflow concurrency
-...
- 94 |     name: Test Cross Compile - ${{ matrix.platform.target }}
-    |     -------------------------------------------------------- job affected by missing workflow concurrency
-...
-118 |     name: Rustfmt
-    |     ------------- job affected by missing workflow concurrency
-...
-130 |     name: docs
-    |     ---------- job affected by missing workflow concurrency
-...
-141 |     name: MSRV check
-    |     ---------------- job affected by missing workflow concurrency
-...
-159 |   success:
-    |   ------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/publish.yml:19:9
    |
@@ -564,19 +521,4 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yml:8:1
-   |
- 8 | / on:
- 9 | |   push:
-10 | |     branches:
-11 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-15 |       name: Release-plz
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-48 findings: 2 informational, 11 low, 17 medium, 18 high
+45 findings: 1 informational, 9 low, 17 medium, 18 high

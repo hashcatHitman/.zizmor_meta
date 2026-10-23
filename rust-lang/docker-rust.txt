@@ -35,22 +35,6 @@ help[template-injection]: code injection via template expansion
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/ci.yml:6:1
-   |
- 6 | / on:
- 7 | |   pull_request:
- 8 | |   push:
- 9 | |     branches:
-10 | |       - master
-   | |______________^ workflow is missing concurrency setting
-...
-44 |       name: ${{ matrix.name }}
-   |       ------------------------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[excessive-permissions]: overly broad permissions
    --> .github/workflows/mirror_stable.yml:1:1
     |
@@ -144,22 +128,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/mirror_stable.yml:3:1
-   |
- 3 | / on:
- 4 | |   workflow_dispatch:
- 5 | |   schedule:
- 6 | |     # Run daily at midnight UTC
- 7 | |     - cron: '0 0 * * *'
-   | |_______________________^ workflow is missing concurrency setting
-...
-11 |       name: DockerHub mirror
-   |       ---------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/nightly.yml:71:9
    |
@@ -190,22 +158,4 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/nightly.yml:7:1
-   |
- 7 | / on:
- 8 | |   push:
- 9 | |     branches:
-10 | |       - master
-...  |
-15 | |   schedule:
-16 | |     - cron: '0 6 * * *'
-   | |_______________________^ workflow is missing concurrency setting
-...
-69 |       name: ${{ matrix.name }}
-   |       ------------------------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-20 findings (2 suppressed): 0 informational, 16 low, 1 medium, 1 high
+17 findings (2 suppressed): 0 informational, 13 low, 1 medium, 1 high

@@ -73,26 +73,6 @@ info[template-injection]: code injection via template expansion
    = note: audit confidence → Low
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_changelog.yml:15:3
-   |
-15 |   changelog:
-   |   ^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_changelog.yml:34:3
-   |
-34 |   conclusion_changelog:
-   |   ^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/clippy_dev.yml:1:1
    |
@@ -177,43 +157,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_dev.yml:13:3
-   |
-13 |   clippy_dev:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_dev.yml:44:3
-   |
-44 |   conclusion_dev:
-   |   ^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/clippy_dev.yml:3:1
-   |
- 3 | / on:
- 4 | |   merge_group:
- 5 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-13 |     clippy_dev:
-   |     ---------- job affected by missing workflow concurrency
-...
-44 |     conclusion_dev:
-   |     -------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[excessive-permissions]: overly broad permissions
    --> .github/workflows/clippy_mq.yml:1:1
@@ -442,94 +385,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_mq.yml:18:3
-   |
-18 |   base:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_mq.yml:91:3
-   |
-91 |   metadata_collection:
-   |   ^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/clippy_mq.yml:109:3
-    |
-109 |   integration_build:
-    |   ^^^^^^^^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/clippy_mq.yml:143:3
-    |
-143 |   integration:
-    |   ^^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/clippy_mq.yml:197:3
-    |
-197 |   doc:
-    |   ^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/clippy_mq.yml:249:3
-    |
-249 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/clippy_mq.yml:3:1
-    |
-  3 | / on:
-  4 | |   merge_group:
-    | |______________^ workflow is missing concurrency setting
-...
- 18 |     base:
-    |     ---- job affected by missing workflow concurrency
-...
- 91 |     metadata_collection:
-    |     ------------------- job affected by missing workflow concurrency
-...
-109 |     integration_build:
-    |     ----------------- job affected by missing workflow concurrency
-...
-143 |     integration:
-    |     ----------- job affected by missing workflow concurrency
-...
-197 |     doc:
-    |     --- job affected by missing workflow concurrency
-...
-249 |     conclusion:
-    |     ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[excessive-permissions]: overly broad permissions
    --> .github/workflows/clippy_pr.yml:1:1
     |
@@ -641,36 +496,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_pr.yml:20:3
-   |
-20 |   base:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/clippy_pr.yml:65:3
-   |
-65 |   doc:
-   |   ^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/clippy_pr.yml:119:3
-    |
-119 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/deploy.yml:1:1
    |
@@ -763,16 +588,6 @@ error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache pois
    = note: audit confidence → Low
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/deploy.yml:21:3
-   |
-21 |   deploy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 warning[excessive-permissions]: overly broad permissions
    --> .github/workflows/lintcheck.yml:1:1
@@ -993,36 +808,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/lintcheck.yml:22:3
-   |
-22 |   base:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/lintcheck.yml:78:3
-   |
-78 |   head:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/lintcheck.yml:109:3
-    |
-109 |   diff:
-    |   ^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 error[excessive-permissions]: overly broad permissions
   --> .github/workflows/lintcheck_summary.yml:22:3
    |
@@ -1083,33 +868,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/lintcheck_summary.yml:25:3
-   |
-25 |   download:
-   |   ^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/lintcheck_summary.yml:15:1
-   |
-15 | / on:
-16 | |   workflow_run:
-17 | |     workflows: [Lintcheck]
-18 | |     types: [completed]
-19 | |
-20 | | # Restrict the default permission scope https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#defining-access-for-the-github_token-scopes
-   | |___________________________________________________________________________________________________________________________________________________________________________^ workflow is missing concurrency setting
-...
-25 |     download:
-   |     -------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/publish.yml:2:1
    |
@@ -1144,19 +902,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/publish.yml:4:1
-  |
-4 | / on:
-5 | |   workflow_dispatch:
-  | |____________________^ workflow is missing concurrency setting
-...
-9 |       name: Publish
-  |       ------------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/remark.yml:1:1
@@ -1253,43 +998,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/remark.yml:11:3
-   |
-11 |   remark:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/remark.yml:50:3
-   |
-50 |   conclusion_remark:
-   |   ^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/remark.yml:3:1
-   |
- 3 | / on:
- 4 | |   merge_group:
- 5 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-11 |     remark:
-   |     ------ job affected by missing workflow concurrency
-...
-50 |     conclusion_remark:
-   |     ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[adhoc-packages]: ad-hoc installation of packages
   --> .github/workflows/remark.yml:28:12
    |
@@ -1301,4 +1009,4 @@ help[adhoc-packages]: ad-hoc installation of packages
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#adhoc-packages
 
-105 findings (1 suppressed): 30 informational, 12 low, 27 medium, 35 high
+80 findings (1 suppressed): 10 informational, 7 low, 27 medium, 35 high

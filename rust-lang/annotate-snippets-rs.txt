@@ -16,36 +16,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/audit.yml:33:3
-   |
-33 |   advisories:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/audit.yml:55:3
-   |
-55 |   cargo_deny:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/audit.yml:75:3
-   |
-75 |   actions:
-   |   ^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 help[template-injection]: code injection via template expansion
   --> .github/workflows/ci.yml:52:47
    |
@@ -82,26 +52,6 @@ help[undocumented-permissions]: permissions without explanatory comments
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:121:3
-    |
-121 |   lockfile:
-    |   ^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/pre-commit.yml:20:3
-   |
-20 |   pre-commit:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/release.yml:1:1
    |
@@ -125,20 +75,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/release.yml:3:1
-  |
-3 | / on:
-4 | |   push:
-5 | |     tags: ["*"]
-  | |_______________^ workflow is missing concurrency setting
-...
-9 |       name: Publish to crates.io
-  |       -------------------------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 help[template-injection]: code injection via template expansion
   --> .github/workflows/rust-next.yml:41:47
@@ -197,14 +133,4 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/template.yml:23:3
-   |
-23 |   update:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-22 findings (1 suppressed): 6 informational, 14 low, 1 medium, 0 high
+15 findings (1 suppressed): 0 informational, 13 low, 1 medium, 0 high

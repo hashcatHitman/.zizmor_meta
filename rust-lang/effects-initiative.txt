@@ -71,14 +71,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
- --> .github/workflows/deploy_mdbook.yml:9:3
-  |
-9 |   deploy:
-  |   ^^^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-7 findings: 1 informational, 0 low, 3 medium, 3 high
+6 findings: 0 informational, 0 low, 3 medium, 3 high

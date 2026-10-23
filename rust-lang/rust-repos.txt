@@ -60,22 +60,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/test.yml:4:1
-   |
- 4 | / on:
- 5 | |   push:
- 6 | |     paths-ignore:
- 7 | |       - 'data/**'
- 8 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-12 |       name: Test
-   |       ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/updater.yml:14:9
    |
@@ -128,18 +112,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/updater.yml:4:1
-   |
- 4 | / on:
- 5 | |   schedule:
- 6 | |     - cron: "0 */12 * * *"
-   | |__________________________^ workflow is missing concurrency setting
-...
-10 |       name: GitHub
-   |       ------------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-13 findings (2 suppressed): 0 informational, 2 low, 7 medium, 2 high
+11 findings (2 suppressed): 0 informational, 0 low, 7 medium, 2 high

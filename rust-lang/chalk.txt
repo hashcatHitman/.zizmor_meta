@@ -201,39 +201,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:108:3
-    |
-108 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/ci.yml:2:1
-    |
-  2 | / on:
-  3 | |   merge_group:
-  4 | |   pull_request:
-    | |_______________^ workflow is missing concurrency setting
-...
-  8 |       name: Test
-    |       ---------- job affected by missing workflow concurrency
-...
- 66 |       name: Format
-    |       ------------ job affected by missing workflow concurrency
-...
- 86 |       name: Book link check
-    |       --------------------- job affected by missing workflow concurrency
-...
-108 |     conclusion:
-    |     ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> .github/workflows/ci.yml:21:15
    |
@@ -345,21 +312,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/publish.yml:2:1
-  |
-2 | / on:
-3 | |   workflow_dispatch: # We can add version input when 1.0 is released and scheduled releases are removed
-4 | |   schedule:
-5 | |     - cron: "0 0 * * 0" # midnight UTC on Sunday
-  | |________________________________________________^ workflow is missing concurrency setting
-...
-9 |       name: Publish
-  |       ------------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> .github/workflows/publish.yml:24:15
    |
@@ -394,4 +346,4 @@ help[adhoc-packages]: ad-hoc installation of packages
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#adhoc-packages
 
-32 findings (1 suppressed): 3 informational, 5 low, 13 medium, 10 high
+29 findings (1 suppressed): 2 informational, 3 low, 13 medium, 10 high

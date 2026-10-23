@@ -30,24 +30,6 @@ help[template-injection]: code injection via template expansion
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/checks.yml:2:1
-   |
- 2 | / on:
- 3 | |   pull_request:
- 4 | |
- 5 | |   # We avoid running the push event on PR branches so that
-...  |
- 9 | |     branches:
-10 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-17 |       name: Run Markdown Checks
-   |       ------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 error[excessive-permissions]: overly broad permissions
   --> .github/workflows/comment-on-check-output.yml:13:3
    |
@@ -77,37 +59,4 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/comment-on-check-output.yml:6:1
-   |
- 6 | / on:
- 7 | |   workflow_run:
- 8 | |     workflows: ["Correctness Checks"]
- 9 | |     types: [completed]
-   | |______________________^ workflow is missing concurrency setting
-...
-17 |       name: Comment on PR check output
-   |       -------------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/submerge.yml:3:1
-   |
- 3 | / on:
- 4 | |   pull_request:
- 5 | |     paths:
- 6 | |       - ".github/workflows/submerge.yml"
-...  |
- 9 | |     branches:
-10 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-17 |       name: Format, clippy, and tests
-   |       ------------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-9 findings: 0 informational, 7 low, 0 medium, 2 high
+6 findings: 0 informational, 4 low, 0 medium, 2 high

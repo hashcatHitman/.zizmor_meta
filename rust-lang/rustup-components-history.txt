@@ -41,42 +41,4 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:17:3
-   |
-17 |   build:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:42:3
-   |
-42 |   deploy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/rust.yml:3:1
-   |
- 3 | / on:
- 4 | |   workflow_dispatch:
- 5 | |   push:
- 6 | |     branches: [ main ]
-...  |
-10 | |     # Runs at 2:00 UTC every day (to give the release process 2h to complete).
-11 | |     - cron: '0 2 * * *'
-   | |_______________________^ workflow is missing concurrency setting
-...
-17 |     build:
-   |     ----- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-6 findings: 2 informational, 2 low, 2 medium, 0 high
+3 findings: 0 informational, 1 low, 2 medium, 0 high

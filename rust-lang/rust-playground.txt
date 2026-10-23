@@ -441,39 +441,6 @@ help[undocumented-permissions]: permissions without explanatory comments
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/ci.yml:4:1
-    |
-  4 | / 'on':
-  5 | |   push:
-  6 | |     branches:
-  7 | |     - main
-  8 | |   pull_request:
-  9 | |     branches:
- 10 | |     - main
-    | |__________^ workflow is missing concurrency setting
-...
- 17 |       name: Build provisional ${{ matrix.channel }} image
-    |       --------------------------------------------------- job affected by missing workflow concurrency
-...
- 39 |       name: Build backend
-    |       ------------------- job affected by missing workflow concurrency
-...
- 73 |       name: Build frontend
-    |       -------------------- job affected by missing workflow concurrency
-...
-118 |       name: Running integration tests
-    |       ------------------------------- job affected by missing workflow concurrency
-...
-206 |       name: Release artifacts
-    |       ----------------------- job affected by missing workflow concurrency
-...
-246 |       name: Release ${{ matrix.channel }} image
-    |       ----------------------------------------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/ci.yml:45:13
    |
@@ -630,21 +597,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/cron.yml:4:1
-   |
- 4 | / 'on':
- 5 | |   workflow_dispatch:
- 6 | |   schedule:
- 7 | |   - cron: 7 2 * * *
-   | |___________________^ workflow is missing concurrency setting
-...
-14 |       name: Release ${{ matrix.channel }} image
-   |       ----------------------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[self-repository]: use GitHub's dedicated self-repository syntax
   --> .github/workflows/cron.yml:43:14
    |
@@ -657,4 +609,4 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
-61 findings (6 suppressed): 1 informational, 15 low, 8 medium, 31 high
+59 findings (6 suppressed): 1 informational, 13 low, 8 medium, 31 high

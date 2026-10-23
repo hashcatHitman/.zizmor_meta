@@ -70,26 +70,4 @@ error[unpinned-uses]: unpinned action reference
   = note: this finding has an auto-fix
   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
- --> .github/workflows/ci.yml:4:3
-  |
-4 |   build:
-  |   ^^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/ci.yml:2:1
-  |
-2 | on: [push, pull_request]
-  | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-3 | jobs:
-4 |   build:
-  |   ----- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-8 findings: 1 informational, 2 low, 4 medium, 1 high
+6 findings: 0 informational, 1 low, 4 medium, 1 high

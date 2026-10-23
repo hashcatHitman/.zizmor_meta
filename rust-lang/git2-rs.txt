@@ -193,29 +193,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/main.yml:2:1
-   |
- 2 | / on:
- 3 | |   pull_request:
- 4 | |   merge_group:
-   | |______________^ workflow is missing concurrency setting
-...
- 8 |       name: Test
-   |       ---------- job affected by missing workflow concurrency
-...
-51 |       name: Clippy
-   |       ------------ job affected by missing workflow concurrency
-...
-79 |       name: Rustfmt
-   |       ------------- job affected by missing workflow concurrency
-...
-93 |       name: Success gate
-   |       ------------------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/publish.yml:32:9
    |
@@ -278,22 +255,4 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yml:2:1
-   |
- 2 | / on:
- 3 | |   workflow_dispatch:
- 4 | |     inputs:
- 5 | |       git2:
-...  |
-19 | |         type: string
-20 | |         default: main
-   | |_____________________^ workflow is missing concurrency setting
-...
-28 |       name: Publish to crates.io
-   |       -------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-24 findings: 1 informational, 7 low, 9 medium, 7 high
+22 findings: 1 informational, 5 low, 9 medium, 7 high

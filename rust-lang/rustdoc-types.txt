@@ -16,16 +16,6 @@ help[stale-action-refs]: commit hash does not point to a Git tag
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/CI.yml:17:3
-   |
-17 |   cargo-test:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
   --> .github/workflows/CI.yml:23:79
    |
@@ -43,22 +33,6 @@ warning[ref-version-mismatch]: action's hash pin has mismatched or missing versi
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/CI.yml:3:1
-   |
- 3 | / on:
- 4 | |   push:
- 5 | |     branches: [ trunk ]
- 6 | |   pull_request:
- 7 | |     branches: [ trunk ]
-   | |_______________________^ workflow is missing concurrency setting
-...
-17 |     cargo-test:
-   |     ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/CI.yml:23:13
@@ -89,28 +63,4 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
- --> .github/workflows/release.yml:6:3
-  |
-6 |   publish:
-  |   ^^^^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/release.yml:2:1
-  |
-2 | / on:
-3 | |   push:
-4 | |     tags: ['v*']  # Triggers when pushing tags starting with 'v'
-  | |________________________________________________________________^ workflow is missing concurrency setting
-5 |   jobs:
-6 |     publish:
-  |     ------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-10 findings: 3 informational, 4 low, 3 medium, 0 high
+6 findings: 1 informational, 2 low, 3 medium, 0 high

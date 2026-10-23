@@ -189,26 +189,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rustc-pull.yml:50:3
-   |
-50 |   perform-pull:
-   |   ^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/rustc-pull.yml:129:3
-    |
-129 |   send-zulip-notification:
-    |   ^^^^^^^^^^^^^^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/workflows/rustc-pull.yml:97:15
    |
@@ -271,17 +251,4 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/test.yml:2:1
-  |
-2 | / on:
-3 | |   pull_request:
-  | |_______________^ workflow is missing concurrency setting
-...
-7 |       name: Test
-  |       ---------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-23 findings: 2 informational, 9 low, 4 medium, 8 high
+20 findings: 0 informational, 8 low, 4 medium, 8 high

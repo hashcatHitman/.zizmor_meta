@@ -145,34 +145,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/main.yaml:43:3
-   |
-43 |   msrv:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/main.yaml:2:1
-   |
- 2 | on: [push, pull_request]
-   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-...
-10 |     name: Test
-   |     ---------- job affected by missing workflow concurrency
-...
-30 |     name: Document and check formatting
-   |     ----------------------------------- job affected by missing workflow concurrency
-...
-43 |   msrv:
-   |   ---- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/publish.yaml:17:9
    |
@@ -237,17 +209,4 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yaml:8:1
-   |
- 8 | / on:
- 9 | |   push: { branches: [main] }
-   | |____________________________^ workflow is missing concurrency setting
-...
-13 |       name: Release-plz
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-21 findings: 1 informational, 9 low, 4 medium, 7 high
+18 findings: 0 informational, 7 low, 4 medium, 7 high

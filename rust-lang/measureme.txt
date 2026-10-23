@@ -51,31 +51,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/nightly.yml:10:3
-   |
-10 |   check:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/nightly.yml:4:1
-   |
- 4 | / on:
- 5 | |   schedule:
- 6 | |     # Run at 6:30 every day
- 7 | |     - cron: '30 6 * * *'
-   | |________________________^ workflow is missing concurrency setting
-...
-10 |     check:
-   |     ----- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/publish.yml:21:9
    |
@@ -154,24 +129,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yml:2:1
-   |
- 2 | / on:
- 3 | |   release:
- 4 | |     types: [created]
- 5 | |   workflow_dispatch:
-...  |
- 9 | |         required: false
-10 | |         type: string
-   | |____________________^ workflow is missing concurrency setting
-...
-14 |       name: Publish to crates.io
-   |       -------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/rust.yml:22:7
@@ -306,41 +263,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:13:3
-   |
-13 |   build:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:38:3
-   |
-38 |   success:
-   |   ^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/rust.yml:3:1
-   |
- 3 | / on:
- 4 | |   merge_group:
- 5 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-13 |     build:
-   |     ----- job affected by missing workflow concurrency
-...
-38 |     success:
-   |     ------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-28 findings: 4 informational, 9 low, 9 medium, 6 high
+22 findings: 1 informational, 6 low, 9 medium, 6 high

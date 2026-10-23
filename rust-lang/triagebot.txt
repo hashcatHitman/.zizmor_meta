@@ -181,35 +181,4 @@ error[unpinned-images]: unpinned image references
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/ci.yml:76:3
-   |
-76 |   ci:
-   |   ^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/ci.yml:2:1
-   |
- 2 | / on:
- 3 | |   pull_request: { }
- 4 | |   merge_group: { }
- 5 | |   # We only run this on push to the default branch to prime CI cache
- 6 | |   push:
- 7 | |     branches:
- 8 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-15 |       name: Test
-   |       ---------- job affected by missing workflow concurrency
-...
-76 |     ci:
-   |     -- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-18 findings (1 suppressed): 3 informational, 3 low, 4 medium, 7 high
+16 findings (1 suppressed): 2 informational, 2 low, 4 medium, 7 high

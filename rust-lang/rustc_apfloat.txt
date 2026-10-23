@@ -157,27 +157,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/main.yaml:2:1
-   |
- 2 | / on:
- 3 | |   push: { branches: [main] }
- 4 | |   pull_request:
- 5 | |   merge_group:
-   | |______________^ workflow is missing concurrency setting
-...
-16 |       name: Test
-   |       ---------- job affected by missing workflow concurrency
-...
-48 |       name: Check the MSRV
-   |       -------------------- job affected by missing workflow concurrency
-...
-71 |       name: Rustfmt
-   |       ------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/publish.yaml:17:9
    |
@@ -242,17 +221,4 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yaml:8:1
-   |
- 8 | / on:
- 9 | |   push: { branches: [main] }
-   | |____________________________^ workflow is missing concurrency setting
-...
-13 |       name: Release-plz
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-21 findings: 0 informational, 7 low, 4 medium, 10 high
+19 findings: 0 informational, 5 low, 4 medium, 10 high

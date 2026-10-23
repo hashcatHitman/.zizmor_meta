@@ -204,40 +204,6 @@ help[undocumented-permissions]: permissions without explanatory comments
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/ci.yml:13:3
-   |
-13 |   ci:
-   |   ^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/ci.yml:3:1
-    |
-  3 | / on:
-  4 | |   push:
-  5 | |     branches:
-  6 | |       - main
-...   |
-  9 | |     # Run multiple times a day as the successful cached links are not checked every time.
- 10 | |     - cron: "0 */8 * * *"
-    | |_________________________^ workflow is missing concurrency setting
-...
- 13 |     ci:
-    |     -- job affected by missing workflow concurrency
-...
-102 |       name: Open an issue if links are broken
-    |       --------------------------------------- job affected by missing workflow concurrency
-...
-118 |       name: Close linkcheck issue if no links are broken
-    |       -------------------------------------------------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/date-check.yml:17:9
    |
@@ -302,34 +268,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/date-check.yml:12:3
-   |
-12 |   date-check:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/date-check.yml:3:1
-   |
- 3 | / on:
- 4 | |   schedule:
- 5 | |     # Run at noon UTC every 1st of the month
- 6 | |     - cron: '00 12 01 * *'
- 7 | |
- 8 | |   # Allow manually starting the workflow
- 9 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-12 |     date-check:
-   |     ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/rustc-pull.yml:1:1
    |
@@ -372,4 +310,4 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-29 findings: 2 informational, 15 low, 6 medium, 6 high
+25 findings: 0 informational, 13 low, 6 medium, 6 high

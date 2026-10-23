@@ -313,51 +313,6 @@ info[template-injection]: code injection via template expansion
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yml:368:3
-    |
-368 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/main.yml:2:1
-    |
-  2 | / on:
-  3 | |   pull_request:
-  4 | |   merge_group:
-    | |______________^ workflow is missing concurrency setting
-...
-  8 |       name: Check Style
-    |       ----------------- job affected by missing workflow concurrency
-...
- 17 |       name: Build Documentation
-    |       ------------------------- job affected by missing workflow concurrency
-...
- 29 |       name: Automatic intrinsic verification
-    |       -------------------------------------- job affected by missing workflow concurrency
-...
- 40 |       name: Test
-    |       ---------- job affected by missing workflow concurrency
-...
-277 |       name: Intrinsic Test
-    |       -------------------- job affected by missing workflow concurrency
-...
-325 |       name: Check stdarch-gen-{arm, loongarch, hexagon} output
-    |       -------------------------------------------------------- job affected by missing workflow concurrency
-...
-353 |       name: Run some tests with miri
-    |       ------------------------------ job affected by missing workflow concurrency
-...
-368 |     conclusion:
-    |     ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/rustc-pull.yml:2:1
    |
@@ -391,4 +346,4 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-30 findings (1 ignored): 3 informational, 15 low, 11 medium, 0 high
+28 findings (1 ignored): 2 informational, 14 low, 11 medium, 0 high

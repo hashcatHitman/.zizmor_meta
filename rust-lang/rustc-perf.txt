@@ -1,18 +1,3 @@
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/beta-stable-benchmarks.yml:2:1
-   |
- 2 | / on:
- 3 | |   pull_request:
- 4 | |   schedule:
- 5 | |     - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
-   | |____________________________________________________^ workflow is missing concurrency setting
-...
-12 |       name: Test stable benchmarks
-   |       ---------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/ci.yml:69:9
    |
@@ -184,72 +169,6 @@ error[unpinned-images]: unpinned image references
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:420:3
-    |
-420 |   docker:
-    |   ^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:436:3
-    |
-436 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/ci.yml:2:1
-    |
-  2 | / on:
-  3 | |   merge_group:
-  4 | |   pull_request:
-  5 | |   schedule:
-  6 | |     - cron: "0 12 * * 1" # Every Monday at 12:00 UTC
-    | |____________________________________________________^ workflow is missing concurrency setting
-...
- 16 |       name: Test on Linux
-    |       ------------------- job affected by missing workflow concurrency
-...
- 66 |       name: Test on Windows
-    |       --------------------- job affected by missing workflow concurrency
-...
-117 |       name: Test benchmarks on Linux
-    |       ------------------------------ job affected by missing workflow concurrency
-...
-157 |       name: Test benchmarks on Windows
-    |       -------------------------------- job affected by missing workflow concurrency
-...
-184 |       name: Test codegen backend benchmarks
-    |       ------------------------------------- job affected by missing workflow concurrency
-...
-220 |       name: Test runtime benchmarks
-    |       ----------------------------- job affected by missing workflow concurrency
-...
-253 |       name: Test profiling
-    |       -------------------- job affected by missing workflow concurrency
-...
-302 |       name: Database Check
-    |       -------------------- job affected by missing workflow concurrency
-...
-360 |       name: Compare page endpoint test
-    |       -------------------------------- job affected by missing workflow concurrency
-...
-420 |     docker:
-    |     ------ job affected by missing workflow concurrency
-...
-436 |     conclusion:
-    |     ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[stale-action-refs]: commit hash does not point to a Git tag
   --> .github/workflows/deploy.yml:39:15
    |
@@ -267,15 +186,6 @@ warning[ref-version-mismatch]: action's hash pin has mismatched or missing versi
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/deploy.yml:14:1
-   |
-14 | concurrency: deploy
-   | ^^^^^^^^^^^^^^^^^^^ workflow concurrency is missing cancel-in-progress
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 help[template-injection]: code injection via template expansion
   --> .github/workflows/nightly.yml:53:46
@@ -297,21 +207,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/nightly.yml:2:1
-   |
- 2 | / on:
- 3 | |   workflow_dispatch:
- 4 | |   schedule:
- 5 | |     - cron: "0 23 * * *"
-   | |________________________^ workflow is missing concurrency setting
-...
-12 |       name: Publish release
-   |       --------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/nightly.yml:59:15
@@ -445,45 +340,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
- --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:9:3
-  |
-9 |   test:
-  |   ^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:26:3
-   |
-26 |   clippy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/bitmaps-3.2.1/.github/workflows/ci.yml:2:1
-   |
- 2 | / on:
- 3 | |   push:
- 4 | |   pull_request:
- 5 | |   schedule:
- 6 | |     - cron: "0 0 1,15 * *"
-   | |__________________________^ workflow is missing concurrency setting
-...
- 9 |     test:
-   |     ---- job affected by missing workflow concurrency
-...
-26 |     clippy:
-   |     ------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/dependabot.yml:3:3
   |
@@ -605,45 +461,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
- --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:9:3
-  |
-9 |   test:
-  |   ^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:26:3
-   |
-26 |   clippy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/bitmaps-3.2.1-new-solver/.github/workflows/ci.yml:2:1
-   |
- 2 | / on:
- 3 | |   push:
- 4 | |   pull_request:
- 5 | |   schedule:
- 6 | |     - cron: "0 0 1,15 * *"
-   | |__________________________^ workflow is missing concurrency setting
-...
- 9 |     test:
-   |     ---- job affected by missing workflow concurrency
-...
-26 |     clippy:
-   |     ------ job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:24:7
    |
@@ -674,34 +491,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:16:3
-   |
-16 |   cargo_deny:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/audit.yml:6:1
-   |
- 6 | / on:
- 7 | |   pull_request:
- 8 | |     paths:
- 9 | |       - '**/Cargo.toml'
-...  |
-12 | |     branches:
-13 | |     - master
-   | |____________^ workflow is missing concurrency setting
-...
-16 |     cargo_deny:
-   |     ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/contrib.yml:20:7
    |
@@ -724,16 +513,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/contrib.yml:15:3
-   |
-15 |   deploy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:55:7
@@ -1066,136 +845,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:20:3
-   |
-20 |   conclusion:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:52:3
-   |
-52 |   rustfmt:
-   |   ^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:61:3
-   |
-61 |   clippy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:69:3
-   |
-69 |   stale-label:
-   |   ^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:76:3
-   |
-76 |   lint-docs:
-   |   ^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:84:3
-   |
-84 |   lockfile:
-   |   ^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:91:3
-   |
-91 |   check-version-bump:
-   |   ^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:209:3
-    |
-209 |   schema:
-    |   ^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:216:3
-    |
-216 |   resolver:
-    |   ^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:223:3
-    |
-223 |   test_gitoxide:
-    |   ^^^^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:236:3
-    |
-236 |   build_std:
-    |   ^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:246:3
-    |
-246 |   docs:
-    |   ^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/main.yml:273:3
-    |
-273 |   msrv:
-    |   ^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> collector/compile-benchmarks/cargo-0.87.1/.github/workflows/release.yml:27:9
@@ -1682,162 +1331,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:13:3
-   |
-13 |   check-fmt:
-   |   ^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:19:3
-   |
-19 |   clippy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:27:3
-   |
-27 |   build-nalgebra:
-   |   ^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:49:3
-   |
-49 |   build-nalgebra-all-features:
-   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:55:3
-   |
-55 |   test-nalgebra:
-   |   ^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:72:3
-   |
-72 |   test-nalgebra-glm:
-   |   ^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:78:3
-   |
-78 |   test-nalgebra-sparse:
-   |   ^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:89:3
-   |
-89 |   test-nalgebra-macros:
-   |   ^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:95:3
-   |
-95 |   build-wasm:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:106:3
-    |
-106 |   build-no-std:
-    |   ^^^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:130:3
-    |
-130 |   docs:
-    |   ^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:3:1
-    |
-  3 | / on:
-  4 | |   push:
-  5 | |     branches: [ dev, master ]
-  6 | |   pull_request:
-  7 | |     branches: [ dev, master ]
-    | |_____________________________^ workflow is missing concurrency setting
-...
- 13 |     check-fmt:
-    |     --------- job affected by missing workflow concurrency
-...
- 19 |     clippy:
-    |     ------ job affected by missing workflow concurrency
-...
- 27 |     build-nalgebra:
-    |     -------------- job affected by missing workflow concurrency
-...
- 49 |     build-nalgebra-all-features:
-    |     --------------------------- job affected by missing workflow concurrency
-...
- 55 |     test-nalgebra:
-    |     ------------- job affected by missing workflow concurrency
-...
- 72 |     test-nalgebra-glm:
-    |     ----------------- job affected by missing workflow concurrency
-...
- 78 |     test-nalgebra-sparse:
-    |     -------------------- job affected by missing workflow concurrency
-...
- 89 |     test-nalgebra-macros:
-    |     -------------------- job affected by missing workflow concurrency
-...
- 95 |     build-wasm:
-    |     ---------- job affected by missing workflow concurrency
-...
-106 |     build-no-std:
-    |     ------------ job affected by missing workflow concurrency
-...
-130 |     docs:
-    |     ---- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/nalgebra-0.33.0/.github/workflows/nalgebra-ci-build.yml:65:15
    |
@@ -2308,162 +1801,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:13:3
-   |
-13 |   check-fmt:
-   |   ^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:19:3
-   |
-19 |   clippy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:27:3
-   |
-27 |   build-nalgebra:
-   |   ^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:49:3
-   |
-49 |   build-nalgebra-all-features:
-   |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:55:3
-   |
-55 |   test-nalgebra:
-   |   ^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:72:3
-   |
-72 |   test-nalgebra-glm:
-   |   ^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:78:3
-   |
-78 |   test-nalgebra-sparse:
-   |   ^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:89:3
-   |
-89 |   test-nalgebra-macros:
-   |   ^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:95:3
-   |
-95 |   build-wasm:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:106:3
-    |
-106 |   build-no-std:
-    |   ^^^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:130:3
-    |
-130 |   docs:
-    |   ^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:3:1
-    |
-  3 | / on:
-  4 | |   push:
-  5 | |     branches: [ dev, master ]
-  6 | |   pull_request:
-  7 | |     branches: [ dev, master ]
-    | |_____________________________^ workflow is missing concurrency setting
-...
- 13 |     check-fmt:
-    |     --------- job affected by missing workflow concurrency
-...
- 19 |     clippy:
-    |     ------ job affected by missing workflow concurrency
-...
- 27 |     build-nalgebra:
-    |     -------------- job affected by missing workflow concurrency
-...
- 49 |     build-nalgebra-all-features:
-    |     --------------------------- job affected by missing workflow concurrency
-...
- 55 |     test-nalgebra:
-    |     ------------- job affected by missing workflow concurrency
-...
- 72 |     test-nalgebra-glm:
-    |     ----------------- job affected by missing workflow concurrency
-...
- 78 |     test-nalgebra-sparse:
-    |     -------------------- job affected by missing workflow concurrency
-...
- 89 |     test-nalgebra-macros:
-    |     -------------------- job affected by missing workflow concurrency
-...
- 95 |     build-wasm:
-    |     ---------- job affected by missing workflow concurrency
-...
-106 |     build-no-std:
-    |     ------------ job affected by missing workflow concurrency
-...
-130 |     docs:
-    |     ---- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/nalgebra-0.33.0-new-solver/.github/workflows/nalgebra-ci-build.yml:65:15
    |
@@ -2745,33 +2082,6 @@ error[unpinned-uses]: unpinned action reference
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:3:1
-   |
- 3 | / on:
- 4 | |   push:
- 5 | |   pull_request:
- 6 | |   schedule: [cron: "40 1 * * *"]
-   | |________________________________^ workflow is missing concurrency setting
-...
-13 |       name: Rust ${{matrix.rust}}
-   |       --------------------------- job affected by missing workflow concurrency
-...
-27 |       name: Rust nightly
-   |       ------------------ job affected by missing workflow concurrency
-...
-39 |       name: Rust 1.31.0
-   |       ----------------- job affected by missing workflow concurrency
-...
-47 |       name: Clippy
-   |       ------------ job affected by missing workflow concurrency
-...
-56 |       name: Outdated
-   |       -------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 info[superfluous-actions]: action functionality is already included by the runner
   --> collector/compile-benchmarks/tt-muncher/quote-1.0.17-modified/.github/workflows/ci.yml:21:15
@@ -3114,36 +2424,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:1:1
-    |
-  1 | / on:
-  2 | |   push:
-  3 | |     branches:
-  4 | |       - main
-  5 | |   pull_request:
-  6 | |     branches:
-  7 | |       - main
-    | |____________^ workflow is missing concurrency setting
-...
- 13 |       name: All Succeeded
-    |       ------------------- job affected by missing workflow concurrency
-...
- 28 |       name: Test Linux
-    |       ---------------- job affected by missing workflow concurrency
-...
- 68 |       name: Test non-Linux
-    |       -------------------- job affected by missing workflow concurrency
-...
- 89 |       name: Lint
-    |       ---------- job affected by missing workflow concurrency
-...
-100 |       name: Test Generated
-    |       -------------------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/check.yml:56:15
    |
@@ -3375,24 +2655,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:1:1
-   |
- 1 | / on:
- 2 | |   push:
- 3 | |     tags:
- 4 | |       - 'v*'
-   | |____________^ workflow is missing concurrency setting
-...
-10 |       name: GitHub Release
-   |       -------------------- job affected by missing workflow concurrency
-...
-20 |       name: Crates.io Publish
-   |       ----------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/typenum-1.18.0/.github/workflows/publish.yml:14:17
@@ -3710,36 +2972,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:1:1
-    |
-  1 | / on:
-  2 | |   push:
-  3 | |     branches:
-  4 | |       - main
-  5 | |   pull_request:
-  6 | |     branches:
-  7 | |       - main
-    | |____________^ workflow is missing concurrency setting
-...
- 13 |       name: All Succeeded
-    |       ------------------- job affected by missing workflow concurrency
-...
- 28 |       name: Test Linux
-    |       ---------------- job affected by missing workflow concurrency
-...
- 68 |       name: Test non-Linux
-    |       -------------------- job affected by missing workflow concurrency
-...
- 89 |       name: Lint
-    |       ---------- job affected by missing workflow concurrency
-...
-100 |       name: Test Generated
-    |       -------------------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/check.yml:56:15
    |
@@ -3972,24 +3204,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:1:1
-   |
- 1 | / on:
- 2 | |   push:
- 3 | |     tags:
- 4 | |       - 'v*'
-   | |____________^ workflow is missing concurrency setting
-...
-10 |       name: GitHub Release
-   |       -------------------- job affected by missing workflow concurrency
-...
-20 |       name: Crates.io Publish
-   |       ----------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/typenum-1.18.0-new-solver/.github/workflows/publish.yml:14:17
    |
@@ -4176,58 +3390,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:17:3
-   |
-17 |   build:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:65:3
-   |
-65 |   msrv:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:75:3
-   |
-75 |   regen:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:3:1
-   |
- 3 | / on:
- 4 | |   push:
- 5 | |     branches: [ master ]
- 6 | |   pull_request:
- 7 | |     branches: [ master ]
-   | |________________________^ workflow is missing concurrency setting
-...
-17 |     build:
-   |     ----- job affected by missing workflow concurrency
-...
-65 |     msrv:
-   |     ---- job affected by missing workflow concurrency
-...
-75 |     regen:
-   |     ----- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[archived-uses]: action or reusable workflow from archived repository
   --> collector/compile-benchmarks/unicode-normalization-0.1.24/.github/workflows/rust.yml:28:13
    |
@@ -4250,4 +3412,4 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-353 findings (3 suppressed): 66 informational, 24 low, 151 medium, 109 high
+292 findings (3 suppressed): 20 informational, 9 low, 151 medium, 109 high

@@ -62,23 +62,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/json.yml:4:1
-   |
- 4 | / "on":
- 5 | |   push:
- 6 | |     branches:
- 7 | |       - main
- 8 | |   pull_request:
- 9 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-13 |       name: Check style
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/markdown.yml:17:9
    |
@@ -191,26 +174,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/markdown.yml:4:1
-   |
- 4 | / "on":
- 5 | |   push:
- 6 | |     branches:
- 7 | |       - main
- 8 | |   pull_request:
- 9 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-13 |       name: Lint code
-   |       --------------- job affected by missing workflow concurrency
-...
-26 |       name: Check style
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/yaml.yml:17:9
@@ -325,24 +288,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/yaml.yml:4:1
-   |
- 4 | / "on":
- 5 | |   push:
- 6 | |     branches:
- 7 | |       - main
- 8 | |   pull_request:
- 9 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-13 |       name: Lint code
-   |       --------------- job affected by missing workflow concurrency
-...
-24 |       name: Check style
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-26 findings: 0 informational, 3 low, 13 medium, 10 high
+23 findings: 0 informational, 0 low, 13 medium, 10 high

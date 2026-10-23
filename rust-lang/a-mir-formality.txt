@@ -74,45 +74,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/ci.yaml:10:3
-   |
-10 |   rust-test:
-   |   ^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/ci.yaml:23:3
-   |
-23 |   conclusion:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/ci.yaml:3:1
-   |
- 3 | / on:
- 4 | |   merge_group:
- 5 | |   pull_request:
- 6 | |     branches: [main]
- 7 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-10 |     rust-test:
-   |     --------- job affected by missing workflow concurrency
-...
-23 |     conclusion:
-   |     ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/coverage-report.yml:19:9
    |
@@ -156,31 +117,6 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/coverage-report.yml:16:3
-   |
-16 |   coverage-diff:
-   |   ^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/coverage-report.yml:10:1
-   |
-10 | / on:
-11 | |   pull_request:
-12 | |     branches: [main]
-13 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-16 |     coverage-diff:
-   |     ------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/mdbook.yml:34:9
    |
@@ -220,24 +156,4 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/mdbook.yml:29:3
-   |
-29 |   build:
-   |   ^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/mdbook.yml:53:3
-   |
-53 |   deploy:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-20 findings: 7 informational, 7 low, 4 medium, 2 high
+13 findings: 2 informational, 5 low, 4 medium, 2 high

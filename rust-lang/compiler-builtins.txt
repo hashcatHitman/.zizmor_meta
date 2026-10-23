@@ -7,16 +7,6 @@ help[undocumented-permissions]: permissions without explanatory comments
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/main.yaml:416:3
-    |
-416 |   success:
-    |   ^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
 error[excessive-permissions]: overly broad permissions
  --> .github/workflows/publish.yaml:4:3
   |
@@ -56,19 +46,6 @@ help[undocumented-permissions]: permissions without explanatory comments
   |
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yaml:8:1
-   |
- 8 | / on:
- 9 | |   push: { branches: [main] }
-   | |____________________________^ workflow is missing concurrency setting
-...
-13 |       name: Release-plz
-   |       ----------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 warning[excessive-permissions]: overly broad permissions
   --> .github/workflows/rustc-pull.yml:2:1
@@ -114,4 +91,4 @@ warning[ref-version-mismatch]: action's hash pin has mismatched or missing versi
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
 
-12 findings (1 suppressed): 1 informational, 5 low, 2 medium, 3 high
+10 findings (1 suppressed): 0 informational, 4 low, 2 medium, 3 high

@@ -59,28 +59,6 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
- --> .github/workflows/cifuzz.yml:4:3
-  |
-4 |   Fuzzing:
-  |   ^^^^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
- --> .github/workflows/cifuzz.yml:2:1
-  |
-2 | on: [pull_request]
-  | ^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-3 | jobs:
-4 |   Fuzzing:
-  |   ------- job affected by missing workflow concurrency
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/main.yml:37:7
    |
@@ -490,37 +468,4 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/main.yml:2:1
-    |
-  2 | on: [push, pull_request]
-    | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-...
-  6 |     name: Test
-    |     ---------- job affected by missing workflow concurrency
-...
- 61 |     name: Rustfmt, Docs and Clippy
-    |     ------------------------------ job affected by missing workflow concurrency
-...
- 77 |     name: Security Audit
-    |     -------------------- job affected by missing workflow concurrency
-...
- 91 |     name: WebAssembly
-    |     ----------------- job affected by missing workflow concurrency
-...
-103 |     name: no_std
-    |     ------------ job affected by missing workflow concurrency
-...
-129 |     name: no_std (Example)
-    |     ---------------------- job affected by missing workflow concurrency
-...
-147 |     name: Minimum Rust compiler
-    |     --------------------------- job affected by missing workflow concurrency
-...
-172 |     name: Minimum Rust compiler
-    |     --------------------------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-43 findings: 1 informational, 11 low, 19 medium, 12 high
+40 findings: 0 informational, 9 low, 19 medium, 12 high

@@ -77,19 +77,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/main.yml:4:1
-   |
- 4 | / on:
- 5 | |   push:
- 6 | |     branches: [ master ]
- 7 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-11 |       name: Run tests
-   |       --------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-7 findings: 0 informational, 3 low, 3 medium, 1 high
+6 findings: 0 informational, 2 low, 3 medium, 1 high

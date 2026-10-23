@@ -440,45 +440,6 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/main.yml:3:1
-    |
-  3 | / on:
-  4 | |   push:
-  5 | |     branches:
-  6 | |       - main
-  7 | |   pull_request:
-  8 | |     branches:
-  9 | |       - main
-    | |____________^ workflow is missing concurrency setting
-...
- 13 |       name: Test
-    |       ---------- job affected by missing workflow concurrency
-...
-137 |       name: Windows AArch64
-    |       --------------------- job affected by missing workflow concurrency
-...
-152 |       name: iOS
-    |       --------- job affected by missing workflow concurrency
-...
-171 |       name: Docker
-    |       ------------ job affected by missing workflow concurrency
-...
-205 |       name: Rustfmt
-    |       ------------- job affected by missing workflow concurrency
-...
-216 |       name: Build Targets
-    |       ------------------- job affected by missing workflow concurrency
-...
-239 |       name: MSRV
-    |       ---------- job affected by missing workflow concurrency
-...
-256 |       name: Miri
-    |       ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/publish.yml:19:9
    |
@@ -587,17 +548,4 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/publish.yml:8:1
-   |
- 8 | / on:
- 9 | |   push: { branches: [main] }
-   | |____________________________^ workflow is missing concurrency setting
-...
-14 |       name: Release-plz release
-   |       ------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-48 findings: 0 informational, 14 low, 19 medium, 15 high
+46 findings: 0 informational, 12 low, 19 medium, 15 high

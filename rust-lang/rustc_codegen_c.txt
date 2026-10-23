@@ -232,38 +232,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/main.yaml:61:3
-   |
-61 |   success:
-   |   ^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/main.yaml:2:1
-   |
- 2 | on: [push, pull_request]
-   | ^^^^^^^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-...
-10 |     name: clippy
-   |     ------------ job affected by missing workflow concurrency
-...
-23 |     name: test
-   |     ---------- job affected by missing workflow concurrency
-...
-36 |     name: rustfmt
-   |     ------------- job affected by missing workflow concurrency
-...
-49 |     name: docs
-   |     ---------- job affected by missing workflow concurrency
-...
-61 |   success:
-   |   ------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-21 findings: 2 informational, 1 low, 10 medium, 8 high
+19 findings: 1 informational, 0 low, 10 medium, 8 high

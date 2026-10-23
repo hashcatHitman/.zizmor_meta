@@ -111,21 +111,6 @@ help[undocumented-permissions]: permissions without explanatory comments
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/release-plz.yml:3:1
-   |
- 3 | / on:
- 4 | |   push:
- 5 | |     branches:
- 6 | |       - main
-   | |____________^ workflow is missing concurrency setting
-...
-12 |       name: Release-plz release
-   |       ------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/release-plz.yml:25:15
    |
@@ -431,108 +416,6 @@ error[unpinned-uses]: unpinned action reference
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
- --> .github/workflows/rust.yml:8:3
-  |
-8 |   miri:
-  |   ^^^^ this job
-  |
-  = note: audit confidence → High
-  = tip: use 'name: ...' to give this job a name
-  = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:16:3
-   |
-16 |   rustfmt_clippy:
-   |   ^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:27:3
-   |
-27 |   basics:
-   |   ^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:35:3
-   |
-35 |   test:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:84:3
-   |
-84 |   msrv:
-   |   ^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/rust.yml:92:3
-   |
-92 |   dep_of_std:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/rust.yml:102:3
-    |
-102 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/rust.yml:3:1
-    |
-  3 | / on:
-  4 | |   pull_request:
-  5 | |   merge_group:
-    | |______________^ workflow is missing concurrency setting
-...
-  8 |     miri:
-    |     ---- job affected by missing workflow concurrency
-...
- 16 |     rustfmt_clippy:
-    |     -------------- job affected by missing workflow concurrency
-...
- 27 |     basics:
-    |     ------ job affected by missing workflow concurrency
-...
- 35 |     test:
-    |     ---- job affected by missing workflow concurrency
-...
- 84 |     msrv:
-    |     ---- job affected by missing workflow concurrency
-...
- 92 |     dep_of_std:
-    |     ---------- job affected by missing workflow concurrency
-...
-102 |     conclusion:
-    |     ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/rust.yml:40:13
    |
@@ -559,4 +442,4 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-45 findings: 13 informational, 5 low, 15 medium, 12 high
+36 findings: 6 informational, 3 low, 15 medium, 12 high

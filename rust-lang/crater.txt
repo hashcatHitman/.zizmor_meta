@@ -253,44 +253,6 @@ error[unpinned-uses]: unpinned action reference
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-   --> .github/workflows/ci.yml:116:3
-    |
-116 |   conclusion:
-    |   ^^^^^^^^^^ this job
-    |
-    = note: audit confidence → High
-    = tip: use 'name: ...' to give this job a name
-    = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-   --> .github/workflows/ci.yml:2:1
-    |
-  2 | / on:
-  3 | |   merge_group:
-    | |______________^ workflow is missing concurrency setting
-...
-  7 |       name: Linting
-    |       ------------- job affected by missing workflow concurrency
-...
- 22 |       name: Testing
-    |       ------------- job affected by missing workflow concurrency
-...
- 48 |       name: Minicrater
-    |       ---------------- job affected by missing workflow concurrency
-...
- 69 |       name: Build the Docker image
-    |       ---------------------------- job affected by missing workflow concurrency
-...
- 89 |       name: Upload the Docker images to ECR
-    |       ------------------------------------- job affected by missing workflow concurrency
-...
-116 |     conclusion:
-    |     ---------- job affected by missing workflow concurrency
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
  --> .github/workflows/pr.yml:9:9
   |
@@ -424,32 +386,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/pr.yml:43:3
-   |
-43 |   conclusion:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/pr.yml:2:1
-   |
- 2 | on: [pull_request]
-   | ^^^^^^^^^^^^^^^^^^ workflow is missing concurrency setting
-...
- 6 |     name: Linting
-   |     ------------- job affected by missing workflow concurrency
-...
-21 |     name: Linux testing
-   |     ------------------- job affected by missing workflow concurrency
-...
-43 |   conclusion:
-   |   ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-36 findings (2 suppressed): 6 informational, 8 low, 11 medium, 9 high
+32 findings (2 suppressed): 4 informational, 6 low, 11 medium, 9 high

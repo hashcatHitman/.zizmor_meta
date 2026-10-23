@@ -114,34 +114,6 @@ error[template-injection]: code injection via template expansion
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-info[anonymous-definition]: workflow or action definition without a name
-  --> .github/workflows/check_diff.yml:48:3
-   |
-48 |   diff_check:
-   |   ^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = tip: use 'name: ...' to give this job a name
-   = help: audit documentation → https://docs.zizmor.sh/audits/#anonymous-definition
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/check_diff.yml:2:1
-   |
- 2 | / on:
- 3 | |   workflow_dispatch:
- 4 | |     inputs:
- 5 | |       clone_url:
-...  |
-41 | |           - beta
-42 | |           - nightly
-   | |___________________^ workflow is missing concurrency setting
-...
-48 |     diff_check:
-   |     ---------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/clippy.yml:14:9
    |
@@ -175,23 +147,6 @@ help[template-injection]: code injection via template expansion
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/clippy.yml:2:1
-   |
- 2 | / on:
- 3 | |   merge_group:
- 4 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-12 |       name: check clippy configs
-   |       -------------------------- job affected by missing workflow concurrency
-...
-26 |       name: clippy ${{ matrix.package }}
-   |       ---------------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/integration.yml:61:7
    |
@@ -215,19 +170,6 @@ help[template-injection]: code injection via template expansion
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/integration.yml:2:1
-   |
- 2 | / on:
- 3 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-11 |       name: ${{ matrix.integration }}
-   |       ------------------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/rustdoc_check.yml:14:7
    |
@@ -239,20 +181,6 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = note: audit confidence → Low
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/rustdoc_check.yml:2:1
-   |
- 2 | / on:
- 3 | |   merge_group:
- 4 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-12 |       name: rustdoc check
-   |       ------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/test.yml:44:7
@@ -313,23 +241,6 @@ info[template-injection]: code injection via template expansion
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
-
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/test.yml:2:1
-   |
- 2 | / on:
- 3 | |   merge_group:
- 4 | |   pull_request:
-   | |_______________^ workflow is missing concurrency setting
-...
-12 |       name: (${{ matrix.target }}, ${{ matrix.cfg_release_channel }})
-   |       --------------------------------------------------------------- job affected by missing workflow concurrency
-...
-84 |       name: "test conclusion"
-   |       ----------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/upload-assets.yml:34:9
@@ -442,20 +353,4 @@ help[template-injection]: code injection via template expansion
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-help[concurrency-limits]: insufficient job-level concurrency limits
-  --> .github/workflows/upload-assets.yml:3:1
-   |
- 3 | / on:
- 4 | |   push:
- 5 | |   release:
- 6 | |     types: [created]
- 7 | |   workflow_dispatch:
-   | |____________________^ workflow is missing concurrency setting
-...
-11 |       name: build-release
-   |       ------------------- job affected by missing workflow concurrency
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#concurrency-limits
-
-36 findings: 3 informational, 21 low, 2 medium, 10 high
+29 findings: 2 informational, 15 low, 2 medium, 10 high
