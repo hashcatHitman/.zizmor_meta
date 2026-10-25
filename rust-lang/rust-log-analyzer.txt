@@ -11,7 +11,7 @@ warning[ref-version-mismatch]: action's hash pin has mismatched or missing versi
   --> .github/workflows/main.yml:37:115
    |
 37 |         uses: rust-lang/simpleinfra/github-actions/upload-docker-image@4da88c824d96c01628fbad1e1b97cd24e08216c4 # master
-   |                                                                                                                   ^^^^^^ branch points to commit d7cab1aa8112
+   |                                                                                                                   ^^^^^^ branch points to commit 413191c270f3
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
