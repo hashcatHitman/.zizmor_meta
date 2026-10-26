@@ -3754,9 +3754,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> src/tools/miri/.github/workflows/ci.yml:215:9
+   --> src/tools/miri/.github/workflows/ci.yml:206:9
     |
-215 |       - uses: actions/checkout@v6
+206 |       - uses: actions/checkout@v6
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -3764,12 +3764,12 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> src/tools/miri/.github/workflows/ci.yml:250:9
+   --> src/tools/miri/.github/workflows/ci.yml:241:9
     |
-250 |         - uses: actions/checkout@v6
+241 |         - uses: actions/checkout@v6
     |  _________^
-251 | |         with:
-252 | |           fetch-depth: 256 # get a bit more of the history
+242 | |         with:
+243 | |           fetch-depth: 256 # get a bit more of the history
     | |__________________________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -3872,24 +3872,24 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> src/tools/miri/.github/workflows/ci.yml:236:35
+   --> src/tools/miri/.github/workflows/ci.yml:227:35
     |
-234 |         run: |
+225 |         run: |
     |         --- this run block
-235 |             # Print the dependent jobs to see them in the CI log
-236 |             jq -C <<< '${{ toJson(needs) }}'
+226 |             # Print the dependent jobs to see them in the CI log
+227 |             jq -C <<< '${{ toJson(needs) }}'
     |                                   ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> src/tools/miri/.github/workflows/ci.yml:238:74
+   --> src/tools/miri/.github/workflows/ci.yml:229:74
     |
-234 |         run: |
+225 |         run: |
     |         --- this run block
 ...
-238 |             jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+229 |             jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |                                                                          ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -3966,9 +3966,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> src/tools/miri/.github/workflows/ci.yml:215:15
+   --> src/tools/miri/.github/workflows/ci.yml:206:15
     |
-215 |       - uses: actions/checkout@v6
+206 |       - uses: actions/checkout@v6
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -3976,9 +3976,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> src/tools/miri/.github/workflows/ci.yml:250:15
+   --> src/tools/miri/.github/workflows/ci.yml:241:15
     |
-250 |       - uses: actions/checkout@v6
+241 |       - uses: actions/checkout@v6
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -3986,9 +3986,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> src/tools/miri/.github/workflows/ci.yml:264:15
+   --> src/tools/miri/.github/workflows/ci.yml:255:15
     |
-264 |       - uses: actions/create-github-app-token@v3
+255 |       - uses: actions/create-github-app-token@v3
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -3996,21 +3996,21 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 help[undocumented-permissions]: permissions without explanatory comments
-   --> src/tools/miri/.github/workflows/ci.yml:245:9
+   --> src/tools/miri/.github/workflows/ci.yml:236:9
     |
-245 |         contents: write
+236 |         contents: write
     |         ^^^^^^^^^^^^^^^ needs an explanatory comment
-246 |         # ... and create a PR.
-247 |         pull-requests: write
+237 |         # ... and create a PR.
+238 |         pull-requests: write
     |         ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
 error[github-app]: dangerous use of GitHub App tokens
-   --> src/tools/miri/.github/workflows/ci.yml:264:15
+   --> src/tools/miri/.github/workflows/ci.yml:255:15
     |
-264 |       - uses: actions/create-github-app-token@v3
+255 |       - uses: actions/create-github-app-token@v3
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
     |
     = note: audit confidence → High
@@ -4061,9 +4061,9 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> src/tools/miri/.github/workflows/ci.yml:216:15
+   --> src/tools/miri/.github/workflows/ci.yml:207:15
     |
-216 |       - uses: ./.github/workflows/setup
+207 |       - uses: ./.github/workflows/setup
     |         ------^^^^^^^^^^^^^^^^^^^^^^^^^
     |         |     |
     |         |     use '$/...' instead of './...'
@@ -4721,63 +4721,6 @@ warning[excessive-permissions]: overly broad permissions
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> src/tools/rust-analyzer/.github/workflows/gen-lints.yml:20:9
-   |
-20 |         - name: Checkout repository
-   |  _________^
-21 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-   | |________________________________________________________________________________^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[excessive-permissions]: overly broad permissions
-  --> src/tools/rust-analyzer/.github/workflows/gen-lints.yml:1:1
-   |
- 1 | / name: Generate lints and feature flags
- 2 | |
- 3 | | on:
- 4 | |   workflow_dispatch:
-...  |
-44 | |           body: "Weekly lint updates for `crates/ide-db/src/generated/lints.rs`."
-45 | |           labels: "A-infra"
-   | |____________________________^ default permissions used due to no permissions: block
-   |
-   = note: audit confidence → Medium
-   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-help[undocumented-permissions]: permissions without explanatory comments
-  --> src/tools/rust-analyzer/.github/workflows/gen-lints.yml:18:7
-   |
-18 |       pull-requests: write
-   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-info[superfluous-actions]: action functionality is already included by the runner
-  --> src/tools/rust-analyzer/.github/workflows/gen-lints.yml:36:15
-   |
-35 |       - name: Submit PR
-   |         --------------- this step
-36 |         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh pr create` in a script step
-   |
-   = note: audit confidence → Low
-   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
-
-error[github-app]: dangerous use of GitHub App tokens
-  --> src/tools/rust-analyzer/.github/workflows/gen-lints.yml:29:15
-   |
-29 |       - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
-   |
-   = note: audit confidence → High
-   = tip: specify at least one `permission-<name>` input to limit the token's permissions
-   = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
-
-help[artipacked]: credential persistence through GitHub Actions artifacts
   --> src/tools/rust-analyzer/.github/workflows/metrics.yaml:25:9
    |
 25 |         - name: Checkout repository
@@ -5397,6 +5340,63 @@ warning[excessive-permissions]: overly broad permissions
    |
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> src/tools/rust-analyzer/.github/workflows/update-generated.yml:20:9
+   |
+20 |         - name: Checkout repository
+   |  _________^
+21 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+   | |________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> src/tools/rust-analyzer/.github/workflows/update-generated.yml:1:1
+   |
+ 1 | / name: Update generated code
+ 2 | |
+ 3 | | on:
+ 4 | |   workflow_dispatch:
+...  |
+47 | |           body: "Weekly lint updates for `crates/ide-db/src/generated/lints.rs` and `crates/hir-ty/src/generated/target_features.r...
+48 | |           labels: "A-infra"
+   | |____________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+  --> src/tools/rust-analyzer/.github/workflows/update-generated.yml:18:7
+   |
+18 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+info[superfluous-actions]: action functionality is already included by the runner
+  --> src/tools/rust-analyzer/.github/workflows/update-generated.yml:39:15
+   |
+38 |       - name: Submit PR
+   |         --------------- this step
+39 |         uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh pr create` in a script step
+   |
+   = note: audit confidence → Low
+   = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
+
+error[github-app]: dangerous use of GitHub App tokens
+  --> src/tools/rust-analyzer/.github/workflows/update-generated.yml:32:15
+   |
+32 |       - uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
+   |
+   = note: audit confidence → High
+   = tip: specify at least one `permission-<name>` input to limit the token's permissions
+   = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> src/tools/rustfmt/.github/workflows/check_diff.yml:52:7

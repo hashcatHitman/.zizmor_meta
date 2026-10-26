@@ -73,7 +73,7 @@ error[unpinned-uses]: unpinned action reference
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/main.yml:46:15
    |
-46 |         uses: docker/login-action@v4.6.0
+46 |         uses: docker/login-action@v4.7.0
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
