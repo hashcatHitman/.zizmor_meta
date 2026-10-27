@@ -1,551 +1,123 @@
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:42:9
-   |
-42 |         - uses: actions/checkout@v4
-   |  _________^
-43 | |         with:
-44 | |           submodules: true
-   | |__________________________^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:140:9
-    |
-140 |         - uses: actions/checkout@v4
-    |  _________^
-141 | |         with:
-142 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:161:9
-    |
-161 |         - uses: actions/checkout@v4
-    |  _________^
-162 | |         with:
-163 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:193:9
-    |
-193 |         - uses: actions/checkout@v4
-    |  _________^
-194 | |         with:
-195 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:208:9
-    |
-208 |         - uses: actions/checkout@v4
-    |  _________^
-209 | |         with:
-210 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:227:9
-    |
-227 |         - uses: actions/checkout@v4
-    |  _________^
-228 | |         with:
-229 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:248:9
-    |
-248 |         - uses: actions/checkout@v4
-    |  _________^
-249 | |         with:
-250 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:259:9
-    |
-259 |         - uses: actions/checkout@v4
-    |  _________^
-260 | |         with:
-261 | |           submodules: true
-    | |__________________________^ does not set persist-credentials: false
-    |
-    = note: audit confidence → Low
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-help[unsound-ternary]: unsound pseudo-ternary expression
-   --> .github/workflows/main.yml:166:66
-    |
-166 |         run: cargo test ${{ contains(matrix.target, 'macabi') && '' || '--no-run' }} --target ${{ matrix.target }}
-    |                                                                  ^^ pseudo-ternary has falsy true value
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unsound-ternary
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:1:1
-    |
-  1 | / name: CI
-  2 | |
-  3 | | on:
-  4 | |   push:
-...   |
-266 | |           cargo miri setup
-267 | |       - run: MIRIFLAGS="-Zmiri-disable-isolation" cargo miri test
-    | |__________________________________________________________________^ default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:12:3
-    |
- 12 | /   test:
- 13 | |     name: Test
- 14 | |     runs-on: ${{ matrix.os }}
- 15 | |     strategy:
-...   |
-133 | |       - run: cargo build --manifest-path crates/as-if-std/Cargo.toml --no-default-features
-134 | |         if: matrix.rust == 'nightly'
-    | |                                    ^
-    | |                                    |
-    | |____________________________________this job
-    |                                      default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:136:3
-    |
-136 | /   windows_arm64:
-137 | |     name: Windows AArch64
-138 | |     runs-on: windows-latest
-139 | |     steps:
-...   |
-148 | |       - run: rustup target add aarch64-pc-windows-msvc
-149 | |       - run: cargo test --no-run --target aarch64-pc-windows-msvc
-    | |                                                                 ^
-    | |                                                                 |
-    | |_________________________________________________________________this job
-    |                                                                   default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:151:3
-    |
-151 | /   ios:
-152 | |     name: iOS
-153 | |     runs-on: macos-latest
-154 | |     strategy:
-...   |
-167 | |         env:
-168 | |           RUSTFLAGS: -Dwarnings
-    | |                               ^
-    | |                               |
-    | |_______________________________this job
-    |                                 default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:170:3
-    |
-170 | /   docker:
-171 | |     name: Docker
-172 | |     runs-on: ubuntu-24.04
-173 | |     strategy:
-...   |
-201 | |         shell: bash
-202 | |       - run: ./ci/run-docker.sh ${{ matrix.target }}
-    | |                                                    ^
-    | |                                                    |
-    | |____________________________________________________this job
-    |                                                      default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:204:3
-    |
-204 | /   rustfmt:
-205 | |     name: Rustfmt
-206 | |     runs-on: ubuntu-24.04
-207 | |     steps:
-...   |
-212 | |         run: rustup update stable --no-self-update && rustup default stable && rustup component add rustfmt
-213 | |       - run: cargo fmt --all -- --check
-    | |                                       ^
-    | |                                       |
-    | |_______________________________________this job
-    |                                         default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:215:3
-    |
-215 | /   build:
-216 | |     name: Build Targets
-217 | |     runs-on: ubuntu-24.04
-218 | |     strategy:
-...   |
-235 | |       - run: cargo build --target ${{ matrix.target }}
-236 | |       - run: cargo build --manifest-path crates/as-if-std/Cargo.toml --target ${{ matrix.target }}
-    | |                                                                                                  ^
-    | |                                                                                                  |
-    | |__________________________________________________________________________________________________this job
-    |                                                                                                    default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:238:3
-    |
-238 | /   msrv:
-239 | |     name: MSRV
-240 | |     runs-on: ${{ matrix.os }}
-241 | |     strategy:
-...   |
-252 | |         run: rustup update 1.88.0 --no-self-update && rustup default 1.88.0
-253 | |       - run: cargo build
-    | |                        ^
-    | |                        |
-    | |________________________this job
-    |                          default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:255:3
-    |
-255 | /   miri:
-256 | |     name: Miri
-257 | |     runs-on: ubuntu-24.04
-258 | |     steps:
-...   |
-266 | |           cargo miri setup
-267 | |       - run: MIRIFLAGS="-Zmiri-disable-isolation" cargo miri test
-    | |                                                                  ^
-    | |                                                                  |
-    | |__________________________________________________________________this job
-    |                                                                    default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:46:32
+  --> .github/workflows/main.yml:51:32
    |
-46 |         run: rustup update ${{ matrix.rust }} --no-self-update && rustup default ${{ matrix.rust }}
+51 |         run: rustup update ${{ matrix.rust }} --no-self-update && rustup default ${{ matrix.rust }}
    |         --- this run block     ^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:46:86
+  --> .github/workflows/main.yml:51:86
    |
-46 |         run: rustup update ${{ matrix.rust }} --no-self-update && rustup default ${{ matrix.rust }}
+51 |         run: rustup update ${{ matrix.rust }} --no-self-update && rustup default ${{ matrix.rust }}
    |         --- this run block                                                           ^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:164:36
+  --> .github/workflows/main.yml:59:33
+   |
+58 |         run: |
+   |         --- this run block
+59 |           rustup target add ${{ matrix.target }}
+   |                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+  --> .github/workflows/main.yml:60:40
+   |
+58 |         run: |
+   |         --- this run block
+59 |           rustup target add ${{ matrix.target }}
+60 |           echo CARGO_BUILD_TARGET="${{ matrix.target }}" >> $GITHUB_ENV
+   |                                        ^^^^^^^^^^^^^ may expand into attacker-controllable code
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:179:36
     |
-164 |       - run: rustup target add ${{ matrix.target }}
+179 |       - run: rustup target add ${{ matrix.target }}
     |         --- this run block         ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:166:29
+   --> .github/workflows/main.yml:181:29
     |
-166 |         run: cargo test ${{ contains(matrix.target, 'macabi') && '' || '--no-run' }} --target ${{ matrix.target }}
-    |         --- this run block  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
-    |
-    = note: audit confidence → High
-    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
-
-help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:166:99
-    |
-166 |         run: cargo test ${{ contains(matrix.target, 'macabi') && '' || '--no-run' }} --target ${{ matrix.target }}
-    |         --- this run block                                                                        ^^^^^^^^^^^^^ may expand into attacker-controllable code
+181 |         run: cargo test ${{ case(contains(matrix.target, 'macabi'), '', '--no-run') }} --target ${{ matrix.target }}
+    |         --- this run block  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:198:36
+   --> .github/workflows/main.yml:181:101
     |
-198 |       - run: rustup target add ${{ matrix.target }}
+181 |         run: cargo test ${{ case(contains(matrix.target, 'macabi'), '', '--no-run') }} --target ${{ matrix.target }}
+    |         --- this run block                                                                          ^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:214:36
+    |
+214 |       - run: rustup target add ${{ matrix.target }}
     |         --- this run block         ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:202:37
+   --> .github/workflows/main.yml:218:37
     |
-202 |       - run: ./ci/run-docker.sh ${{ matrix.target }}
+218 |       - run: ./ci/run-docker.sh ${{ matrix.target }}
     |         --- this run block          ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:232:36
+   --> .github/workflows/main.yml:250:36
     |
-232 |       - run: rustup target add ${{ matrix.target }}
+250 |       - run: rustup target add ${{ matrix.target }}
     |         --- this run block         ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:235:39
+   --> .github/workflows/main.yml:253:39
     |
-235 |       - run: cargo build --target ${{ matrix.target }}
+253 |       - run: cargo build --target ${{ matrix.target }}
     |         --- this run block            ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:236:83
+   --> .github/workflows/main.yml:254:83
     |
-236 |       - run: cargo build --manifest-path crates/as-if-std/Cargo.toml --target ${{ matrix.target }}
+254 |       - run: cargo build --manifest-path crates/as-if-std/Cargo.toml --target ${{ matrix.target }}
     |         --- this run block                                                        ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/main.yml:42:15
-   |
-42 |       - uses: actions/checkout@v4
-   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:140:15
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/main.yml:255:105
     |
-140 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+255 |       - run: cargo build --manifest-path crates/as-if-std/Cargo.toml --no-default-features --target ${{ matrix.target }}
+    |         --- this run block                                                                              ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:161:15
-    |
-161 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:193:15
-    |
-193 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:208:15
-    |
-208 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:227:15
-    |
-227 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:248:15
-    |
-248 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:259:15
-    |
-259 |       - uses: actions/checkout@v4
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/publish.yml:19:9
-   |
-19 |         - name: Checkout repository
-   |  _________^
-20 | |         uses: actions/checkout@v4
-21 | |         with:
-22 | |           fetch-depth: 0
-   | |________________________^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/publish.yml:41:9
-   |
-41 |         - name: Checkout repository
-   |  _________^
-42 | |         uses: actions/checkout@v4
-43 | |         with:
-44 | |           fetch-depth: 0
-   | |________________________^ does not set persist-credentials: false
-   |
-   = note: audit confidence → Low
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-error[excessive-permissions]: overly broad permissions
- --> .github/workflows/publish.yml:4:3
-  |
-4 |   pull-requests: write
-  |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-error[excessive-permissions]: overly broad permissions
- --> .github/workflows/publish.yml:5:3
-  |
-5 |   id-token: write
-  |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-error[excessive-permissions]: overly broad permissions
- --> .github/workflows/publish.yml:6:3
-  |
-6 |   contents: write
-  |   ^^^^^^^^^^^^^^^ contents: write is overly broad at the workflow level
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/publish.yml:20:15
-   |
-20 |         uses: actions/checkout@v4
-   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/publish.yml:26:15
-   |
-26 |         uses: release-plz/action@v0.5
-   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/publish.yml:42:15
-   |
-42 |         uses: actions/checkout@v4
-   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/publish.yml:48:15
-   |
-48 |         uses: release-plz/action@v0.5
-   |               ^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-help[undocumented-permissions]: permissions without explanatory comments
- --> .github/workflows/publish.yml:4:3
-  |
-4 |   pull-requests: write
-  |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
-5 |   id-token: write
-  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
-6 |   contents: write
-  |   ^^^^^^^^^^^^^^^ needs an explanatory comment
-  |
-  = note: audit confidence → High
-  = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-46 findings: 0 informational, 12 low, 19 medium, 15 high
+13 findings: 0 informational, 13 low, 0 medium, 0 high

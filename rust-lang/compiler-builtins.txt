@@ -55,40 +55,22 @@ warning[excessive-permissions]: overly broad permissions
  4 | | on:
  5 | |   workflow_dispatch:
 ...  |
-31 | |       contents: write
-32 | |       pull-requests: write
+30 | |       contents: write
+31 | |       pull-requests: write
    | |___________________________^ default permissions used due to no permissions: block
    |
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[undocumented-permissions]: permissions without explanatory comments
-  --> .github/workflows/rustc-pull.yml:31:7
+  --> .github/workflows/rustc-pull.yml:30:7
    |
-31 |       contents: write
+30 |       contents: write
    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
-32 |       pull-requests: write
+31 |       pull-requests: write
    |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-help[stale-action-refs]: commit hash does not point to a Git tag
-  --> .github/workflows/rustc-pull.yml:17:11
-   |
-17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
-   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
-
-warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
-  --> .github/workflows/rustc-pull.yml:17:107
-   |
-17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
-   |                                                                                                           ^^^^ branch points to commit d01854a4c8b2
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
-
-10 findings (1 suppressed): 0 informational, 4 low, 2 medium, 3 high
+9 findings (1 ignored, 1 suppressed): 0 informational, 3 low, 1 medium, 3 high
