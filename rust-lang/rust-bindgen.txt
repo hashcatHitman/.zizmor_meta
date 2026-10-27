@@ -82,12 +82,12 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/bindgen.yml:169:9
+   --> .github/workflows/bindgen.yml:171:9
     |
-169 |         - uses: actions/checkout@v4
+171 |         - uses: actions/checkout@v4
     |  _________^
-170 | |
-171 | |       # NOTE(emilio): Change deploy-book as well if you change this.
+172 | |
+173 | |       # NOTE(emilio): Change deploy-book as well if you change this.
     | |____________________________________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -95,9 +95,9 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/bindgen.yml:182:9
+   --> .github/workflows/bindgen.yml:184:9
     |
-182 |       - uses: actions/checkout@v4
+184 |       - uses: actions/checkout@v4
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -112,8 +112,8 @@ warning[excessive-permissions]: overly broad permissions
   3 | | on:
   4 | |   push:
 ...   |
-205 | |       - name: check if any dependency failed
-206 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+219 | |       - name: check if any dependency failed
+220 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     | |_____________________________________________________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -182,7 +182,7 @@ warning[excessive-permissions]: overly broad permissions
 65 | |       RUSTFLAGS: -D warnings
 ...  |
 69 | |       - name: Check without default features
-70 | |         run: cargo check -p bindgen --no-default-features --features=runtime 
+70 | |         run: cargo check -p bindgen --no-default-features --features=runtime
    | |                                                                            ^
    | |                                                                            |
    | |____________________________________________________________________________this job
@@ -199,7 +199,7 @@ warning[excessive-permissions]: overly broad permissions
 74 | |     env:
 75 | |       RUSTDOCFLAGS: -D warnings
 ...  |
-82 | |       - name: Generate documentation for `bindgen-cli` 
+82 | |       - name: Generate documentation for `bindgen-cli`
 83 | |         run: cargo doc --document-private-items --no-deps -p bindgen-cli
    | |                                                                        ^
    | |                                                                        |
@@ -253,8 +253,8 @@ warning[excessive-permissions]: overly broad permissions
 107 | |     strategy:
 108 | |       matrix:
 ...   |
-163 | |           BINDGEN_RUST_FOR_LINUX_TEST: ${{startsWith(matrix.platform.os, 'ubuntu') && matrix.llvm_version == '20.1' && matrix.fea...
-164 | |         run: ./ci/test.sh
+165 | |           BINDGEN_RUST_FOR_LINUX_TEST: ${{startsWith(matrix.platform.os, 'ubuntu') && matrix.llvm_version == '22.1' && matrix.fea...
+166 | |         run: ./ci/test.sh
     | |                         ^
     | |                         |
     | |_________________________this job
@@ -264,14 +264,14 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/bindgen.yml:166:3
+   --> .github/workflows/bindgen.yml:168:3
     |
-166 | /   test-book:
-167 | |     runs-on: ubuntu-latest
-168 | |     steps:
-169 | |       - uses: actions/checkout@v4
+168 | /   test-book:
+169 | |     runs-on: ubuntu-latest
+170 | |     steps:
+171 | |       - uses: actions/checkout@v4
 ...   |
-178 | |   # FIXME(pvdrz): this should be done inside `bindgen-test` instead
+180 | |   # FIXME(pvdrz): this should be done inside `bindgen-test` instead
     | |                                                                   ^
     | |                                                                   |
     | |___________________________________________________________________this job
@@ -281,15 +281,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/bindgen.yml:179:3
+   --> .github/workflows/bindgen.yml:181:3
     |
-179 | /   test-no-headers:
-180 | |     runs-on: ubuntu-latest
-181 | |     steps:
-182 | |       - uses: actions/checkout@v4
+181 | /   test-no-headers:
+182 | |     runs-on: ubuntu-latest
+183 | |     steps:
+184 | |       - uses: actions/checkout@v4
 ...   |
-194 | |   # be added to branch protection, rather than having to add each job
-195 | |   # separately.
+196 | |   # be added to branch protection, rather than having to add each job
+197 | |   # separately.
     | |               ^
     | |               |
     | |_______________this job
@@ -299,15 +299,14 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/bindgen.yml:196:3
+   --> .github/workflows/bindgen.yml:198:3
     |
-196 | /   success:
-197 | |     runs-on: ubuntu-latest
-198 | |     needs: [rustfmt, clippy, msrv, minimal, docs, quickchecking, test-expectations, test, test-book, test-no-headers]
-199 | |     # GitHub branch protection is exceedingly silly and treats "jobs skipped
+198 | /   success:
+199 | |     runs-on: ubuntu-latest
+200 | |     needs:
 ...   |
-205 | |       - name: check if any dependency failed
-206 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+219 | |       - name: check if any dependency failed
+220 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     | |                                                                                     ^
     | |                                                                                     |
     | |_____________________________________________________________________________________this job
@@ -364,9 +363,9 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/bindgen.yml:206:75
+   --> .github/workflows/bindgen.yml:220:75
     |
-206 |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+220 |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |         --- this run block                                                ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -489,19 +488,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/bindgen.yml:153:15
+   --> .github/workflows/bindgen.yml:171:15
     |
-153 |         uses: KyleMayes/install-llvm-action@v2.0.9
-    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-    |
-    = note: audit confidence → High
-    = note: this finding has an auto-fix
-    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/bindgen.yml:169:15
-    |
-169 |       - uses: actions/checkout@v4
+171 |       - uses: actions/checkout@v4
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -509,14 +498,23 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/bindgen.yml:182:15
+   --> .github/workflows/bindgen.yml:184:15
     |
-182 |       - uses: actions/checkout@v4
+184 |       - uses: actions/checkout@v4
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+help[stale-action-refs]: commit hash does not point to a Git tag
+   --> .github/workflows/bindgen.yml:155:15
+    |
+155 |         uses: momo5502/install-llvm-action@7372aab026498959cff47c82953ba378477d4b00
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this step
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
 
 info[superfluous-actions]: action functionality is already included by the runner
   --> .github/workflows/bindgen.yml:21:15
@@ -1299,4 +1297,4 @@ error[unpinned-images]: unpinned image references
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
 
-111 findings: 16 informational, 8 low, 35 medium, 52 high
+111 findings: 16 informational, 9 low, 35 medium, 51 high

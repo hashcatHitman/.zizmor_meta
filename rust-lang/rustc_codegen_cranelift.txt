@@ -119,9 +119,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:165:7
+   --> .github/workflows/main.yml:166:7
     |
-165 |     - uses: actions/checkout@v6
+166 |     - uses: actions/checkout@v6
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -129,9 +129,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:217:7
+   --> .github/workflows/main.yml:218:7
     |
-217 |     - uses: actions/checkout@v6
+218 |     - uses: actions/checkout@v6
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -139,9 +139,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:258:9
+   --> .github/workflows/main.yml:259:9
     |
-258 |       - uses: actions/checkout@v6
+259 |       - uses: actions/checkout@v6
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -238,9 +238,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:165:13
+   --> .github/workflows/main.yml:166:13
     |
-165 |     - uses: actions/checkout@v6
+166 |     - uses: actions/checkout@v6
     |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -248,9 +248,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:171:13
+   --> .github/workflows/main.yml:172:13
     |
-171 |       uses: actions/cache@v5
+172 |       uses: actions/cache@v5
     |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -258,9 +258,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:217:13
+   --> .github/workflows/main.yml:218:13
     |
-217 |     - uses: actions/checkout@v6
+218 |     - uses: actions/checkout@v6
     |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -268,9 +268,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:220:13
+   --> .github/workflows/main.yml:221:13
     |
-220 |       uses: actions/cache@v5
+221 |       uses: actions/cache@v5
     |             ^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -278,9 +278,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:239:13
+   --> .github/workflows/main.yml:240:13
     |
-239 |       uses: actions/upload-artifact@v6
+240 |       uses: actions/upload-artifact@v6
     |             ^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -288,9 +288,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:258:15
+   --> .github/workflows/main.yml:259:15
     |
-258 |       - uses: actions/checkout@v6
+259 |       - uses: actions/checkout@v6
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -298,9 +298,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:261:15
+   --> .github/workflows/main.yml:262:15
     |
-261 |         uses: actions/download-artifact@v8
+262 |         uses: actions/download-artifact@v8
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High

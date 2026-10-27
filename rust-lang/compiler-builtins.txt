@@ -1,7 +1,7 @@
 help[undocumented-permissions]: permissions without explanatory comments
-   --> .github/workflows/main.yaml:243:7
+   --> .github/workflows/main.yaml:246:7
     |
-243 |       security-events: write
+246 |       security-events: write
     |       ^^^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
     |
     = note: audit confidence → High
