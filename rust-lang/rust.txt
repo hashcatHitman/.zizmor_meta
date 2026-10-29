@@ -1410,9 +1410,9 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
    = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[undocumented-permissions]: permissions without explanatory comments
-   --> library/compiler-builtins/.github/workflows/main.yaml:243:7
+   --> library/compiler-builtins/.github/workflows/main.yaml:246:7
     |
-243 |       security-events: write
+246 |       security-events: write
     |       ^^^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
     |
     = note: audit confidence → High
@@ -1466,41 +1466,23 @@ warning[excessive-permissions]: overly broad permissions
  4 | | on:
  5 | |   workflow_dispatch:
 ...  |
-31 | |       contents: write
-32 | |       pull-requests: write
+30 | |       contents: write
+31 | |       pull-requests: write
    | |___________________________^ default permissions used due to no permissions: block
    |
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[undocumented-permissions]: permissions without explanatory comments
-  --> library/compiler-builtins/.github/workflows/rustc-pull.yml:31:7
+  --> library/compiler-builtins/.github/workflows/rustc-pull.yml:30:7
    |
-31 |       contents: write
+30 |       contents: write
    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
-32 |       pull-requests: write
+31 |       pull-requests: write
    |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
-
-help[stale-action-refs]: commit hash does not point to a Git tag
-  --> library/compiler-builtins/.github/workflows/rustc-pull.yml:17:11
-   |
-17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
-   |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this job
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#stale-action-refs
-
-warning[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
-  --> library/compiler-builtins/.github/workflows/rustc-pull.yml:17:107
-   |
-17 |     uses: rust-lang/josh-sync/.github/workflows/rustc-pull.yml@b1da651cd99a7325cc242548db6d711639b0c30c # main
-   |                                                                                                           ^^^^ branch points to commit d01854a4c8b2
-   |
-   = note: audit confidence → High
-   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> library/portable-simd/.github/workflows/ci.yml:20:9
@@ -5753,4 +5735,4 @@ help[template-injection]: code injection via template expansion
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-489 findings (2 ignored, 12 suppressed): 32 informational, 218 low, 99 medium, 126 high
+488 findings (3 ignored, 12 suppressed): 32 informational, 217 low, 98 medium, 126 high

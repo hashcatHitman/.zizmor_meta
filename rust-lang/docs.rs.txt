@@ -354,9 +354,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/commit-sqlx-changes.yml:31:9
+  --> .github/workflows/commit-sqlx-changes.yml:29:9
    |
-31 |       - uses: actions/checkout@v7
+29 |       - uses: actions/checkout@v7
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -364,18 +364,18 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 error[excessive-permissions]: overly broad permissions
-  --> .github/workflows/commit-sqlx-changes.yml:21:3
+  --> .github/workflows/commit-sqlx-changes.yml:19:3
    |
-21 |   contents: write
+19 |   contents: write
    |   ^^^^^^^^^^^^^^^ contents: write is overly broad at the workflow level
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 error[excessive-permissions]: overly broad permissions
-  --> .github/workflows/commit-sqlx-changes.yml:22:3
+  --> .github/workflows/commit-sqlx-changes.yml:20:3
    |
-22 |   pull-requests: write
+20 |   pull-requests: write
    |   ^^^^^^^^^^^^^^^^^^^^ pull-requests: write is overly broad at the workflow level
    |
    = note: audit confidence → High
@@ -391,9 +391,9 @@ error[dangerous-triggers]: use of fundamentally insecure workflow trigger
   = help: audit documentation → https://docs.zizmor.sh/audits/#dangerous-triggers
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/commit-sqlx-changes.yml:31:15
+  --> .github/workflows/commit-sqlx-changes.yml:29:15
    |
-31 |       - uses: actions/checkout@v7
+29 |       - uses: actions/checkout@v7
    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -401,9 +401,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/commit-sqlx-changes.yml:39:15
+  --> .github/workflows/commit-sqlx-changes.yml:37:15
    |
-39 |         uses: jdx/mise-action@v5
+37 |         uses: jdx/mise-action@v5
    |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -411,9 +411,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/commit-sqlx-changes.yml:45:15
+  --> .github/workflows/commit-sqlx-changes.yml:43:15
    |
-45 |         uses: Swatinem/rust-cache@v2
+43 |         uses: Swatinem/rust-cache@v2
    |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -421,9 +421,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/commit-sqlx-changes.yml:66:15
+  --> .github/workflows/commit-sqlx-changes.yml:64:15
    |
-66 |         uses: peter-evans/create-pull-request@v8
+64 |         uses: peter-evans/create-pull-request@v8
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -431,23 +431,23 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 help[undocumented-permissions]: permissions without explanatory comments
-  --> .github/workflows/commit-sqlx-changes.yml:21:3
+  --> .github/workflows/commit-sqlx-changes.yml:19:3
    |
-21 |   contents: write
+19 |   contents: write
    |   ^^^^^^^^^^^^^^^ needs an explanatory comment
-22 |   pull-requests: write
+20 |   pull-requests: write
    |   ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
 info[superfluous-actions]: action functionality is already included by the runner
-  --> .github/workflows/commit-sqlx-changes.yml:66:15
+  --> .github/workflows/commit-sqlx-changes.yml:64:15
    |
-64 |       - name: Open pull request
+62 |       - name: Open pull request
    |         ----------------------- this step
-65 |         if: ${{ steps.sqlx_check.outputs.need_pr == '1' }}
-66 |         uses: peter-evans/create-pull-request@v8
+63 |         if: ${{ steps.sqlx_check.outputs.need_pr == '1' }}
+64 |         uses: peter-evans/create-pull-request@v8
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use `gh pr create` in a script step
    |
    = note: audit confidence → Low

@@ -4,7 +4,7 @@ error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache pois
  3 | / on:
  4 | |   push:
  5 | |     branches:
- 6 | |       - master
+ 6 | |       - main
  7 | |       - beta
  8 | |     tags:
  9 | |       - rust-1.**
