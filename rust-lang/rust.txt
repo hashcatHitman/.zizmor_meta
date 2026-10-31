@@ -2078,9 +2078,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> library/stdarch/.github/workflows/main.yml:221:9
+   --> library/stdarch/.github/workflows/main.yml:222:9
     |
-221 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+222 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -2088,9 +2088,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> library/stdarch/.github/workflows/main.yml:301:9
+   --> library/stdarch/.github/workflows/main.yml:302:9
     |
-301 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+302 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -2098,9 +2098,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> library/stdarch/.github/workflows/main.yml:329:9
+   --> library/stdarch/.github/workflows/main.yml:330:9
     |
-329 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+330 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -2108,9 +2108,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> library/stdarch/.github/workflows/main.yml:355:9
+   --> library/stdarch/.github/workflows/main.yml:356:9
     |
-355 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+356 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -2125,8 +2125,8 @@ warning[excessive-permissions]: overly broad permissions
   3 | |   pull_request:
   4 | |   merge_group:
 ...   |
-388 | |           # Check if all jobs that we depend on (in the needs array) were successful.
-389 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+389 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+390 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     | |__________________________________________________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -2155,7 +2155,7 @@ warning[excessive-permissions]: overly broad permissions
    |
 16 | /   docs:
 17 | |     name: Build Documentation
-18 | |     needs: [ style ]
+18 | |     needs: [style]
 19 | |     runs-on: ubuntu-latest
 ...  |
 25 | |         env:
@@ -2173,7 +2173,7 @@ warning[excessive-permissions]: overly broad permissions
    |
 28 | /   verify:
 29 | |     name: Automatic intrinsic verification
-30 | |     needs: [ style ]
+30 | |     needs: [style]
 31 | |     runs-on: ubuntu-latest
 ...  |
 35 | |         run: rustup update nightly --no-self-update && rustup default nightly
@@ -2190,12 +2190,12 @@ warning[excessive-permissions]: overly broad permissions
    --> library/stdarch/.github/workflows/main.yml:38:3
     |
  38 | /   test:
- 39 | |     needs: [ style ]
+ 39 | |     needs: [style]
  40 | |     name: Test
  41 | |     runs-on: ${{ matrix.target.os }}
 ...   |
-271 | |         env:
-272 | |           TARGET: ${{ matrix.target.tuple }}
+272 | |         env:
+273 | |           TARGET: ${{ matrix.target.tuple }}
     | |                                            ^
     | |                                            |
     | |____________________________________________this job
@@ -2205,14 +2205,14 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> library/stdarch/.github/workflows/main.yml:274:3
+   --> library/stdarch/.github/workflows/main.yml:275:3
     |
-274 | /   intrinsic-test:
-275 | |     needs: [ style ]
-276 | |     name: Intrinsic Test
-277 | |     runs-on: ubuntu-latest
+275 | /   intrinsic-test:
+276 | |     needs: [style]
+277 | |     name: Intrinsic Test
+278 | |     runs-on: ubuntu-latest
 ...   |
-321 | |   # Check that the generated files agree with the checked-in versions.
+322 | |   # Check that the generated files agree with the checked-in versions.
     | |                                                                      ^
     | |                                                                      |
     | |______________________________________________________________________this job
@@ -2222,15 +2222,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> library/stdarch/.github/workflows/main.yml:322:3
+   --> library/stdarch/.github/workflows/main.yml:323:3
     |
-322 | /   check-stdarch-gen:
-323 | |     needs: [ style ]
-324 | |     name: Check stdarch-gen-{arm, loongarch, hexagon} output
-325 | |     runs-on: ubuntu-latest
+323 | /   check-stdarch-gen:
+324 | |     needs: [style]
+325 | |     name: Check stdarch-gen-{arm, loongarch, hexagon} output
+326 | |     runs-on: ubuntu-latest
 ...   |
-348 | |   # Below we run some tests where Miri might catch UB, for instance on intrinsics that read from
-349 | |   # or write to pointers.
+349 | |   # Below we run some tests where Miri might catch UB, for instance on intrinsics that read from
+350 | |   # or write to pointers.
     | |                         ^
     | |                         |
     | |_________________________this job
@@ -2240,15 +2240,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> library/stdarch/.github/workflows/main.yml:350:3
+   --> library/stdarch/.github/workflows/main.yml:351:3
     |
-350 | /   miri:
-351 | |     needs: [ style ]
-352 | |     name: Run some tests with miri
-353 | |     runs-on: ubuntu-latest
+351 | /   miri:
+352 | |     needs: [style]
+353 | |     name: Run some tests with miri
+354 | |     runs-on: ubuntu-latest
 ...   |
-364 | |           FILTERS=$(cat aarch64-miri-tests.txt | tr '\n' ' ')
-365 | |           cargo miri test -p core_arch --target aarch64-unknown-linux-gnu -- $FILTERS
+365 | |           FILTERS=$(cat aarch64-miri-tests.txt | tr '\n' ' ')
+366 | |           cargo miri test -p core_arch --target aarch64-unknown-linux-gnu -- $FILTERS
     | |                                                                                     ^
     | |                                                                                     |
     | |_____________________________________________________________________________________this job
@@ -2258,15 +2258,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> library/stdarch/.github/workflows/main.yml:367:3
+   --> library/stdarch/.github/workflows/main.yml:368:3
     |
-367 | /   conclusion:
-368 | |     needs:
-369 | |       - docs
-370 | |       - verify
+368 | /   conclusion:
+369 | |     needs:
+370 | |       - docs
+371 | |       - verify
 ...   |
-388 | |           # Check if all jobs that we depend on (in the needs array) were successful.
-389 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+389 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+390 | |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     | |                                                                                  ^
     | |                                                                                  |
     | |__________________________________________________________________________________this job
@@ -2276,87 +2276,87 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:230:36
+   --> library/stdarch/.github/workflows/main.yml:231:36
     |
-230 |       - run: rustup target add ${{ matrix.target.tuple }}
+231 |       - run: rustup target add ${{ matrix.target.tuple }}
     |         --- this run block         ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:245:31
+   --> library/stdarch/.github/workflows/main.yml:246:31
     |
-245 |       - run: echo "PROFILE=${{matrix.profile}}" >> $GITHUB_ENV
+246 |       - run: echo "PROFILE=${{matrix.profile}}" >> $GITHUB_ENV
     |         --- this run block    ^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:268:37
+   --> library/stdarch/.github/workflows/main.yml:269:37
     |
-268 |       - run: ./ci/run-docker.sh ${{ matrix.target.tuple }}
+269 |       - run: ./ci/run-docker.sh ${{ matrix.target.tuple }}
     |         --- this run block          ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:306:36
+   --> library/stdarch/.github/workflows/main.yml:307:36
     |
-306 |       - run: rustup target add ${{ matrix.target }}
+307 |       - run: rustup target add ${{ matrix.target }}
     |         --- this run block         ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:315:32
+   --> library/stdarch/.github/workflows/main.yml:316:32
     |
-315 |       - run: echo "PROFILE=${{ matrix.profile }}" >> $GITHUB_ENV
+316 |       - run: echo "PROFILE=${{ matrix.profile }}" >> $GITHUB_ENV
     |         --- this run block     ^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:316:48
+   --> library/stdarch/.github/workflows/main.yml:317:48
     |
-316 |       - run: ./ci/intrinsic-test-docker.sh ${{ matrix.target }} ${{ matrix.cc }}
+317 |       - run: ./ci/intrinsic-test-docker.sh ${{ matrix.target }} ${{ matrix.cc }}
     |         --- this run block                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:316:69
+   --> library/stdarch/.github/workflows/main.yml:317:69
     |
-316 |       - run: ./ci/intrinsic-test-docker.sh ${{ matrix.target }} ${{ matrix.cc }}
+317 |       - run: ./ci/intrinsic-test-docker.sh ${{ matrix.target }} ${{ matrix.cc }}
     |         --- this run block                                          ^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:387:33
+   --> library/stdarch/.github/workflows/main.yml:388:33
     |
-385 |         run: |
+386 |         run: |
     |         --- this run block
-386 |           # Print the dependent jobs to see them in the CI log
-387 |           jq -C <<< '${{ toJson(needs) }}'
+387 |           # Print the dependent jobs to see them in the CI log
+388 |           jq -C <<< '${{ toJson(needs) }}'
     |                                 ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> library/stdarch/.github/workflows/main.yml:389:72
+   --> library/stdarch/.github/workflows/main.yml:390:72
     |
-385 |         run: |
+386 |         run: |
     |         --- this run block
 ...
-389 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+390 |           jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |                                                                        ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
