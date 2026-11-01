@@ -1,7 +1,7 @@
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:43:9
    |
-38 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+38 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ------------------------------------------------------------------------ app token requested here
 ...
 43 |         owner: rust-lang
@@ -14,7 +14,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:38:13
    |
-38 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+38 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High
@@ -24,7 +24,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:51:9
    |
-46 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+46 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ------------------------------------------------------------------------ app token requested here
 ...
 51 |         owner: rust-lang-deprecated
@@ -37,7 +37,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:46:13
    |
-46 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+46 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High
@@ -47,7 +47,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:59:9
    |
-54 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+54 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ------------------------------------------------------------------------ app token requested here
 ...
 59 |         owner: rust-lang-nursery
@@ -60,7 +60,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:54:13
    |
-54 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+54 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High
@@ -70,7 +70,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:67:9
    |
-62 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+62 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ------------------------------------------------------------------------ app token requested here
 ...
 67 |         owner: rust-analyzer
@@ -83,7 +83,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:62:13
    |
-62 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+62 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High
@@ -93,7 +93,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:75:9
    |
-70 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+70 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ------------------------------------------------------------------------ app token requested here
 ...
 75 |         owner: rust-embedded
@@ -106,7 +106,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:70:13
    |
-70 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+70 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High
@@ -116,7 +116,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:83:9
    |
-78 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+78 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ------------------------------------------------------------------------ app token requested here
 ...
 83 |         owner: rust-dev-tools
@@ -129,7 +129,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/actions/generate-tokens/action.yml:78:13
    |
-78 |       uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+78 |       uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High
@@ -139,7 +139,7 @@ error[github-app]: dangerous use of GitHub App tokens
 error[github-app]: dangerous use of GitHub App tokens
   --> .github/workflows/check-untracked-repos.yml:84:15
    |
-84 |         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+84 |         uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ app token inherits blanket installation permissions
    |
    = note: audit confidence → High

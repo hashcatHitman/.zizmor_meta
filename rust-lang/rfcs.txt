@@ -20,7 +20,7 @@ warning[excessive-permissions]: overly broad permissions
  4 | |     branches:
 ...  |
 44 | |       - id: deployment
-45 | |         uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
+45 | |         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
    | |_____________________________________________________________________________________^ default permissions used due to no permissions: block
    |
    = note: audit confidence → Medium
