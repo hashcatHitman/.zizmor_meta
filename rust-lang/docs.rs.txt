@@ -88,9 +88,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/ci.yml:75:9
+  --> .github/workflows/ci.yml:91:9
    |
-75 |       - uses: actions/checkout@v7
+91 |       - uses: actions/checkout@v7
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -98,9 +98,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:124:9
+   --> .github/workflows/ci.yml:140:9
     |
-124 |       - uses: actions/checkout@v7
+140 |       - uses: actions/checkout@v7
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -115,8 +115,8 @@ warning[excessive-permissions]: overly broad permissions
   3 | | on:
   4 | |   push:
 ...   |
-139 | |       - run: just lint
-140 | |       - run: just lint-dependencies-udeps
+155 | |       - run: just lint
+156 | |       - run: just lint-dependencies-udeps
     | |__________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -148,8 +148,8 @@ warning[excessive-permissions]: overly broad permissions
 45 | |     steps:
 46 | |       - uses: actions/checkout@v7
 ...  |
-69 | |         if: ${{ always() }}
-70 | |         run: just compose-down-and-wipe
+85 | |         if: ${{ always() }}
+86 | |         run: just compose-down-and-wipe
    | |                                       ^
    | |                                       |
    | |_______________________________________this job
@@ -159,15 +159,15 @@ warning[excessive-permissions]: overly broad permissions
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/ci.yml:72:3
+   --> .github/workflows/ci.yml:88:3
     |
- 72 | /   GUI_test:
- 73 | |     runs-on: ubuntu-latest
- 74 | |     steps:
- 75 | |       - uses: actions/checkout@v7
+ 88 | /   GUI_test:
+ 89 | |     runs-on: ubuntu-latest
+ 90 | |     steps:
+ 91 | |       - uses: actions/checkout@v7
 ...   |
-116 | |         if: ${{ always() }}
-117 | |         run: just compose-down-and-wipe
+132 | |         if: ${{ always() }}
+133 | |         run: just compose-down-and-wipe
     | |                                       ^
     | |                                       |
     | |_______________________________________this job
@@ -177,14 +177,14 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/ci.yml:119:3
+   --> .github/workflows/ci.yml:135:3
     |
-119 | /   lint-format:
-120 | |     name: linters & formatters
-121 | |     runs-on: ubuntu-latest
+135 | /   lint-format:
+136 | |     name: linters & formatters
+137 | |     runs-on: ubuntu-latest
 ...   |
-139 | |       - run: just lint
-140 | |       - run: just lint-dependencies-udeps
+155 | |       - run: just lint
+156 | |       - run: just lint-dependencies-udeps
     | |                                          ^
     | |                                          |
     | |__________________________________________this job
@@ -244,9 +244,19 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:48:15
+  --> .github/workflows/ci.yml:49:15
    |
-48 |       - uses: jdx/mise-action@v5
+49 |         uses: jlumbroso/free-disk-space@v2.0.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+  --> .github/workflows/ci.yml:64:15
+   |
+64 |       - uses: jdx/mise-action@v5
    |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
@@ -254,20 +264,10 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:54:15
+  --> .github/workflows/ci.yml:70:15
    |
-54 |         uses: Swatinem/rust-cache@v2
+70 |         uses: Swatinem/rust-cache@v2
    |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:59:15
-   |
-59 |         uses: docker/setup-buildx-action@v4
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
    = note: this finding has an auto-fix
@@ -276,18 +276,18 @@ error[unpinned-uses]: unpinned action reference
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/ci.yml:75:15
    |
-75 |       - uses: actions/checkout@v7
-   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+75 |         uses: docker/setup-buildx-action@v4
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:78:15
+  --> .github/workflows/ci.yml:91:15
    |
-78 |         uses: jlumbroso/free-disk-space@v2.0.0
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+91 |       - uses: actions/checkout@v7
+   |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
    = note: this finding has an auto-fix
@@ -296,47 +296,37 @@ error[unpinned-uses]: unpinned action reference
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/ci.yml:94:15
    |
-94 |         uses: docker/setup-buildx-action@v4
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+94 |         uses: jlumbroso/free-disk-space@v2.0.0
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:97:15
-   |
-97 |         uses: crazy-max/ghaction-github-runtime@v4
-   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/ci.yml:99:15
-   |
-99 |       - uses: jdx/mise-action@v5
-   |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:124:15
+   --> .github/workflows/ci.yml:110:15
     |
-124 |       - uses: actions/checkout@v7
-    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+110 |         uses: docker/setup-buildx-action@v4
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:126:15
+   --> .github/workflows/ci.yml:113:15
     |
-126 |       - uses: jdx/mise-action@v5
+113 |         uses: crazy-max/ghaction-github-runtime@v4
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:115:15
+    |
+115 |       - uses: jdx/mise-action@v5
     |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -344,9 +334,29 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/ci.yml:134:15
+   --> .github/workflows/ci.yml:140:15
     |
-134 |         uses: Swatinem/rust-cache@v2
+140 |       - uses: actions/checkout@v7
+    |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:142:15
+    |
+142 |       - uses: jdx/mise-action@v5
+    |               ^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+    |
+    = note: audit confidence → High
+    = note: this finding has an auto-fix
+    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
+   --> .github/workflows/ci.yml:150:15
+    |
+150 |         uses: Swatinem/rust-cache@v2
     |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -1084,4 +1094,4 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-98 findings: 8 informational, 21 low, 14 medium, 55 high
+99 findings: 8 informational, 21 low, 14 medium, 56 high
