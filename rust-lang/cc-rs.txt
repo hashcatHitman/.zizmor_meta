@@ -227,20 +227,20 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:539:55
+   --> .github/workflows/main.yml:544:55
     |
-539 |         run: cargo run -p sanitizer-test --target ${{ matrix.target }}
+544 |         run: cargo run -p sanitizer-test --target ${{ matrix.target }}
     |         --- this run block                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:543:55
+   --> .github/workflows/main.yml:548:55
     |
-542 |         run: |
+547 |         run: |
     |         --- this run block
-543 |           if cargo run -p sanitizer-test --target ${{ matrix.target }} -- overflow 2> "$RUNNER_TEMP/stderr.txt"; then
+548 |           if cargo run -p sanitizer-test --target ${{ matrix.target }} -- overflow 2> "$RUNNER_TEMP/stderr.txt"; then
     |                                                       ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
@@ -319,11 +319,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:484:15
+   --> .github/workflows/main.yml:489:15
     |
-483 |       - name: check clean Git workting tree
+488 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-484 |         uses: ./.github/actions/check-clean-git-working-tree
+489 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -331,11 +331,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:552:15
+   --> .github/workflows/main.yml:557:15
     |
-551 |       - name: check clean Git workting tree
+556 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-552 |         uses: ./.github/actions/check-clean-git-working-tree
+557 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -343,11 +343,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:574:15
+   --> .github/workflows/main.yml:579:15
     |
-573 |       - name: Get msrv
+578 |       - name: Get msrv
     |         -------------- this step
-574 |         uses: ./.github/actions/get-msrv
+579 |         uses: ./.github/actions/get-msrv
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -355,11 +355,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:623:15
+   --> .github/workflows/main.yml:628:15
     |
-622 |       - name: check clean Git workting tree
+627 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-623 |         uses: ./.github/actions/check-clean-git-working-tree
+628 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
