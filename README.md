@@ -3,7 +3,7 @@
 List repos by number of lint findings:
 
 ```bash
-rg '(\[[^\[\]]*\]:)' rust-lang/ --count-matches --color=always| sort -t':' -k2 -n
+rg '(\[[^\[\]]*\]:)' rust-lang/ --count-matches --color=always | sort -t':' -k2 -n
 ```
 
 List unique lint findings in `./ziz_aud.txt`:
