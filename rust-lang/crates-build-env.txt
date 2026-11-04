@@ -2,7 +2,7 @@ warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
  --> .github/dependabot.yml:3:5
   |
 3 |   - package-ecosystem: "github-actions"
-  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 14)
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ insufficient implicit default-days (less than 7)
   |
   = note: audit confidence → High
   = note: this finding has an auto-fix

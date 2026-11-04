@@ -11,26 +11,6 @@ error[github-env]: dangerous use of environment file
    = note: audit confidence → Low
    = help: audit documentation → https://docs.zizmor.sh/audits/#github-env
 
-warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
-  --> .github/dependabot.yml:10:5
-   |
-10 |     default-days: 7
-   |     ^^^^^^^^^^^^^^^ insufficient default-days configured (less than 14)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
-
-warning[dependabot-cooldown]: insufficient cooldown in Dependabot updates
-  --> .github/dependabot.yml:21:5
-   |
-21 |     default-days: 7
-   |     ^^^^^^^^^^^^^^^ insufficient default-days configured (less than 14)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#dependabot-cooldown
-
 info[template-injection]: code injection via template expansion
    --> .github/workflows/main.yml:203:28
     |
@@ -466,4 +446,4 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-47 findings (4 suppressed): 3 informational, 37 low, 2 medium, 1 high
+45 findings (4 suppressed): 3 informational, 37 low, 0 medium, 1 high
