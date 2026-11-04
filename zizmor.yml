@@ -22,7 +22,7 @@ rules:
   dependabot-cooldown:
     disable: false
     config:
-      days: 14
+      days: 7
   dependabot-execution:
     disable: false
   excessive-permissions:
