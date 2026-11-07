@@ -64,47 +64,47 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yaml:276:21
+   --> .github/workflows/ci.yaml:277:21
     |
-275 |         run: |
+276 |         run: |
     |         --- this run block
-276 |           echo '${{ toJson(matrix.env) }}' |
+277 |           echo '${{ toJson(matrix.env) }}' |
     |                     ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yaml:288:30
+   --> .github/workflows/ci.yaml:289:30
     |
-288 |         run: ./ci/run.sh ${{ matrix.target }}
+289 |         run: ./ci/run.sh ${{ matrix.target }}
     |         --- this run block   ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yaml:291:37
+   --> .github/workflows/ci.yaml:292:37
     |
-291 |         run: ./ci/run-docker.sh ${{ matrix.target }}
+292 |         run: ./ci/run-docker.sh ${{ matrix.target }}
     |         --- this run block          ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yaml:294:46
+   --> .github/workflows/ci.yaml:295:46
     |
-294 |         run: ./ci/run-apple-simulator.sh ${{ matrix.target }}
+295 |         run: ./ci/run-apple-simulator.sh ${{ matrix.target }}
     |         --- this run block                   ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[undocumented-permissions]: permissions without explanatory comments
-   --> .github/workflows/ci.yaml:407:7
+   --> .github/workflows/ci.yaml:408:7
     |
-407 |       security-events: write
+408 |       security-events: write
     |       ^^^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
     |
     = note: audit confidence → High
