@@ -412,4 +412,19 @@ help[template-injection]: code injection via template expansion
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
-31 findings: 1 informational, 18 low, 12 medium, 0 high
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / name: Publish to crates.io
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+23 | |         env:
+24 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+32 findings: 1 informational, 18 low, 13 medium, 0 high

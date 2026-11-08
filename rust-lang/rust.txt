@@ -1,9 +1,9 @@
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/ci.yml:54:9
+  --> .github/workflows/ci.yml:55:9
    |
-54 |         - name: Checkout the source code
+55 |         - name: Checkout the source code
    |  _________^
-55 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+56 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
    | |________________________________________________________________________________^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -11,16 +11,16 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:119:9
+   --> .github/workflows/ci.yml:120:9
     |
-119 |         - name: checkout the source code
+120 |         - name: checkout the source code
     |  _________^
-120 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-121 | |         with:
-122 | |           fetch-depth: 2
-123 | |
-124 | |       # Free up disk space on Linux or macOS by removing preinstalled components that
-125 | |       # we do not need.
+121 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+122 | |         with:
+123 | |           fetch-depth: 2
+124 | |
+125 | |       # Free up disk space on Linux or macOS by removing preinstalled components that
+126 | |       # we do not need.
     | |_______________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -28,14 +28,14 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:324:9
+   --> .github/workflows/ci.yml:362:9
     |
-324 |         - name: checkout the source code
+362 |         - name: checkout the source code
     |  _________^
-325 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-326 | |         with:
-327 | |           fetch-depth: 2
-328 | |       # Publish the toolstate if an auto build succeeds (just before push to the default branch)
+363 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+364 | |         with:
+365 | |           fetch-depth: 2
+366 | |       # Publish the toolstate if an auto build succeeds (just before push to the default branch)
     | |________________________________________________________________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -51,10 +51,21 @@ error[excessive-permissions]: overly broad permissions
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
+error[excessive-permissions]: overly broad permissions
+  --> .github/workflows/ci.yml:24:3
+   |
+24 |   id-token: write
+   |   ^^^^^^^^^^^^^^^ id-token: write is overly broad at the workflow level
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
 help[undocumented-permissions]: permissions without explanatory comments
   --> .github/workflows/ci.yml:23:3
    |
 23 |   packages: write
+   |   ^^^^^^^^^^^^^^^ needs an explanatory comment
+24 |   id-token: write
    |   ^^^^^^^^^^^^^^^ needs an explanatory comment
    |
    = note: audit confidence → High
@@ -204,6 +215,16 @@ help[undocumented-permissions]: permissions without explanatory comments
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
 error[unpinned-uses]: unpinned action reference
+  --> compiler/rustc_codegen_gcc/.github/actions/checkout-rust/action.yml:26:13
+   |
+26 |     - uses: actions/checkout@v7
+   |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
+   |
+   = note: audit confidence → High
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
+
+error[unpinned-uses]: unpinned action reference
   --> compiler/rustc_codegen_gcc/.github/actions/rustup-cg-gcc/action.yml:33:13
    |
 33 |     - uses: actions/checkout@v7
@@ -213,4 +234,4 @@ error[unpinned-uses]: unpinned action reference
    = note: this finding has an auto-fix
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-18 findings: 0 informational, 14 low, 2 medium, 2 high
+20 findings: 0 informational, 14 low, 2 medium, 4 high

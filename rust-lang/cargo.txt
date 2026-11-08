@@ -234,6 +234,32 @@ help[undocumented-permissions]: permissions without explanatory comments
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
+  --> .github/workflows/release-home.yml:18:9
+   |
+18 |         - name: Checkout the source code
+   |  _________^
+19 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+   | |_________________________________________________________________________________^ does not set persist-credentials: false
+   |
+   = note: audit confidence → Low
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
+
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/release-home.yml:2:1
+   |
+ 2 | / name: Publish the home crate
+ 3 | | on:
+ 4 | |   workflow_dispatch:
+...  |
+28 | |         env:
+29 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/release.yml:28:9
    |
 28 |         - name: Checkout the source code
@@ -260,4 +286,4 @@ warning[excessive-permissions]: overly broad permissions
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
-25 findings: 2 informational, 22 low, 1 medium, 0 high
+27 findings: 2 informational, 23 low, 2 medium, 0 high

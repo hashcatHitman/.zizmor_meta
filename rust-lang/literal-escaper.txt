@@ -86,4 +86,19 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-8 findings: 2 informational, 0 low, 2 medium, 4 high
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / name: Publish to crates.io
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+23 | |         env:
+24 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+9 findings: 2 informational, 0 low, 3 medium, 4 high
