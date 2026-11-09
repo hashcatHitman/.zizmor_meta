@@ -328,4 +328,19 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-27 findings: 0 informational, 7 low, 13 medium, 7 high
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:2:1
+   |
+ 2 | / name: Publish to crates.io
+ 3 | |
+ 4 | | on:
+ 5 | |   push:
+...  |
+23 | |         env:
+24 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
+28 findings: 0 informational, 7 low, 14 medium, 7 high
