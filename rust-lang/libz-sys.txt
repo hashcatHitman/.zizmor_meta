@@ -102,12 +102,12 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:180:9
+   --> .github/workflows/ci.yml:182:9
     |
-180 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+182 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     |  _________^
-181 | |         with:
-182 | |           submodules: true
+183 | |         with:
+184 | |           submodules: true
     | |__________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -115,12 +115,12 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/ci.yml:211:9
+   --> .github/workflows/ci.yml:213:9
     |
-211 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+213 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     |  _________^
-212 | |         with:
-213 | |           submodules: true
+214 | |         with:
+215 | |           submodules: true
     | |__________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -134,8 +134,8 @@ warning[excessive-permissions]: overly broad permissions
   2 | |
   3 | | on: [push, pull_request]
 ...   |
-228 | |           - macos-latest
-229 | |           - ubuntu-latest
+230 | |           - macos-latest
+231 | |           - ubuntu-latest
     | |__________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -274,8 +274,8 @@ warning[excessive-permissions]: overly broad permissions
 164 | |     steps:
 165 | |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 ...   |
-173 | |       - name: test packaging with release tool
-174 | |         run: cargo run -p maint -- publish
+175 | |       - name: test packaging with release tool
+176 | |         run: cargo run -p maint -- publish
     | |                                          ^
     | |                                          |
     | |__________________________________________this job
@@ -285,15 +285,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/ci.yml:176:3
+   --> .github/workflows/ci.yml:178:3
     |
-176 | /   linux:
-177 | |     runs-on: ubuntu-latest
-178 | |     needs: install-cross
-179 | |     steps:
+178 | /   linux:
+179 | |     runs-on: ubuntu-latest
+180 | |     needs: install-cross
+181 | |     steps:
 ...   |
-205 | |           - x86_64-unknown-linux-gnu
-206 | |           - x86_64-unknown-linux-musl
+207 | |           - x86_64-unknown-linux-gnu
+208 | |           - x86_64-unknown-linux-musl
     | |                                     ^
     | |                                     |
     | |_____________________________________this job
@@ -303,15 +303,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/ci.yml:208:3
+   --> .github/workflows/ci.yml:210:3
     |
-208 | /   minimal-versions:
-209 | |     runs-on: ${{ matrix.os }}
-210 | |     steps:
-211 | |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+210 | /   minimal-versions:
+211 | |     runs-on: ${{ matrix.os }}
+212 | |     steps:
+213 | |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 ...   |
-228 | |           - macos-latest
-229 | |           - ubuntu-latest
+230 | |           - macos-latest
+231 | |           - ubuntu-latest
     | |                          ^
     | |                          |
     | |__________________________this job
@@ -321,9 +321,9 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 info[use-trusted-publishing]: prefer trusted publishing for authentication
-   --> .github/workflows/ci.yml:174:14
+   --> .github/workflows/ci.yml:176:14
     |
-174 |         run: cargo run -p maint -- publish
+176 |         run: cargo run -p maint -- publish
     |         ---  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this command
     |         |
     |         this step
@@ -386,27 +386,27 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:190:43
+   --> .github/workflows/ci.yml:192:43
     |
-190 |       - run: ci/set_rust_version.bash ${{ matrix.channel }} ${{ matrix.target }}
+192 |       - run: ci/set_rust_version.bash ${{ matrix.channel }} ${{ matrix.target }}
     |         --- this run block                ^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:190:65
+   --> .github/workflows/ci.yml:192:65
     |
-190 |       - run: ci/set_rust_version.bash ${{ matrix.channel }} ${{ matrix.target }}
+192 |       - run: ci/set_rust_version.bash ${{ matrix.channel }} ${{ matrix.target }}
     |         --- this run block                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/ci.yml:191:42
+   --> .github/workflows/ci.yml:193:42
     |
-191 |       - run: ci/test.bash /tmp/cross ${{ matrix.target }}
+193 |       - run: ci/test.bash /tmp/cross ${{ matrix.target }}
     |         --- this run block               ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
@@ -420,8 +420,8 @@ warning[excessive-permissions]: overly broad permissions
  3 | | on:
  4 | |   push:
 ...  |
-23 | |         env:
-24 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+24 | |         env:
+25 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
    | |________________________________________________________________^ default permissions used due to no permissions: block
    |
    = note: audit confidence → Medium

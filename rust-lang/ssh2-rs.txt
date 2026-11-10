@@ -144,6 +144,41 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
+help[undocumented-permissions]: permissions without explanatory comments
+  --> .github/workflows/publish.yml:16:7
+   |
+16 |       pull-requests: write
+   |       ^^^^^^^^^^^^^^^^^^^^ needs an explanatory comment
+17 |       contents: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+18 |       id-token: write
+   |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+   |
+   = note: audit confidence → High
+   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
+  --> .github/workflows/publish.yml:21:15
+   |
+21 |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing version comment
+   |
+   = note: audit confidence → High
+   = tip: add version comment '# v7.0.1'
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
+
+help[ref-version-mismatch]: action's hash pin has mismatched or missing version comment
+  --> .github/workflows/publish.yml:29:15
+   |
+29 |         uses: MarcoIeni/release-plz-action@f67a7e724bdad4a0f6875f186060a0ca2770d76c
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ missing version comment
+   |
+   = note: audit confidence → High
+   = tip: add version comment '# v0.5.147'
+   = note: this finding has an auto-fix
+   = help: audit documentation → https://docs.zizmor.sh/audits/#ref-version-mismatch
+
 warning[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/windows.yml:22:7
    |
@@ -217,4 +252,4 @@ info[superfluous-actions]: action functionality is already included by the runne
    = note: audit confidence → Medium
    = help: audit documentation → https://docs.zizmor.sh/audits/#superfluous-actions
 
-18 findings: 3 informational, 0 low, 9 medium, 6 high
+21 findings: 3 informational, 3 low, 9 medium, 6 high
