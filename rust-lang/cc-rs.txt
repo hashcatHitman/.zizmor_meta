@@ -12,11 +12,11 @@ error[github-env]: dangerous use of environment file
    = help: audit documentation → https://docs.zizmor.sh/audits/#github-env
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:203:28
+   --> .github/workflows/main.yml:209:28
     |
-202 |         run: |
+208 |         run: |
     |         --- this run block
-203 |           $msysRoot = "${{ steps.msys2.outputs.msys2-location }}"
+209 |           $msysRoot = "${{ steps.msys2.outputs.msys2-location }}"
     |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -24,214 +24,204 @@ info[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:243:45
+   --> .github/workflows/main.yml:249:45
     |
-237 |         run: |
+243 |         run: |
     |         --- this run block
 ...
-243 |           UPPERCASE_TARGET_NAME=$(echo "${{ matrix.target }}" | tr '[:lower:]-' '[:upper:]_')
+249 |           UPPERCASE_TARGET_NAME=$(echo "${{ matrix.target }}" | tr '[:lower:]-' '[:upper:]_')
     |                                             ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:258:51
+   --> .github/workflows/main.yml:264:51
     |
-257 |         run: |
+263 |         run: |
     |         --- this run block
-258 |           cargo build --bins --tests --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+264 |           cargo build --bins --tests --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
     |                                                   ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:258:72
+   --> .github/workflows/main.yml:264:72
     |
-257 |         run: |
+263 |         run: |
     |         --- this run block
-258 |           cargo build --bins --tests --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+264 |           cargo build --bins --tests --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
     |                                                                        ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:262:70
+   --> .github/workflows/main.yml:268:70
     |
-261 |         run: |
+267 |         run: |
     |         --- this run block
-262 |           cargo test --no-run --workspace --all-targets --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+268 |           cargo test --no-run --workspace --all-targets --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
     |                                                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:262:91
+   --> .github/workflows/main.yml:268:91
     |
-261 |         run: |
+267 |         run: |
     |         --- this run block
-262 |           cargo test --no-run --workspace --all-targets --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+268 |           cargo test --no-run --workspace --all-targets --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
     |                                                                                           ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:266:54
+   --> .github/workflows/main.yml:271:57
     |
-265 |         run: |
-    |         --- this run block
-266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
-    |                                                      ^^^^^^^^^^^^^ may expand into attacker-controllable code
+271 |         run: cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |         --- this run block                              ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:266:75
+   --> .github/workflows/main.yml:271:78
     |
-265 |         run: |
-    |         --- this run block
-266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
-    |                                                                           ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+271 |         run: cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |         --- this run block                                                   ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:267:53
+   --> .github/workflows/main.yml:274:56
     |
-265 |         run: |
-    |         --- this run block
-266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
-267 |           cargo test --doc --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
-    |                                                     ^^^^^^^^^^^^^ may expand into attacker-controllable code
+274 |         run: cargo test --doc --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |         --- this run block                             ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:267:74
+   --> .github/workflows/main.yml:274:77
     |
-265 |         run: |
-    |         --- this run block
-266 |           cargo nextest run --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
-267 |           cargo test --doc --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
-    |                                                                          ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+274 |         run: cargo test --doc --workspace --target ${{ matrix.target }} ${{ matrix.cargo_flags }}
+    |         --- this run block                                                  ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:337:76
+   --> .github/workflows/main.yml:344:76
     |
-337 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }}
+344 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }}
     |         --- this run block                                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:338:76
+   --> .github/workflows/main.yml:345:76
     |
-338 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }} --release
+345 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }} --release
     |         --- this run block                                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:339:76
+   --> .github/workflows/main.yml:346:76
     |
-339 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }} --features parallel,compile-commands
+346 |       - run: cargo test -Z build-std=std --no-run --workspace --target ${{ matrix.target }} --features parallel,compile-commands
     |         --- this run block                                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:362:47
+   --> .github/workflows/main.yml:369:47
     |
-362 |       - run: cargo test --no-run --target ${{ matrix.target }}
+369 |       - run: cargo test --no-run --target ${{ matrix.target }}
     |         --- this run block                    ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:363:47
+   --> .github/workflows/main.yml:370:47
     |
-363 |       - run: cargo test --no-run --target ${{ matrix.target }} --release
+370 |       - run: cargo test --no-run --target ${{ matrix.target }} --release
     |         --- this run block                    ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:364:47
+   --> .github/workflows/main.yml:371:47
     |
-364 |       - run: cargo test --no-run --target ${{ matrix.target }} --features parallel,compile-commands
+371 |       - run: cargo test --no-run --target ${{ matrix.target }} --features parallel,compile-commands
     |         --- this run block                    ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:390:74
+   --> .github/workflows/main.yml:397:74
     |
-390 |       - run: cargo check -Z build-std=std,panic_abort -p cc --target ${{ matrix.target }}
+397 |       - run: cargo check -Z build-std=std,panic_abort -p cc --target ${{ matrix.target }}
     |         --- this run block                                               ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:391:74
+   --> .github/workflows/main.yml:398:74
     |
-391 |       - run: cargo check -Z build-std=std,panic_abort -p cc --target ${{ matrix.target }} --release
+398 |       - run: cargo check -Z build-std=std,panic_abort -p cc --target ${{ matrix.target }} --release
     |         --- this run block                                               ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:446:61
+   --> .github/workflows/main.yml:453:61
     |
-446 |         run: cargo +nightly build -p wasi-test --target ${{ matrix.target }}
+453 |         run: cargo +nightly build -p wasi-test --target ${{ matrix.target }}
     |         --- this run block                                  ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:544:55
+   --> .github/workflows/main.yml:551:55
     |
-544 |         run: cargo run -p sanitizer-test --target ${{ matrix.target }}
+551 |         run: cargo run -p sanitizer-test --target ${{ matrix.target }}
     |         --- this run block                            ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:548:55
+   --> .github/workflows/main.yml:555:55
     |
-547 |         run: |
+554 |         run: |
     |         --- this run block
-548 |           if cargo run -p sanitizer-test --target ${{ matrix.target }} -- overflow 2> "$RUNNER_TEMP/stderr.txt"; then
+555 |           if cargo run -p sanitizer-test --target ${{ matrix.target }} -- overflow 2> "$RUNNER_TEMP/stderr.txt"; then
     |                                                       ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:270:15
+   --> .github/workflows/main.yml:277:15
     |
-269 |       - name: check clean Git workting tree
+276 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-270 |         uses: ./.github/actions/check-clean-git-working-tree
+277 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -239,11 +229,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:298:16
+   --> .github/workflows/main.yml:305:16
     |
-297 |        - name: check clean Git workting tree
+304 |        - name: check clean Git workting tree
     |          ----------------------------------- this step
-298 |          uses: ./.github/actions/check-clean-git-working-tree
+305 |          uses: ./.github/actions/check-clean-git-working-tree
     |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -251,11 +241,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:342:15
+   --> .github/workflows/main.yml:349:15
     |
-341 |       - name: check clean Git workting tree
+348 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-342 |         uses: ./.github/actions/check-clean-git-working-tree
+349 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -263,11 +253,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:367:15
+   --> .github/workflows/main.yml:374:15
     |
-366 |       - name: check clean Git workting tree
+373 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-367 |         uses: ./.github/actions/check-clean-git-working-tree
+374 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -275,11 +265,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:394:15
+   --> .github/workflows/main.yml:401:15
     |
-393 |       - name: check clean Git workting tree
+400 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-394 |         uses: ./.github/actions/check-clean-git-working-tree
+401 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -287,11 +277,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:450:15
+   --> .github/workflows/main.yml:457:15
     |
-449 |       - name: check clean Git workting tree
+456 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-450 |         uses: ./.github/actions/check-clean-git-working-tree
+457 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -299,11 +289,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:489:15
+   --> .github/workflows/main.yml:496:15
     |
-488 |       - name: check clean Git workting tree
+495 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-489 |         uses: ./.github/actions/check-clean-git-working-tree
+496 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -311,11 +301,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:557:15
+   --> .github/workflows/main.yml:564:15
     |
-556 |       - name: check clean Git workting tree
+563 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-557 |         uses: ./.github/actions/check-clean-git-working-tree
+564 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -323,11 +313,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:579:15
+   --> .github/workflows/main.yml:586:15
     |
-578 |       - name: Get msrv
+585 |       - name: Get msrv
     |         -------------- this step
-579 |         uses: ./.github/actions/get-msrv
+586 |         uses: ./.github/actions/get-msrv
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High
@@ -335,11 +325,11 @@ help[self-repository]: use GitHub's dedicated self-repository syntax
     = help: audit documentation → https://docs.zizmor.sh/audits/#self-repository
 
 help[self-repository]: use GitHub's dedicated self-repository syntax
-   --> .github/workflows/main.yml:628:15
+   --> .github/workflows/main.yml:635:15
     |
-627 |       - name: check clean Git workting tree
+634 |       - name: check clean Git workting tree
     |         ----------------------------------- this step
-628 |         uses: ./.github/actions/check-clean-git-working-tree
+635 |         uses: ./.github/actions/check-clean-git-working-tree
     |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ use '$/...' instead of './...'
     |
     = note: audit confidence → High

@@ -1,7 +1,7 @@
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/audit.yml:24:7
    |
-24 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+24 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -11,7 +11,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/contrib.yml:21:7
    |
-21 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+21 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -21,7 +21,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/main.yml:61:7
    |
-61 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+61 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -31,7 +31,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/main.yml:82:9
    |
-82 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+82 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -41,7 +41,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/main.yml:90:9
    |
-90 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+90 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -51,7 +51,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/main.yml:97:9
    |
-97 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+97 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -61,7 +61,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:105:9
     |
-105 |       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+105 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -71,7 +71,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:116:9
     |
-116 |         - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+116 |         - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |  _________^
 117 | |         with:
 118 | |           fetch-depth: 0
@@ -84,7 +84,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:194:7
     |
-194 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+194 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -94,7 +94,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:275:7
     |
-275 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+275 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -104,7 +104,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:284:7
     |
-284 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+284 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -114,7 +114,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:292:7
     |
-292 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+292 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -124,7 +124,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:299:7
     |
-299 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+299 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -134,7 +134,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:309:7
     |
-309 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+309 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -144,7 +144,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:337:7
     |
-337 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+337 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -156,7 +156,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     |
 347 |       - name: Checkout Actions Repository
     |  _______^
-348 | |       uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+348 | |       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     | |_______________________________________________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -166,7 +166,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
 help[artipacked]: credential persistence through GitHub Actions artifacts
    --> .github/workflows/main.yml:356:7
     |
-356 |     - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+356 |     - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -238,7 +238,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    |
 18 |         - name: Checkout the source code
    |  _________^
-19 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+19 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    | |_________________________________________________________________________________^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -264,7 +264,7 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    |
 28 |         - name: Checkout the source code
    |  _________^
-29 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803  # v6.1.0
+29 | |         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
    | |_________________________________________________________________________________^ does not set persist-credentials: false
    |
    = note: audit confidence → Low

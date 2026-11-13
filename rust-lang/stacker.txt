@@ -1,3 +1,18 @@
+warning[excessive-permissions]: overly broad permissions
+  --> .github/workflows/publish.yml:1:1
+   |
+ 1 | / name: Publish to crates.io
+ 2 | |
+ 3 | | on:
+ 4 | |   push:
+...  |
+28 | |         env:
+29 | |           CARGO_REGISTRY_TOKEN: ${{ steps.auth.outputs.token }}
+   | |________________________________________________________________^ default permissions used due to no permissions: block
+   |
+   = note: audit confidence → Medium
+   = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
+
 help[artipacked]: credential persistence through GitHub Actions artifacts
   --> .github/workflows/test.yml:29:9
    |
@@ -778,4 +793,4 @@ error[unpinned-uses]: unpinned action reference
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
-80 findings: 0 informational, 67 low, 0 medium, 13 high
+81 findings: 0 informational, 67 low, 1 medium, 13 high

@@ -9,9 +9,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:45:9
+  --> .github/workflows/main.yml:48:9
    |
-45 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+48 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -19,9 +19,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:71:9
+  --> .github/workflows/main.yml:75:9
    |
-71 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+75 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -29,9 +29,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/main.yml:89:9
+  --> .github/workflows/main.yml:93:9
    |
-89 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+93 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -39,9 +39,9 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:111:9
+   --> .github/workflows/main.yml:115:9
     |
-111 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+115 |       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -56,8 +56,8 @@ warning[excessive-permissions]: overly broad permissions
   3 | |     branches:
   4 | |       - master
 ...   |
-164 | |           # Check if all jobs that we depend on (in the needs array) were successful.
-165 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
+168 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+169 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
     | |____________________________________________________________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -89,8 +89,8 @@ warning[excessive-permissions]: overly broad permissions
 28 | |     runs-on: ubuntu-24.04
 29 | |     env:
 ...  |
-64 | |         working-directory: ${{ matrix.workspace }}
-65 | |         run: ${{ matrix.test-command }}
+68 | |         working-directory: ${{ matrix.workspace }}
+69 | |         run: ${{ matrix.test-command }}
    | |                                       ^
    | |                                       |
    | |_______________________________________this job
@@ -100,15 +100,15 @@ warning[excessive-permissions]: overly broad permissions
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-  --> .github/workflows/main.yml:67:3
+  --> .github/workflows/main.yml:71:3
    |
-67 | /   terraform:
-68 | |     name: Terraform configuration
-69 | |     runs-on: ubuntu-24.04
-70 | |     steps:
+71 | /   terraform:
+72 | |     name: Terraform configuration
+73 | |     runs-on: ubuntu-24.04
+74 | |     steps:
 ...  |
-82 | |           terraform init -backend=false -input=false
-83 | |           terraform test
+86 | |           terraform init -backend=false -input=false
+87 | |           terraform test
    | |                        ^
    | |                        |
    | |________________________this job
@@ -118,15 +118,15 @@ warning[excessive-permissions]: overly broad permissions
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:85:3
+   --> .github/workflows/main.yml:89:3
     |
- 85 | /   actions-js:
- 86 | |     name: GitHub Actions (JS)
- 87 | |     runs-on: ubuntu-24.04
- 88 | |     steps:
+ 89 | /   actions-js:
+ 90 | |     name: GitHub Actions (JS)
+ 91 | |     runs-on: ubuntu-24.04
+ 92 | |     steps:
 ...   |
-104 | |             fi
-105 | |           done
+108 | |             fi
+109 | |           done
     | |              ^
     | |              |
     | |______________this job
@@ -136,15 +136,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:107:3
+   --> .github/workflows/main.yml:111:3
     |
-107 | /   javascript-tests:
-108 | |     name: JavaScript Tests
-109 | |     runs-on: ubuntu-24.04
-110 | |     steps:
+111 | /   javascript-tests:
+112 | |     name: JavaScript Tests
+113 | |     runs-on: ubuntu-24.04
+114 | |     steps:
 ...   |
-116 | |         run: |
-117 | |           node --test terragrunt/modules/release-distribution/lambdas/doc-router/test.mjs
+120 | |         run: |
+121 | |           node --test terragrunt/modules/release-distribution/lambdas/doc-router/test.mjs
     | |                                                                                         ^
     | |                                                                                         |
     | |_________________________________________________________________________________________this job
@@ -154,15 +154,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:119:3
+   --> .github/workflows/main.yml:123:3
     |
-119 | /   devcontainers:
-120 | |     name: devcontainers
-121 | |     runs-on: ubuntu-26.04
-122 | |     steps:
+123 | /   devcontainers:
+124 | |     name: devcontainers
+125 | |     runs-on: ubuntu-26.04
+126 | |     steps:
 ...   |
-144 | |   # Summary job for the merge queue.
-145 | |   # ALL THE PREVIOUS JOBS NEED TO BE ADDED TO THE `needs` SECTION OF THIS JOB!
+148 | |   # Summary job for the merge queue.
+149 | |   # ALL THE PREVIOUS JOBS NEED TO BE ADDED TO THE `needs` SECTION OF THIS JOB!
     | |                                                                              ^
     | |                                                                              |
     | |______________________________________________________________________________this job
@@ -172,15 +172,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:146:3
+   --> .github/workflows/main.yml:150:3
     |
-146 | /   CI:
-147 | |     # Keep `name` matching the status check.
-148 | |     name: CI
-149 | |     needs: [ terraform, actions-js, javascript-tests, rust, fastly-workers, devcontainers]
+150 | /   CI:
+151 | |     # Keep `name` matching the status check.
+152 | |     name: CI
+153 | |     needs: [ terraform, actions-js, javascript-tests, rust, fastly-workers, devcontainers]
 ...   |
-164 | |           # Check if all jobs that we depend on (in the needs array) were successful.
-165 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
+168 | |           # Check if all jobs that we depend on (in the needs array) were successful.
+169 | |           jq --exit-status 'all(.result == "success" or .result == "skipped")' <<< "$NEEDS"
     | |                                                                                            ^
     | |                                                                                            |
     | |____________________________________________________________________________________________this job
@@ -190,9 +190,9 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:65:18
+  --> .github/workflows/main.yml:69:18
    |
-65 |         run: ${{ matrix.test-command }}
+69 |         run: ${{ matrix.test-command }}
    |         ---      ^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |         |
    |         this run block
