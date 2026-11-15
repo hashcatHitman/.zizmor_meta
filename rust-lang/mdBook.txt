@@ -231,7 +231,7 @@ warning[excessive-permissions]: overly broad permissions
 84 | |     steps:
 85 | |       - uses: actions/checkout@v7
 86 | |       - name: Spell check repository
-87 | |         uses: crate-ci/typos@v1.50.3
+87 | |         uses: crate-ci/typos@v1.52.2
    | |                                    ^
    | |                                    |
    | |____________________________________this job
@@ -435,7 +435,7 @@ error[unpinned-uses]: unpinned action reference
 error[unpinned-uses]: unpinned action reference
   --> .github/workflows/main.yml:87:15
    |
-87 |         uses: crate-ci/typos@v1.50.3
+87 |         uses: crate-ci/typos@v1.52.2
    |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
    |
    = note: audit confidence → High
