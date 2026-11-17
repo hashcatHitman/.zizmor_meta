@@ -735,13 +735,13 @@ help[undocumented-permissions]: permissions without explanatory comments
    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-  --> .github/workflows/release.yaml:80:9
+  --> .github/workflows/release.yaml:82:9
    |
-80 |         - name: Checkout repository
+82 |         - name: Checkout repository
    |  _________^
-81 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-82 | |         with:
-83 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
+83 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+84 | |         with:
+85 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
    | |_____________________________________________^ does not set persist-credentials: false
    |
    = note: audit confidence → Low
@@ -749,13 +749,13 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/release.yaml:172:9
+   --> .github/workflows/release.yaml:174:9
     |
-172 |         - name: Checkout repository
+174 |         - name: Checkout repository
     |  _________^
-173 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-174 | |         with:
-175 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
+175 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+176 | |         with:
+177 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
     | |_____________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -763,13 +763,13 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/release.yaml:206:9
+   --> .github/workflows/release.yaml:210:9
     |
-206 |         - name: Checkout repository
+210 |         - name: Checkout repository
     |  _________^
-207 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-208 | |         with:
-209 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
+211 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+212 | |         with:
+213 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
     | |_____________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -777,197 +777,110 @@ help[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 help[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/release.yaml:263:9
+   --> .github/workflows/release.yaml:273:9
     |
-263 |         - name: Checkout repository
+273 |         - name: Checkout repository
     |  _________^
-264 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-265 | |         with:
-266 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
+274 | |         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+275 | |         with:
+276 | |           fetch-depth: ${{ env.FETCH_DEPTH }}
     | |_____________________________________________^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
     = note: this finding has an auto-fix
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/release.yaml:1:1
-    |
-  1 | / name: release
-  2 | | on:
-  3 | |   schedule:
-  4 | |     - cron: "0 0 * * *" # midnight UTC
-...   |
-282 | |         run: npx ${{ matrix.cmd }} publish --skip-duplicate --pat "$PUBLISH_PAT" --packagePath ../../dist/rust-analyzer-*.vsix ${...
-283 | |         timeout-minutes: 2
-    | |___________________________^ default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/release.yaml:22:3
-    |
- 22 | /   dist:
- 23 | |     if: ${{ github.repository == 'rust-lang/rust-analyzer' || github.event_name == 'workflow_dispatch' }}
- 24 | |     strategy:
- 25 | |       matrix:
-...   |
-152 | |           name: dist-${{ matrix.target }}
-153 | |           path: ./dist
-    | |                      ^
-    | |                      |
-    | |______________________this job
-    |                        default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/release.yaml:155:3
-    |
-155 | /   dist-x86_64-unknown-linux-musl:
-156 | |     if: ${{ github.repository == 'rust-lang/rust-analyzer' || github.event_name == 'workflow_dispatch' }}
-157 | |     name: dist (x86_64-unknown-linux-musl)
-158 | |     runs-on: ubuntu-latest
-...   |
-198 | |           name: dist-x86_64-unknown-linux-musl
-199 | |           path: ./dist
-    | |                      ^
-    | |                      |
-    | |______________________this job
-    |                        default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/release.yaml:201:3
-    |
-201 | /   publish:
-202 | |     if: ${{ github.repository == 'rust-lang/rust-analyzer' || github.event_name == 'workflow_dispatch' }}
-203 | |     runs-on: ubuntu-latest
-204 | |     needs: ["dist", "dist-x86_64-unknown-linux-musl"]
-...   |
-243 | |           name: ${{ env.TAG }}
-244 | |           token: ${{ secrets.GITHUB_TOKEN }}
-    | |                                            ^
-    | |                                            |
-    | |____________________________________________this job
-    |                                              default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
-
-warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/release.yaml:246:3
-    |
-246 | /   publish-extension:
-247 | |     if: ${{ github.repository == 'rust-lang/rust-analyzer' || github.event_name == 'workflow_dispatch' }}
-248 | |     name: publish-extension (${{ matrix.cmd }})
-249 | |     runs-on: ubuntu-latest
-...   |
-282 | |         run: npx ${{ matrix.cmd }} publish --skip-duplicate --pat "$PUBLISH_PAT" --packagePath ../../dist/rust-analyzer-*.vsix ${...
-283 | |         timeout-minutes: 2
-    | |                           ^
-    | |                           |
-    | |___________________________this job
-    |                             default permissions used due to no permissions: block
-    |
-    = note: audit confidence → Medium
-    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:109:45
+   --> .github/workflows/release.yaml:111:45
     |
-106 |         run: |
+108 |         run: |
     |         --- this run block
 ...
-109 |           rustup component add rust-src ${{ matrix.pgo && 'llvm-tools' || '' }}
+111 |           rustup component add rust-src ${{ matrix.pgo && 'llvm-tools' || '' }}
     |                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:110:33
+   --> .github/workflows/release.yaml:112:33
     |
-106 |         run: |
+108 |         run: |
     |         --- this run block
 ...
-110 |           rustup target add ${{ matrix.target }}
+112 |           rustup target add ${{ matrix.target }}
     |                                 ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:113:58
+   --> .github/workflows/release.yaml:115:58
     |
-113 | ...   run: cargo xtask dist --client-patch-version ${{ github.run_number }} ${{ env.ALLOCATOR_FLAG }} ${{ matrix.pgo && format('--p...
+115 | ...   run: cargo xtask dist --client-patch-version ${{ github.run_number }} ${{ env.ALLOCATOR_FLAG }} ${{ matrix.pgo && format('--p...
     |       --- this run block                               ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:113:83
+   --> .github/workflows/release.yaml:115:83
     |
-113 |         run: cargo xtask dist --client-patch-version ${{ github.run_number }} ${{ env.ALLOCATOR_FLAG }} ${{ matrix.pgo && format('-...
+115 |         run: cargo xtask dist --client-patch-version ${{ github.run_number }} ${{ env.ALLOCATOR_FLAG }} ${{ matrix.pgo && format('-...
     |         --- this run block                                                        ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:113:109
+   --> .github/workflows/release.yaml:115:109
     |
-113 | ...   run: cargo xtask dist --client-patch-version ${{ github.run_number }} ${{ env.ALLOCATOR_FLAG }} ${{ matrix.pgo && format('--pgo {0}', matrix.pgo) || ''}}
+115 | ...   run: cargo xtask dist --client-patch-version ${{ github.run_number }} ${{ env.ALLOCATOR_FLAG }} ${{ matrix.pgo && format('--pgo {0}', matrix.pgo) || ''}}
     |       --- this run block                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:120:64
+   --> .github/workflows/release.yaml:122:64
     |
-120 |         run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }}
+122 |         run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }}
     |         --- this run block                                     ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:120:105
+   --> .github/workflows/release.yaml:122:105
     |
-120 |         run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }}
+122 |         run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }}
     |         --- this run block                                                                              ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:125:64
+   --> .github/workflows/release.yaml:127:64
     |
-125 | ...   run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }} --pre-r...
+127 | ...   run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }} --pre-r...
     |       --- this run block                                     ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:125:105
+   --> .github/workflows/release.yaml:127:105
     |
-125 |         run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }} --pre...
+127 |         run: npx vsce package -o "../../dist/rust-analyzer-${{ matrix.code-target }}.vsix" --target ${{ matrix.code-target }} --pre...
     |         --- this run block                                                                              ^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:141:25
+   --> .github/workflows/release.yaml:143:25
     |
-141 |         run: target/${{ matrix.target }}/release/rust-analyzer analysis-stats . -q
+143 |         run: target/${{ matrix.target }}/release/rust-analyzer analysis-stats . -q
     |         ---             ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |         |
     |         this run block
@@ -976,9 +889,9 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:147:25
+   --> .github/workflows/release.yaml:149:25
     |
-147 | ...   run: target/${{ matrix.target }}/release/rust-analyzer analysis-stats --with-deps --no-sysroot --no-test $(rustc --print sysr...
+149 | ...   run: target/${{ matrix.target }}/release/rust-analyzer analysis-stats --with-deps --no-sysroot --no-test $(rustc --print sysr...
     |       ---             ^^^^^^^^^^^^^ may expand into attacker-controllable code
     |       |
     |       this run block
@@ -987,20 +900,20 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:178:58
+   --> .github/workflows/release.yaml:180:58
     |
-178 |         run: cargo xtask dist --client-patch-version ${{ github.run_number }} --jemalloc
+180 |         run: cargo xtask dist --client-patch-version ${{ github.run_number }} --jemalloc
     |         --- this run block                               ^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 error[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:213:21
+   --> .github/workflows/release.yaml:217:21
     |
-212 |         run: |
+216 |         run: |
     |         --- this run block
-213 |           if [ "${{ github.ref }}" = "refs/heads/release" ]; then
+217 |           if [ "${{ github.ref }}" = "refs/heads/release" ]; then
     |                     ^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
@@ -1008,9 +921,9 @@ error[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:282:22
+   --> .github/workflows/release.yaml:290:22
     |
-282 | ...   run: npx ${{ matrix.cmd }} publish --skip-duplicate --pat "$PUBLISH_PAT" --packagePath ../../dist/rust-analyzer-*.vsix ${{ gi...
+290 | ...   run: npx ${{ matrix.cmd }} publish --skip-duplicate ${{ matrix.authentication }} --packagePath ../../dist/rust-analyzer-*.vsi...
     |       ---          ^^^^^^^^^^ may expand into attacker-controllable code
     |       |
     |       this run block
@@ -1019,16 +932,43 @@ help[template-injection]: code injection via template expansion
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/release.yaml:282:132
+   --> .github/workflows/release.yaml:290:65
     |
-282 | ...   run: npx ${{ matrix.cmd }} publish --skip-duplicate --pat "$PUBLISH_PAT" --packagePath ../../dist/rust-analyzer-*.vsix ${{ github.ref != 'refs/heads/release' && '--pre-release' || '' }}
-    |       --- this run block                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+290 | ...   run: npx ${{ matrix.cmd }} publish --skip-duplicate ${{ matrix.authentication }} --packagePath ../../dist/rust-analyzer-*.vsi...
+    |       --- this run block                                      ^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
+help[template-injection]: code injection via template expansion
+   --> .github/workflows/release.yaml:290:140
+    |
+290 | ...   run: npx ${{ matrix.cmd }} publish --skip-duplicate ${{ matrix.authentication }} --packagePath ../../dist/rust-analyzer-*.vsix ${{ github.ref != 'refs/heads/release' && '--pre-release' || '' }}
+    |       --- this run block                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/release.yaml:207:7
+    |
+207 |       contents: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
+help[undocumented-permissions]: permissions without explanatory comments
+   --> .github/workflows/release.yaml:258:7
+    |
+258 |       id-token: write
+    |       ^^^^^^^^^^^^^^^ needs an explanatory comment
+    |
+    = note: audit confidence → High
+    = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
+
 error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
-  --> .github/workflows/release.yaml:95:9
+  --> .github/workflows/release.yaml:97:9
    |
  2 | / on:
  3 | |   schedule:
@@ -1038,14 +978,14 @@ error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache pois
 11 | |       - trigger-nightly
    | |_______________________- generally used when publishing artifacts generated at runtime
 ...
-95 |           uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+97 |           uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
    |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `package-manager-cache` enables caching
    |
    = note: audit confidence → Low
    = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
 
 error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache poisoning attack
-   --> .github/workflows/release.yaml:259:9
+   --> .github/workflows/release.yaml:269:9
     |
   2 | / on:
   3 | |   schedule:
@@ -1055,61 +995,61 @@ error[cache-poisoning]: runtime artifacts potentially vulnerable to a cache pois
  11 | |       - trigger-nightly
     | |_______________________- generally used when publishing artifacts generated at runtime
 ...
-259 |           uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+269 |           uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
     |           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ omitting `package-manager-cache` enables caching
     |
     = note: audit confidence → Low
     = help: audit documentation → https://docs.zizmor.sh/audits/#cache-poisoning
 
 error[unpinned-images]: unpinned image references
-  --> .github/workflows/release.yaml:73:5
+  --> .github/workflows/release.yaml:75:5
    |
-25 |       matrix:
+27 |       matrix:
    |       ------ this matrix
 ...
-43 |             container: quay.io/pypa/manylinux_2_28_x86_64
+45 |             container: quay.io/pypa/manylinux_2_28_x86_64
    |             --------------------------------------------- this expansion of matrix.container
 ...
-73 |     container: ${{ matrix.container }}
+75 |     container: ${{ matrix.container }}
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ container image is unpinned
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
 
 error[unpinned-images]: unpinned image references
-  --> .github/workflows/release.yaml:73:5
+  --> .github/workflows/release.yaml:75:5
    |
-25 |       matrix:
+27 |       matrix:
    |       ------ this matrix
 ...
-49 |             container: quay.io/pypa/manylinux_2_28_aarch64
+51 |             container: quay.io/pypa/manylinux_2_28_aarch64
    |             ---------------------------------------------- this expansion of matrix.container
 ...
-73 |     container: ${{ matrix.container }}
+75 |     container: ${{ matrix.container }}
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ container image is unpinned
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
 
 error[unpinned-images]: unpinned image references
-  --> .github/workflows/release.yaml:73:5
+  --> .github/workflows/release.yaml:75:5
    |
-25 |       matrix:
+27 |       matrix:
    |       ------ this matrix
 ...
-57 |             container: debian:10
+59 |             container: debian:10
    |             -------------------- this expansion of matrix.container
 ...
-73 |     container: ${{ matrix.container }}
+75 |     container: ${{ matrix.container }}
    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ container image is not pinned to a SHA256 hash
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-images
 
 error[unpinned-images]: unpinned image references
-   --> .github/workflows/release.yaml:164:7
+   --> .github/workflows/release.yaml:166:7
     |
-164 |       image: rust:alpine
+166 |       image: rust:alpine
     |       ^^^^^^^^^^^^^^^^^^ container image is not pinned to a SHA256 hash
     |
     = note: audit confidence → High
@@ -1249,4 +1189,4 @@ error[github-app]: dangerous use of GitHub App tokens
    = tip: specify at least one `permission-<name>` input to limit the token's permissions
    = help: audit documentation → https://docs.zizmor.sh/audits/#github-app
 
-99 findings (1 ignored, 5 suppressed): 4 informational, 49 low, 32 medium, 8 high
+95 findings (1 ignored, 3 suppressed): 4 informational, 52 low, 27 medium, 8 high

@@ -39,9 +39,9 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
    = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:103:7
+   --> .github/workflows/main.yml:105:7
     |
-103 |     - uses: actions/checkout@v4
+105 |     - uses: actions/checkout@v4
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -49,9 +49,9 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:121:7
+   --> .github/workflows/main.yml:123:7
     |
-121 |     - uses: actions/checkout@main
+123 |     - uses: actions/checkout@main
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -59,9 +59,9 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:133:9
+   --> .github/workflows/main.yml:135:9
     |
-133 |       - uses: actions/checkout@v4
+135 |       - uses: actions/checkout@v4
     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -69,9 +69,9 @@ warning[artipacked]: credential persistence through GitHub Actions artifacts
     = help: audit documentation → https://docs.zizmor.sh/audits/#artipacked
 
 warning[artipacked]: credential persistence through GitHub Actions artifacts
-   --> .github/workflows/main.yml:147:7
+   --> .github/workflows/main.yml:149:7
     |
-147 |     - uses: actions/checkout@main
+149 |     - uses: actions/checkout@main
     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^ does not set persist-credentials: false
     |
     = note: audit confidence → Low
@@ -86,8 +86,8 @@ warning[excessive-permissions]: overly broad permissions
   3 | |
   4 | | env:
 ...   |
-175 | |       - name: check if any dependency failed
-176 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+177 | |       - name: check if any dependency failed
+178 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     | |_____________________________________________________________________________________^ default permissions used due to no permissions: block
     |
     = note: audit confidence → Medium
@@ -137,8 +137,8 @@ warning[excessive-permissions]: overly broad permissions
 42 | |     needs: [ test ]
 43 | |     runs-on: ubuntu-latest
 ...  |
-90 | |       working-directory: test-crate
-91 | |       if: ${{ !matrix.platform.test }}
+92 | |       working-directory: test-crate
+93 | |       if: ${{ !matrix.platform.test }}
    | |                                      ^
    | |                                      |
    | |______________________________________this job
@@ -148,15 +148,15 @@ warning[excessive-permissions]: overly broad permissions
    = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:93:3
+   --> .github/workflows/main.yml:95:3
     |
- 93 | /   ios_cross_compile_test:
- 94 | |     name: Test Cross Compile - ${{ matrix.platform.target }}
- 95 | |     needs: [ test ]
- 96 | |     runs-on: macos-latest
+ 95 | /   ios_cross_compile_test:
+ 96 | |     name: Test Cross Compile - ${{ matrix.platform.target }}
+ 97 | |     needs: [ test ]
+ 98 | |     runs-on: macos-latest
 ...   |
-114 | |         # If this isn't specified the default is iOS 7, for which zlib-ng will not compile due to the lack of thread-local storage.
-115 | |         IPHONEOS_DEPLOYMENT_TARGET: 16
+116 | |         # If this isn't specified the default is iOS 7, for which zlib-ng will not compile due to the lack of thread-local storage.
+117 | |         IPHONEOS_DEPLOYMENT_TARGET: 16
     | |                                      ^
     | |                                      |
     | |______________________________________this job
@@ -166,15 +166,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:117:3
+   --> .github/workflows/main.yml:119:3
     |
-117 | /   rustfmt:
-118 | |     name: Rustfmt
-119 | |     runs-on: ubuntu-latest
-120 | |     steps:
+119 | /   rustfmt:
+120 | |     name: Rustfmt
+121 | |     runs-on: ubuntu-latest
+122 | |     steps:
 ...   |
-126 | |         rustup component add rustfmt
-127 | |     - run: cargo fmt --all -- --check
+128 | |         rustup component add rustfmt
+129 | |     - run: cargo fmt --all -- --check
     | |                                     ^
     | |                                     |
     | |_____________________________________this job
@@ -184,15 +184,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:129:3
+   --> .github/workflows/main.yml:131:3
     |
-129 | /   doc:
-130 | |     name: docs
-131 | |     runs-on: ubuntu-latest
-132 | |     steps:
+131 | /   doc:
+132 | |     name: docs
+133 | |     runs-on: ubuntu-latest
+134 | |     steps:
 ...   |
-137 | |       - uses: Swatinem/rust-cache@v2
-138 | |       - run: cargo doc
+139 | |       - uses: Swatinem/rust-cache@v2
+140 | |       - run: cargo doc
     | |                      ^
     | |                      |
     | |______________________this job
@@ -202,15 +202,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:140:3
+   --> .github/workflows/main.yml:142:3
     |
-140 | /   msrv:
-141 | |     name: MSRV check
-142 | |     runs-on: ubuntu-24.04
-143 | |     timeout-minutes: 10
+142 | /   msrv:
+143 | |     name: MSRV check
+144 | |     runs-on: ubuntu-24.04
+145 | |     timeout-minutes: 10
 ...   |
-156 | |     - uses: Swatinem/rust-cache@v2
-157 | |     - run: cargo check
+158 | |     - uses: Swatinem/rust-cache@v2
+159 | |     - run: cargo check
     | |                      ^
     | |                      |
     | |______________________this job
@@ -220,15 +220,15 @@ warning[excessive-permissions]: overly broad permissions
     = help: audit documentation → https://docs.zizmor.sh/audits/#excessive-permissions
 
 warning[excessive-permissions]: overly broad permissions
-   --> .github/workflows/main.yml:159:3
+   --> .github/workflows/main.yml:161:3
     |
-159 | /   success:
-160 | |     needs:
-161 | |       - clippy
-162 | |       - test
+161 | /   success:
+162 | |     needs:
+163 | |       - clippy
+164 | |       - test
 ...   |
-175 | |       - name: check if any dependency failed
-176 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+177 | |       - name: check if any dependency failed
+178 | |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     | |                                                                                     ^
     | |                                                                                     |
     | |_____________________________________________________________________________________this job
@@ -273,48 +273,48 @@ help[template-injection]: code injection via template expansion
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:85:40
+  --> .github/workflows/main.yml:87:40
    |
-85 |       run: cross test -vv --target ${{ matrix.platform.target }}
+87 |       run: cross test -vv --target ${{ matrix.platform.target }}
    |       --- this run block               ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-  --> .github/workflows/main.yml:89:41
+  --> .github/workflows/main.yml:91:41
    |
-89 |       run: cross build -vv --target ${{ matrix.platform.target }}
+91 |       run: cross build -vv --target ${{ matrix.platform.target }}
    |       --- this run block                ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
    |
    = note: audit confidence → High
    = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:108:31
+   --> .github/workflows/main.yml:110:31
     |
-105 |       run: |
+107 |       run: |
     |       --- this run block
 ...
-108 |         rustup target add ${{ matrix.platform.target }}
+110 |         rustup target add ${{ matrix.platform.target }}
     |                               ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 help[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:111:41
+   --> .github/workflows/main.yml:113:41
     |
-111 |       run: cargo build -vv --target ${{ matrix.platform.target }}
+113 |       run: cargo build -vv --target ${{ matrix.platform.target }}
     |       --- this run block                ^^^^^^^^^^^^^^^^^^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#template-injection
 
 info[template-injection]: code injection via template expansion
-   --> .github/workflows/main.yml:176:75
+   --> .github/workflows/main.yml:178:75
     |
-176 |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+178 |         run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
     |         --- this run block                                                ^^^^^ may expand into attacker-controllable code
     |
     = note: audit confidence → Low
@@ -370,16 +370,6 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-  --> .github/workflows/main.yml:80:13
-   |
-80 |     - uses: taiki-e/install-action@v2
-   |             ^^^^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
-   |
-   = note: audit confidence → High
-   = note: this finding has an auto-fix
-   = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
-
-error[unpinned-uses]: unpinned action reference
   --> .github/workflows/main.yml:83:13
    |
 83 |     - uses: Swatinem/rust-cache@v2
@@ -390,9 +380,9 @@ error[unpinned-uses]: unpinned action reference
    = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:103:13
+   --> .github/workflows/main.yml:105:13
     |
-103 |     - uses: actions/checkout@v4
+105 |     - uses: actions/checkout@v4
     |             ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -400,9 +390,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:109:13
+   --> .github/workflows/main.yml:111:13
     |
-109 |     - uses: Swatinem/rust-cache@v2
+111 |     - uses: Swatinem/rust-cache@v2
     |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -410,18 +400,18 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:121:13
+   --> .github/workflows/main.yml:123:13
     |
-121 |     - uses: actions/checkout@main
+123 |     - uses: actions/checkout@main
     |             ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:133:15
+   --> .github/workflows/main.yml:135:15
     |
-133 |       - uses: actions/checkout@v4
+135 |       - uses: actions/checkout@v4
     |               ^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -429,9 +419,9 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:137:15
+   --> .github/workflows/main.yml:139:15
     |
-137 |       - uses: Swatinem/rust-cache@v2
+139 |       - uses: Swatinem/rust-cache@v2
     |               ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -439,18 +429,18 @@ error[unpinned-uses]: unpinned action reference
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:147:13
+   --> .github/workflows/main.yml:149:13
     |
-147 |     - uses: actions/checkout@main
+149 |     - uses: actions/checkout@main
     |             ^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
     = help: audit documentation → https://docs.zizmor.sh/audits/#unpinned-uses
 
 error[unpinned-uses]: unpinned action reference
-   --> .github/workflows/main.yml:156:13
+   --> .github/workflows/main.yml:158:13
     |
-156 |     - uses: Swatinem/rust-cache@v2
+158 |     - uses: Swatinem/rust-cache@v2
     |             ^^^^^^^^^^^^^^^^^^^^^^ action is not pinned to a hash (required by blanket policy)
     |
     = note: audit confidence → High
@@ -521,4 +511,4 @@ help[undocumented-permissions]: permissions without explanatory comments
   = note: audit confidence → High
   = help: audit documentation → https://docs.zizmor.sh/audits/#undocumented-permissions
 
-45 findings: 1 informational, 9 low, 17 medium, 18 high
+44 findings: 1 informational, 9 low, 17 medium, 17 high
